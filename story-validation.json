@@ -1,0 +1,21 @@
+{
+  "date": "2026-11-02",
+  "slides": 10,
+  "tradeData": "matches main dashboard",
+  "countryExample": "all core 572.3367202; display modules 383.60209006; Vietnam display 224.14575869",
+  "browserQA": {
+    "1440x900": "10 pages fit without horizontal or vertical overflow",
+    "1280x720": "10 pages fit after cover spacing adjustment",
+    "390x844": "10 pages without horizontal overflow; internal vertical scrolling",
+    "interactions": [
+      "page buttons",
+      "keyboard navigation",
+      "overview",
+      "source dialog",
+      "presentation mode",
+      "country/product switch"
+    ],
+    "consoleErrors": 0
+  },
+  "note": "Touch swipe implemented; touch-device hardware gesture not independently tested."
+}
