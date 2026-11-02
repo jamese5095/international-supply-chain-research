@@ -1,52 +1,30 @@
 {
   "date": "2026-11-02",
-  "version": "bg7-clients",
-  "slides": 7,
-  "content": {
-    "targets": 8,
-    "projectGroups": 4,
-    "sequence": [
-      "项目选择",
-      "资源组织",
-      "试运营",
-      "扩大投入"
-    ],
-    "fixedCycleDates": false,
-    "visuals": [
-      "product country panels with enterprise entry",
-      "8 target firms and two specific investment exclusions",
-      "client to resource matrix",
-      "four named project service chains",
-      "four-stage sequence and outputs"
-    ]
-  },
-  "data": "All trade, country and other research fields unchanged; only public evidence extended.",
-  "corrections": [
-    "Product-country figures are not assigned to firms",
-    "XCMG Europe procurement is inbound transport, distinct from outbound warehousing",
-    "ASML specialized facilities and LEGO existing Vietnam RDC do not guide first-round dedicated investment; no whole-firm exclusion",
-    "US restaurant and European pharma remain separate pathways",
-    "Target recommendations are not signed business; MOU is not exclusivity; JD BYD case limited to Poland"
+  "version": "atlas4",
+  "slides": 6,
+  "targets": 8,
+  "solutions": 4,
+  "data": "Trade and country amounts unchanged",
+  "features": [
+    "map trade/enterprise/capability views",
+    "all 145 enterprise catalogue map",
+    "named targets and service packages",
+    "shared targets and solutions across overview and dashboard",
+    "six conclusion pages with contextual evidence links",
+    "return to original overview page"
   ],
   "checks": {
-    "jsSyntax": true,
-    "embeddedSyntax": true,
-    "evidenceKeys": true,
-    "all8TargetsLinkedAcrossPages4To6": true,
-    "noProcessUncertaintyTermsInSlides": true,
-    "noCycleDatesOnFinalPage": true
+    "syntax": true,
+    "sharedTargetReferences": true,
+    "sourceReferences": true,
+    "standaloneSyntax": true
   },
   "browserQA": {
-    "1280x720": "All 7 pages fit; page 4 compressed after observing overflow.",
-    "1440x900": "Changed pages 3–7 fit; page 6 gap adjusted and rechecked.",
-    "390x844": "Changed pages 3–7 have no document or slide horizontal overflow; long content scrolls within slide.",
-    "interactions": [
-      "7-entry overview",
-      "page navigation",
-      "page 4 ArrowRight stays in table",
-      "page 4 source panel with 15 primary references"
-    ],
+    "desktop": "map render, enterprise/current-global tabs, links to solution and overview return verified",
+    "mobile390x844": "home, targets, resources and map have no document horizontal overflow",
+    "catalogueMap": 145,
+    "vietnamElectronicsExport": 164.69,
+    "overviewPages": 6,
     "consoleErrors": 0
-  },
-  "scope": "Research recommendations; resources and fixed investment depend on concrete projects, delivery and economics."
+  }
 }
