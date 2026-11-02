@@ -1,40 +1,52 @@
 {
   "date": "2026-11-02",
-  "version": "bg7",
+  "version": "bg7-clients",
   "slides": 7,
   "content": {
-    "previousVisibleBodyChars": 5297,
-    "currentVisibleBodyChars": 2242,
-    "approxReduction": 0.576741551821786,
+    "targets": 8,
+    "projectGroups": 4,
+    "sequence": [
+      "项目选择",
+      "资源组织",
+      "试运营",
+      "扩大投入"
+    ],
+    "fixedCycleDates": false,
     "visuals": [
-      "four business mini-chart panels",
-      "product-specific country flow panels",
-      "enterprise/action to requirement to entry rows",
-      "basis and proposed resource matrix",
-      "four regional solution cards",
-      "90-day deliverables timeline"
+      "product country panels with enterprise entry",
+      "8 target firms and two specific investment exclusions",
+      "client to resource matrix",
+      "four named project service chains",
+      "four-stage sequence and outputs"
     ]
   },
-  "data": "29 trade rows and 6 directional summaries unchanged",
+  "data": "All trade, country and other research fields unchanged; only public evidence extended.",
   "corrections": [
-    "Vietnam start priority distinct from Germany customer-led expansion",
-    "US brand export opportunity separated from US restaurant operations",
-    "unknown capability not marked missing",
-    "existing basis separated from proposed staffing/interface/partner additions",
-    "no invented scores, budgets or role counts"
+    "Product-country figures are not assigned to firms",
+    "XCMG Europe procurement is inbound transport, distinct from outbound warehousing",
+    "ASML specialized facilities and LEGO existing Vietnam RDC do not guide first-round dedicated investment; no whole-firm exclusion",
+    "US restaurant and European pharma remain separate pathways",
+    "Target recommendations are not signed business; MOU is not exclusivity; JD BYD case limited to Poland"
   ],
+  "checks": {
+    "jsSyntax": true,
+    "embeddedSyntax": true,
+    "evidenceKeys": true,
+    "all8TargetsLinkedAcrossPages4To6": true,
+    "noProcessUncertaintyTermsInSlides": true,
+    "noCycleDatesOnFinalPage": true
+  },
   "browserQA": {
-    "1280x720": "All 7 pages fit; flow axes rechecked",
-    "1440x900": "All 7 pages fit",
-    "390x844": "All 7 without document horizontal overflow; matrix scrolls internally",
+    "1280x720": "All 7 pages fit; page 4 compressed after observing overflow.",
+    "1440x900": "Changed pages 3–7 fit; page 6 gap adjusted and rechecked.",
+    "390x844": "Changed pages 3–7 have no document or slide horizontal overflow; long content scrolls within slide.",
     "interactions": [
+      "7-entry overview",
       "page navigation",
-      "matrix ArrowRight does not navigate pages",
-      "overview 7 entries",
-      "source panel",
-      "presentation enter/exit"
+      "page 4 ArrowRight stays in table",
+      "page 4 source panel with 15 primary references"
     ],
     "consoleErrors": 0
   },
-  "scope": "Research recommendations; fixed investment conditional on orders, operations and economics."
+  "scope": "Research recommendations; resources and fixed investment depend on concrete projects, delivery and economics."
 }
