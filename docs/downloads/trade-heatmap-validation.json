@@ -1,0 +1,37 @@
+{
+  "year": 2025,
+  "unit": "亿美元",
+  "industries": 13,
+  "hsCodes": 62,
+  "overlap": false,
+  "queries": 124,
+  "allQueriesBelowPreviewLimit": true,
+  "flows": {
+    "M": {
+      "world": 9490.037332620002,
+      "directMapped": 7191.01130876,
+      "allocated": 1636.82068426,
+      "colorTotal": 8827.83199302,
+      "china": 662.16921405,
+      "unresolvedTotal": 0.03612555
+    },
+    "X": {
+      "world": 10158.44871141,
+      "directMapped": 9793.644758679999,
+      "allocated": 364.80395273000005,
+      "colorTotal": 10158.44871141,
+      "china": 0,
+      "unresolvedTotal": 0
+    }
+  },
+  "checks": {
+    "worldPartnerTotals": true,
+    "allocationConserved": true,
+    "noReporterAllocation": true,
+    "browserDesktop1280": true,
+    "browserMobile390NoOverflow": true,
+    "countryAndSmallRegionInteraction": true,
+    "scopeTableRows": 13,
+    "browserConsoleErrors": 0
+  }
+}
