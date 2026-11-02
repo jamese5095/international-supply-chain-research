@@ -1,10 +1,10 @@
 {
   "date": "2026-11-02",
-  "version": "selection2",
+  "version": "direction2",
   "slides": 6,
   "targets": 8,
   "solutions": 4,
-  "data": "Trade and country amounts unchanged",
+  "data": "Original 29 trade rows unchanged; 2025 HS8542 two-direction country basket added.",
   "features": [
     "map trade/enterprise/capability views",
     "all 145 enterprise catalogue map",
@@ -20,16 +20,14 @@
     "standaloneSyntax": true
   },
   "browserQA": {
-    "1280x720": "Overview page 2 fits; active slide x=0 on direct hash entry",
-    "mobile": "Flow page no horizontal overflow; pharma threshold uses overall 523.20/557.80"
+    "overview1280x720": "Pages 2 and 3 fit, active page x=0",
+    "mobile390x844": "Chip import, household export and pharma core import each have one primary chart; no horizontal overflow"
   },
   "selection": {
-    "thresholdBillionUSD": 50,
-    "thresholdUnitChinese": "500亿美元",
-    "scaleGoods": 13,
-    "channelObservers": 3,
-    "flowScaleCoverage": 5,
-    "projectExtensions": 3,
-    "coreBasketNotUsedForScaleThreshold": true
+    "scaleThresholdUSD100Million": 500,
+    "dominance": 0.6,
+    "primaryDirections": 6,
+    "projectDirections": 3,
+    "noIndustryReverseDirectionAssumed": true
   }
 }

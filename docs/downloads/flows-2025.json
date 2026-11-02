@@ -3,6 +3,1237 @@
   "unit": "亿美元",
   "items": [
     {
+      "sub": 1,
+      "name": "集成电路及其零件",
+      "scope": "HS8542核心范围；含集成电路零件，不含半导体设备与材料",
+      "flows": {
+        "M": {
+          "world": 4253.94180083,
+          "rows": [
+            {
+              "partner": 490,
+              "value": 1525.43297089
+            },
+            {
+              "partner": 410,
+              "value": 935.55839768
+            },
+            {
+              "partner": 156,
+              "value": 569.50223004
+            },
+            {
+              "partner": 392,
+              "value": 286.63187468
+            },
+            {
+              "partner": 842,
+              "value": 285.26186511
+            },
+            {
+              "partner": 376,
+              "value": 126.87298023
+            },
+            {
+              "partner": 458,
+              "value": 115.28096862
+            },
+            {
+              "partner": 702,
+              "value": 102.64226282
+            },
+            {
+              "partner": 372,
+              "value": 88.3983079
+            },
+            {
+              "partner": 276,
+              "value": 45.08687828
+            },
+            {
+              "partner": 704,
+              "value": 36.3771535
+            },
+            {
+              "partner": 764,
+              "value": 35.57218609
+            },
+            {
+              "partner": 608,
+              "value": 34.00660113
+            },
+            {
+              "partner": 251,
+              "value": 16.7690155
+            },
+            {
+              "partner": 188,
+              "value": 12.77444741
+            },
+            {
+              "partner": 484,
+              "value": 12.75046768
+            },
+            {
+              "partner": 380,
+              "value": 7.47706544
+            },
+            {
+              "partner": 470,
+              "value": 4.30116652
+            },
+            {
+              "partner": 40,
+              "value": 2.36228943
+            },
+            {
+              "partner": 528,
+              "value": 2.19481861
+            },
+            {
+              "partner": 360,
+              "value": 1.50524462
+            },
+            {
+              "partner": 620,
+              "value": 1.28451054
+            },
+            {
+              "partner": 757,
+              "value": 1.19032143
+            },
+            {
+              "partner": 203,
+              "value": 1.1122678
+            },
+            {
+              "partner": 504,
+              "value": 1.00430982
+            },
+            {
+              "partner": 826,
+              "value": 0.61036224
+            },
+            {
+              "partner": 246,
+              "value": 0.52923951
+            },
+            {
+              "partner": 124,
+              "value": 0.43464427
+            },
+            {
+              "partner": 56,
+              "value": 0.22141005
+            },
+            {
+              "partner": 752,
+              "value": 0.20029165
+            },
+            {
+              "partner": 344,
+              "value": 0.1001924
+            },
+            {
+              "partner": 112,
+              "value": 0.09235781
+            },
+            {
+              "partner": 699,
+              "value": 0.07013986
+            },
+            {
+              "partner": 643,
+              "value": 0.05616357
+            },
+            {
+              "partner": 348,
+              "value": 0.03381557
+            },
+            {
+              "partner": 76,
+              "value": 0.02846251
+            },
+            {
+              "partner": 36,
+              "value": 0.02734147
+            },
+            {
+              "partner": 616,
+              "value": 0.02369907
+            },
+            {
+              "partner": 100,
+              "value": 0.02227423
+            },
+            {
+              "partner": 899,
+              "value": 0.01687957
+            },
+            {
+              "partner": 554,
+              "value": 0.01663493
+            },
+            {
+              "partner": 724,
+              "value": 0.01567799
+            },
+            {
+              "partner": 579,
+              "value": 0.01307382
+            },
+            {
+              "partner": 784,
+              "value": 0.00908511
+            },
+            {
+              "partner": 705,
+              "value": 0.0089274
+            },
+            {
+              "partner": 788,
+              "value": 0.00850621
+            },
+            {
+              "partner": 208,
+              "value": 0.00793744
+            },
+            {
+              "partner": 703,
+              "value": 0.00649155
+            },
+            {
+              "partner": 233,
+              "value": 0.00501842
+            },
+            {
+              "partner": 516,
+              "value": 0.00436966
+            },
+            {
+              "partner": 428,
+              "value": 0.00412283
+            },
+            {
+              "partner": 642,
+              "value": 0.002781
+            },
+            {
+              "partner": 300,
+              "value": 0.00214908
+            },
+            {
+              "partner": 268,
+              "value": 0.0019693
+            },
+            {
+              "partner": 688,
+              "value": 0.00153212
+            },
+            {
+              "partner": 116,
+              "value": 0.00148847
+            },
+            {
+              "partner": 144,
+              "value": 0.00145068
+            },
+            {
+              "partner": 710,
+              "value": 0.00143578
+            },
+            {
+              "partner": 364,
+              "value": 0.00143532
+            },
+            {
+              "partner": 792,
+              "value": 0.00135069
+            },
+            {
+              "partner": 440,
+              "value": 0.00120352
+            },
+            {
+              "partner": 270,
+              "value": 0.00084267
+            },
+            {
+              "partner": 214,
+              "value": 0.00062751
+            },
+            {
+              "partner": 191,
+              "value": 0.00059853
+            },
+            {
+              "partner": 417,
+              "value": 0.00058733
+            },
+            {
+              "partner": 352,
+              "value": 0.00053269
+            },
+            {
+              "partner": 860,
+              "value": 0.00045266
+            },
+            {
+              "partner": 104,
+              "value": 0.0004046
+            },
+            {
+              "partner": 586,
+              "value": 0.00032054
+            },
+            {
+              "partner": 748,
+              "value": 0.00026927
+            },
+            {
+              "partner": 480,
+              "value": 0.00024547
+            },
+            {
+              "partner": 804,
+              "value": 0.00023367
+            },
+            {
+              "partner": 512,
+              "value": 0.00021469
+            },
+            {
+              "partner": 478,
+              "value": 0.00018531
+            },
+            {
+              "partner": 834,
+              "value": 0.00017821
+            },
+            {
+              "partner": 598,
+              "value": 0.00017
+            },
+            {
+              "partner": 20,
+              "value": 0.00013502
+            },
+            {
+              "partner": 136,
+              "value": 0.00013105
+            },
+            {
+              "partner": 662,
+              "value": 0.00011696
+            },
+            {
+              "partner": 818,
+              "value": 8.747e-05
+            },
+            {
+              "partner": 795,
+              "value": 8.044e-05
+            },
+            {
+              "partner": 231,
+              "value": 7.742e-05
+            },
+            {
+              "partner": 152,
+              "value": 7.344e-05
+            },
+            {
+              "partner": 120,
+              "value": 6.303e-05
+            },
+            {
+              "partner": 196,
+              "value": 6.12e-05
+            },
+            {
+              "partner": 858,
+              "value": 6.12e-05
+            },
+            {
+              "partner": 566,
+              "value": 6.079e-05
+            },
+            {
+              "partner": 222,
+              "value": 5.755e-05
+            },
+            {
+              "partner": 332,
+              "value": 5.436e-05
+            },
+            {
+              "partner": 462,
+              "value": 4.548e-05
+            },
+            {
+              "partner": 762,
+              "value": 4.405e-05
+            },
+            {
+              "partner": 446,
+              "value": 3.768e-05
+            },
+            {
+              "partner": 192,
+              "value": 3.315e-05
+            },
+            {
+              "partner": 24,
+              "value": 3.011e-05
+            },
+            {
+              "partner": 442,
+              "value": 2.788e-05
+            },
+            {
+              "partner": 690,
+              "value": 2.686e-05
+            },
+            {
+              "partner": 600,
+              "value": 2.386e-05
+            },
+            {
+              "partner": 148,
+              "value": 1.966e-05
+            },
+            {
+              "partner": 50,
+              "value": 1.503e-05
+            },
+            {
+              "partner": 466,
+              "value": 1.208e-05
+            },
+            {
+              "partner": 499,
+              "value": 6.56e-06
+            },
+            {
+              "partner": 8,
+              "value": 6.35e-06
+            },
+            {
+              "partner": 591,
+              "value": 6.1e-06
+            },
+            {
+              "partner": 32,
+              "value": 4.36e-06
+            },
+            {
+              "partner": 562,
+              "value": 4.17e-06
+            },
+            {
+              "partner": 31,
+              "value": 3.73e-06
+            },
+            {
+              "partner": 398,
+              "value": 3.02e-06
+            },
+            {
+              "partner": 670,
+              "value": 2.12e-06
+            },
+            {
+              "partner": 732,
+              "value": 2.05e-06
+            },
+            {
+              "partner": 862,
+              "value": 1.6e-06
+            },
+            {
+              "partner": 12,
+              "value": 1.14e-06
+            },
+            {
+              "partner": 882,
+              "value": 1e-06
+            },
+            {
+              "partner": 894,
+              "value": 7.6e-07
+            },
+            {
+              "partner": 626,
+              "value": 5.1e-07
+            },
+            {
+              "partner": 533,
+              "value": 3.7e-07
+            },
+            {
+              "partner": 320,
+              "value": 3e-07
+            },
+            {
+              "partner": 634,
+              "value": 2.7e-07
+            },
+            {
+              "partner": 729,
+              "value": 2.2e-07
+            },
+            {
+              "partner": 740,
+              "value": 2e-07
+            },
+            {
+              "partner": 108,
+              "value": 1.2e-07
+            },
+            {
+              "partner": 178,
+              "value": 9e-08
+            }
+          ],
+          "codes": [
+            "8542"
+          ],
+          "sources": [
+            {
+              "code": "8542",
+              "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&reporterCode=156&cmdCode=8542&flowCode=M&partner2Code=0&customsCode=C00&motCode=0&maxRecords=500",
+              "count": 122,
+              "hash": "07c34504c0951773db420d80d263228161d4e712f9bf8e3a97018d5de6ba29af"
+            }
+          ]
+        },
+        "X": {
+          "world": 2026.95728224,
+          "rows": [
+            {
+              "partner": 344,
+              "value": 876.10477704
+            },
+            {
+              "partner": 704,
+              "value": 267.15574387
+            },
+            {
+              "partner": 410,
+              "value": 228.96963263
+            },
+            {
+              "partner": 490,
+              "value": 228.34922086
+            },
+            {
+              "partner": 458,
+              "value": 105.16492439
+            },
+            {
+              "partner": 699,
+              "value": 92.27776837
+            },
+            {
+              "partner": 702,
+              "value": 49.1991238
+            },
+            {
+              "partner": 764,
+              "value": 32.03909628
+            },
+            {
+              "partner": 608,
+              "value": 28.09157037
+            },
+            {
+              "partner": 392,
+              "value": 27.38009094
+            },
+            {
+              "partner": 842,
+              "value": 22.67816375
+            },
+            {
+              "partner": 276,
+              "value": 14.16576929
+            },
+            {
+              "partner": 76,
+              "value": 10.41544282
+            },
+            {
+              "partner": 360,
+              "value": 9.66487047
+            },
+            {
+              "partner": 484,
+              "value": 7.57276682
+            },
+            {
+              "partner": 528,
+              "value": 7.35219436
+            },
+            {
+              "partner": 818,
+              "value": 2.73373136
+            },
+            {
+              "partner": 50,
+              "value": 2.10193773
+            },
+            {
+              "partner": 188,
+              "value": 2.07829166
+            },
+            {
+              "partner": 251,
+              "value": 1.7852551
+            },
+            {
+              "partner": 792,
+              "value": 1.6955537
+            },
+            {
+              "partner": 203,
+              "value": 1.47495056
+            },
+            {
+              "partner": 56,
+              "value": 0.88759557
+            },
+            {
+              "partner": 643,
+              "value": 0.62086598
+            },
+            {
+              "partner": 348,
+              "value": 0.59357097
+            },
+            {
+              "partner": 616,
+              "value": 0.50862371
+            },
+            {
+              "partner": 724,
+              "value": 0.47594501
+            },
+            {
+              "partner": 642,
+              "value": 0.41751383
+            },
+            {
+              "partner": 124,
+              "value": 0.38802356
+            },
+            {
+              "partner": 826,
+              "value": 0.3879551
+            },
+            {
+              "partner": 752,
+              "value": 0.38345235
+            },
+            {
+              "partner": 784,
+              "value": 0.38327138
+            },
+            {
+              "partner": 208,
+              "value": 0.36976171
+            },
+            {
+              "partner": 376,
+              "value": 0.24315741
+            },
+            {
+              "partner": 170,
+              "value": 0.22755789
+            },
+            {
+              "partner": 380,
+              "value": 0.22337694
+            },
+            {
+              "partner": 372,
+              "value": 0.16779368
+            },
+            {
+              "partner": 703,
+              "value": 0.16372007
+            },
+            {
+              "partner": 620,
+              "value": 0.16281504
+            },
+            {
+              "partner": 688,
+              "value": 0.15091728
+            },
+            {
+              "partner": 116,
+              "value": 0.13207404
+            },
+            {
+              "partner": 36,
+              "value": 0.11826364
+            },
+            {
+              "partner": 757,
+              "value": 0.11172307
+            },
+            {
+              "partner": 807,
+              "value": 0.10549487
+            },
+            {
+              "partner": 112,
+              "value": 0.10486507
+            },
+            {
+              "partner": 566,
+              "value": 0.09100517
+            },
+            {
+              "partner": 446,
+              "value": 0.08945522
+            },
+            {
+              "partner": 12,
+              "value": 0.08763175
+            },
+            {
+              "partner": 364,
+              "value": 0.08507388
+            },
+            {
+              "partner": 586,
+              "value": 0.08179197
+            },
+            {
+              "partner": 404,
+              "value": 0.06817365
+            },
+            {
+              "partner": 32,
+              "value": 0.0639183
+            },
+            {
+              "partner": 804,
+              "value": 0.05453935
+            },
+            {
+              "partner": 246,
+              "value": 0.05213489
+            },
+            {
+              "partner": 100,
+              "value": 0.05143835
+            },
+            {
+              "partner": 40,
+              "value": 0.03445998
+            },
+            {
+              "partner": 788,
+              "value": 0.0337004
+            },
+            {
+              "partner": 710,
+              "value": 0.03197851
+            },
+            {
+              "partner": 440,
+              "value": 0.02770179
+            },
+            {
+              "partner": 231,
+              "value": 0.02546997
+            },
+            {
+              "partner": 705,
+              "value": 0.0253888
+            },
+            {
+              "partner": 682,
+              "value": 0.02057176
+            },
+            {
+              "partner": 579,
+              "value": 0.01982834
+            },
+            {
+              "partner": 860,
+              "value": 0.01940631
+            },
+            {
+              "partner": 422,
+              "value": 0.01715023
+            },
+            {
+              "partner": 191,
+              "value": 0.01487993
+            },
+            {
+              "partner": 398,
+              "value": 0.01379118
+            },
+            {
+              "partner": 428,
+              "value": 0.01286373
+            },
+            {
+              "partner": 144,
+              "value": 0.01226291
+            },
+            {
+              "partner": 834,
+              "value": 0.01224753
+            },
+            {
+              "partner": 504,
+              "value": 0.01174686
+            },
+            {
+              "partner": 233,
+              "value": 0.00949342
+            },
+            {
+              "partner": 417,
+              "value": 0.00872434
+            },
+            {
+              "partner": 368,
+              "value": 0.00755185
+            },
+            {
+              "partner": 634,
+              "value": 0.00673386
+            },
+            {
+              "partner": 218,
+              "value": 0.00627351
+            },
+            {
+              "partner": 604,
+              "value": 0.00518302
+            },
+            {
+              "partner": 591,
+              "value": 0.0048603
+            },
+            {
+              "partner": 340,
+              "value": 0.00484362
+            },
+            {
+              "partner": 524,
+              "value": 0.00456604
+            },
+            {
+              "partner": 554,
+              "value": 0.00422617
+            },
+            {
+              "partner": 152,
+              "value": 0.0042171
+            },
+            {
+              "partner": 51,
+              "value": 0.00414219
+            },
+            {
+              "partner": 300,
+              "value": 0.00394209
+            },
+            {
+              "partner": 104,
+              "value": 0.00381862
+            },
+            {
+              "partner": 470,
+              "value": 0.00308791
+            },
+            {
+              "partner": 430,
+              "value": 0.00267069
+            },
+            {
+              "partner": 686,
+              "value": 0.0025909
+            },
+            {
+              "partner": 120,
+              "value": 0.00246324
+            },
+            {
+              "partner": 4,
+              "value": 0.00243317
+            },
+            {
+              "partner": 214,
+              "value": 0.00195582
+            },
+            {
+              "partner": 288,
+              "value": 0.00160074
+            },
+            {
+              "partner": 768,
+              "value": 0.00154024
+            },
+            {
+              "partner": 496,
+              "value": 0.00150251
+            },
+            {
+              "partner": 462,
+              "value": 0.00132376
+            },
+            {
+              "partner": 96,
+              "value": 0.00128469
+            },
+            {
+              "partner": 352,
+              "value": 0.0011326
+            },
+            {
+              "partner": 800,
+              "value": 0.00109613
+            },
+            {
+              "partner": 894,
+              "value": 0.00105998
+            },
+            {
+              "partner": 31,
+              "value": 0.00101479
+            },
+            {
+              "partner": 196,
+              "value": 0.0009662
+            },
+            {
+              "partner": 418,
+              "value": 0.0009381
+            },
+            {
+              "partner": 442,
+              "value": 0.00084048
+            },
+            {
+              "partner": 584,
+              "value": 0.00076997
+            },
+            {
+              "partner": 266,
+              "value": 0.00073338
+            },
+            {
+              "partner": 694,
+              "value": 0.00071045
+            },
+            {
+              "partner": 512,
+              "value": 0.0006375
+            },
+            {
+              "partner": 320,
+              "value": 0.00060868
+            },
+            {
+              "partner": 414,
+              "value": 0.00058678
+            },
+            {
+              "partner": 384,
+              "value": 0.00056525
+            },
+            {
+              "partner": 64,
+              "value": 0.00049705
+            },
+            {
+              "partner": 180,
+              "value": 0.00045907
+            },
+            {
+              "partner": 498,
+              "value": 0.00044642
+            },
+            {
+              "partner": 268,
+              "value": 0.00042195
+            },
+            {
+              "partner": 388,
+              "value": 0.00037266
+            },
+            {
+              "partner": 434,
+              "value": 0.00036535
+            },
+            {
+              "partner": 400,
+              "value": 0.00034242
+            },
+            {
+              "partner": 598,
+              "value": 0.000306
+            },
+            {
+              "partner": 716,
+              "value": 0.00027294
+            },
+            {
+              "partner": 729,
+              "value": 0.00027288
+            },
+            {
+              "partner": 858,
+              "value": 0.00026409
+            },
+            {
+              "partner": 70,
+              "value": 0.00022421
+            },
+            {
+              "partner": 450,
+              "value": 0.00017546
+            },
+            {
+              "partner": 674,
+              "value": 0.00017046
+            },
+            {
+              "partner": 324,
+              "value": 0.00014184
+            },
+            {
+              "partner": 548,
+              "value": 0.000141
+            },
+            {
+              "partner": 74,
+              "value": 0.00013737
+            },
+            {
+              "partner": 646,
+              "value": 0.00013305
+            },
+            {
+              "partner": 24,
+              "value": 0.00013143
+            },
+            {
+              "partner": 68,
+              "value": 0.00012348
+            },
+            {
+              "partner": 882,
+              "value": 0.00011976
+            },
+            {
+              "partner": 795,
+              "value": 0.0001065
+            },
+            {
+              "partner": 600,
+              "value": 9.97e-05
+            },
+            {
+              "partner": 480,
+              "value": 8.772e-05
+            },
+            {
+              "partner": 148,
+              "value": 8.751e-05
+            },
+            {
+              "partner": 862,
+              "value": 7.738e-05
+            },
+            {
+              "partner": 516,
+              "value": 7.581e-05
+            },
+            {
+              "partner": 28,
+              "value": 7.505e-05
+            },
+            {
+              "partner": 762,
+              "value": 5.69e-05
+            },
+            {
+              "partner": 508,
+              "value": 5.34e-05
+            },
+            {
+              "partner": 728,
+              "value": 4.23e-05
+            },
+            {
+              "partner": 242,
+              "value": 3.9e-05
+            },
+            {
+              "partner": 44,
+              "value": 3.8e-05
+            },
+            {
+              "partner": 222,
+              "value": 3.675e-05
+            },
+            {
+              "partner": 275,
+              "value": 3.594e-05
+            },
+            {
+              "partner": 108,
+              "value": 3.452e-05
+            },
+            {
+              "partner": 136,
+              "value": 2.939e-05
+            },
+            {
+              "partner": 558,
+              "value": 2.849e-05
+            },
+            {
+              "partner": 48,
+              "value": 2.718e-05
+            },
+            {
+              "partner": 192,
+              "value": 2.715e-05
+            },
+            {
+              "partner": 232,
+              "value": 2.146e-05
+            },
+            {
+              "partner": 887,
+              "value": 1.921e-05
+            },
+            {
+              "partner": 178,
+              "value": 1.678e-05
+            },
+            {
+              "partner": 760,
+              "value": 1.607e-05
+            },
+            {
+              "partner": 8,
+              "value": 1.578e-05
+            },
+            {
+              "partner": 328,
+              "value": 1.52e-05
+            },
+            {
+              "partner": 780,
+              "value": 1.509e-05
+            },
+            {
+              "partner": 140,
+              "value": 1.164e-05
+            },
+            {
+              "partner": 670,
+              "value": 1.162e-05
+            },
+            {
+              "partner": 316,
+              "value": 7.56e-06
+            },
+            {
+              "partner": 262,
+              "value": 6.9e-06
+            },
+            {
+              "partner": 270,
+              "value": 4.88e-06
+            },
+            {
+              "partner": 204,
+              "value": 4.13e-06
+            },
+            {
+              "partner": 454,
+              "value": 3.82e-06
+            },
+            {
+              "partner": 60,
+              "value": 3.58e-06
+            },
+            {
+              "partner": 72,
+              "value": 2.94e-06
+            },
+            {
+              "partner": 533,
+              "value": 2.79e-06
+            },
+            {
+              "partner": 174,
+              "value": 2.4e-06
+            },
+            {
+              "partner": 499,
+              "value": 1.94e-06
+            },
+            {
+              "partner": 308,
+              "value": 1.68e-06
+            },
+            {
+              "partner": 706,
+              "value": 8.9e-07
+            },
+            {
+              "partner": 258,
+              "value": 8.7e-07
+            },
+            {
+              "partner": 585,
+              "value": 7.5e-07
+            },
+            {
+              "partner": 854,
+              "value": 7.5e-07
+            },
+            {
+              "partner": 466,
+              "value": 6.4e-07
+            },
+            {
+              "partner": 332,
+              "value": 7e-08
+            },
+            {
+              "partner": 520,
+              "value": 3e-08
+            }
+          ],
+          "codes": [
+            "8542"
+          ],
+          "sources": [
+            {
+              "code": "8542",
+              "url": "https://comtradeapi.un.org/public/v1/preview/C/A/HS?period=2025&reporterCode=156&cmdCode=8542&flowCode=X&partner2Code=0&customsCode=C00&motCode=0&maxRecords=500",
+              "count": 178,
+              "hash": "f3eb869e64980f844e9013357f0bd5c03f80d22767e7d26f4549ef4100ab3af7"
+            }
+          ]
+        }
+      }
+    },
+    {
       "sub": 19,
       "name": "服装鞋帽",
       "flows": {
