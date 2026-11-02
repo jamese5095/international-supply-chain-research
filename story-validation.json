@@ -1,27 +1,40 @@
 {
   "date": "2026-11-02",
-  "version": "conclusion-presentation",
-  "slides": 13,
-  "dataChecks": "29 trade rows and 6 summaries unchanged",
-  "newPublicEvidence": [
-    "SF 2025 sustainability report printed p121/PDF p122",
-    "DHL Hung Yen campus groundbreaking 2026-07-24; phase1 planned H1 2027",
-    "LEGO/KN Vietnam RDC 2025-09-10",
-    "BYD European HQ announcement 2025-05-15",
-    "LEGO/KN Belgium RDC opening 2024-06-04",
-    "DHL Florstadt expansion 2025-05-15"
+  "version": "bg7",
+  "slides": 7,
+  "content": {
+    "previousVisibleBodyChars": 5297,
+    "currentVisibleBodyChars": 2242,
+    "approxReduction": 0.576741551821786,
+    "visuals": [
+      "four business mini-chart panels",
+      "product-specific country flow panels",
+      "enterprise/action to requirement to entry rows",
+      "basis and proposed resource matrix",
+      "four regional solution cards",
+      "90-day deliverables timeline"
+    ]
+  },
+  "data": "29 trade rows and 6 directional summaries unchanged",
+  "corrections": [
+    "Vietnam start priority distinct from Germany customer-led expansion",
+    "US brand export opportunity separated from US restaurant operations",
+    "unknown capability not marked missing",
+    "existing basis separated from proposed staffing/interface/partner additions",
+    "no invented scores, budgets or role counts"
   ],
   "browserQA": {
-    "1280x720": "All 13 pages checked; pages 3/4 spacing corrected and rechecked",
-    "1440x900": "All 13 checked; pages 3/4 adjusted for full-page fit",
-    "390x844": "13 pages checked; pharma page width corrected and rechecked; wide tables scroll inside page",
+    "1280x720": "All 7 pages fit; flow axes rechecked",
+    "1440x900": "All 7 pages fit",
+    "390x844": "All 7 without document horizontal overflow; matrix scrolls internally",
     "interactions": [
-      "13 chapter navigation",
-      "updated evidence panel",
-      "last-page next disabled",
+      "page navigation",
+      "matrix ArrowRight does not navigate pages",
+      "overview 7 entries",
+      "source panel",
       "presentation enter/exit"
     ],
     "consoleErrors": 0
   },
-  "scope": "Conclusions and proposed implementation sequence; not confirmed contracts, budgets or investment commitments."
+  "scope": "Research recommendations; fixed investment conditional on orders, operations and economics."
 }
