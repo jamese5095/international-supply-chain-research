@@ -29,5 +29,20 @@
     "regionalRankingInteraction": true,
     "csvDownloadAndTotals": true,
     "consoleErrors": 0
+  },
+  "regionalDetail": {
+    "products": 62,
+    "queries": 124,
+    "allRegionIndustryTotalsChecked": true,
+    "maxDifference": 1.1368683772161603e-13,
+    "allTenRegionPages": true,
+    "thirteenRowsPerRegion": true,
+    "sortAndExpansion": true,
+    "returnPreservesFilter": true,
+    "mapLabelRectangles": 0,
+    "enterpriseRegionAndSubindustryLink": true,
+    "mobile390NoOverflow": true,
+    "consoleErrors": 0,
+    "csvRows": 62
   }
 }
