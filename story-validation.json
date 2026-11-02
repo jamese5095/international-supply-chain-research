@@ -1,10 +1,10 @@
 {
   "date": "2026-11-02",
-  "version": "direction2",
+  "version": "coverage13",
   "slides": 6,
   "targets": 8,
   "solutions": 4,
-  "data": "Original 29 trade rows unchanged; 2025 HS8542 two-direction country basket added.",
+  "data": "Trade and country amounts unchanged",
   "features": [
     "map trade/enterprise/capability views",
     "all 145 enterprise catalogue map",
@@ -20,14 +20,13 @@
     "standaloneSyntax": true
   },
   "browserQA": {
-    "overview1280x720": "Pages 2 and 3 fit, active page x=0",
-    "mobile390x844": "Chip import, household export and pharma core import each have one primary chart; no horizontal overflow"
+    "desktop": "All 13 charts rendered one primary direction; original publication source modal checked; overview page 2 has 13 rows and fits1280x720",
+    "mobile": "Home/source section, industrial material import and medical core export have no horizontal overflow",
+    "consoleErrors": 0
   },
-  "selection": {
-    "scaleThresholdUSD100Million": 500,
-    "dominance": 0.6,
-    "primaryDirections": 6,
-    "projectDirections": 3,
-    "noIndustryReverseDirectionAssumed": true
-  }
+  "primaryDirections": 13,
+  "projectDirections": 3,
+  "methodRecords": 29,
+  "newCountryQueries": 26,
+  "coverage": "13 of 13 scale-focused subsectors, core basket boundaries explicit"
 }
