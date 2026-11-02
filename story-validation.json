@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "version": "atlas4",
+  "version": "projects2",
   "slides": 6,
   "targets": 8,
   "solutions": 4,
@@ -20,11 +20,14 @@
     "standaloneSyntax": true
   },
   "browserQA": {
-    "desktop": "map render, enterprise/current-global tabs, links to solution and overview return verified",
-    "mobile390x844": "home, targets, resources and map have no document horizontal overflow",
-    "catalogueMap": 145,
-    "vietnamElectronicsExport": 164.69,
-    "overviewPages": 6,
-    "consoleErrors": 0
+    "desktop": "Original atlas, flow tabs, project list and detail checked",
+    "mobile390x844": "All four checked pages without horizontal overflow"
+  },
+  "flows": {
+    "subsectors": 8,
+    "directions": 16,
+    "newQueries": 36,
+    "queryMaxRowsBelow500": true,
+    "partnerWorldSumsVerified": true
   }
 }
