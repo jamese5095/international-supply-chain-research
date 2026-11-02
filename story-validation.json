@@ -1,6 +1,6 @@
 {
   "date": "2026-11-02",
-  "version": "projects2",
+  "version": "selection2",
   "slides": 6,
   "targets": 8,
   "solutions": 4,
@@ -20,14 +20,16 @@
     "standaloneSyntax": true
   },
   "browserQA": {
-    "desktop": "Original atlas, flow tabs, project list and detail checked",
-    "mobile390x844": "All four checked pages without horizontal overflow"
+    "1280x720": "Overview page 2 fits; active slide x=0 on direct hash entry",
+    "mobile": "Flow page no horizontal overflow; pharma threshold uses overall 523.20/557.80"
   },
-  "flows": {
-    "subsectors": 8,
-    "directions": 16,
-    "newQueries": 36,
-    "queryMaxRowsBelow500": true,
-    "partnerWorldSumsVerified": true
+  "selection": {
+    "thresholdBillionUSD": 50,
+    "thresholdUnitChinese": "500亿美元",
+    "scaleGoods": 13,
+    "channelObservers": 3,
+    "flowScaleCoverage": 5,
+    "projectExtensions": 3,
+    "coreBasketNotUsedForScaleThreshold": true
   }
 }
