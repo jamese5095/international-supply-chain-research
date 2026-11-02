@@ -27,7 +27,6 @@
     "mobile390NoOverflow": true,
     "filterIndustry": true,
     "regionalRankingInteraction": true,
-    "csvDownloadAndTotals": true,
     "consoleErrors": 0
   },
   "regionalDetail": {
@@ -42,7 +41,14 @@
     "mapLabelRectangles": 0,
     "enterpriseRegionAndSubindustryLink": true,
     "mobile390NoOverflow": true,
-    "consoleErrors": 0,
-    "csvRows": 62
+    "consoleErrors": 0
+  },
+  "simplification": {
+    "csvUIAndExportCodeRemoved": true,
+    "overviewAndDetailRender": true,
+    "cachedDirectRegionReload": true,
+    "sharedMapSnapshot": true,
+    "revisitDoesNotRequestJSONAgain": true,
+    "browserConsoleErrors": 0
   }
 }
