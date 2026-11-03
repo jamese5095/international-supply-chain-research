@@ -15,7 +15,8 @@ if any(output.is_relative_to(source / directory) for directory in assets):
 if output.exists() and output.is_dir():
     parser.error('Output must be a ZIP file, not a directory')
 for required in ('index.html', 'app.js', 'research-data.js', 'downloads/scale-2025.json',
-                 'downloads/trade-regions-2025.json', 'downloads/enterprise-chains-2025.json'):
+                 'downloads/trade-regions-2025.json', 'downloads/enterprise-chains-2025.json',
+                 'downloads/enterprise-samples-2025.json'):
     if not (source / required).is_file():
         parser.error('Missing website file: ' + required)
 files = {path for path in source.iterdir()

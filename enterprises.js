@@ -1,70 +1,219 @@
 (() => {
- 'use strict';
- let dataset,tradeData,state,query='',businessQuery='',renderToken=0;
- const root=document.getElementById('enterpriseApp');
- const E=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
- const decisions={advance:'优先讨论业务',support:'按服务包切入',exclude:'不牵引专用投入'};
- const kinds={trade:'已披露中国跨境业务',network:'网络背景 · 不计作国别贸易项目',extension:'范围延伸 · 不计作本篮子贸易项目',boundary:'承接边界'};
- const money=n=>n.toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});
- const load=()=>dataset?Promise.resolve(dataset):ResearchData.load('enterprise-chains-v9','downloads/enterprise-chains-2025.json?v=20261103-direction3').then(d=>(dataset=d));
- const ind=id=>dataset.industries.find(t=>t.id===+id);
- const regionName=id=>dataset.regions.find(r=>r.id===id)?.name||'全球';
- const partner=id=>dataset.partners[String(id)]||{};
- const countryName=id=>id?(partner(id).name||String(id)):'';
- const flowLabel=f=>f==='M'?'进口':f==='X'?'出口':'本轮主方向';
- const iso=id=>+id===490?'TW':+id===699?'IN':partner(id).iso;
- function readState(){const p=new URLSearchParams(location.search);return normalize({region:p.get('region')||'all',sub:p.get('sub')||'all',country:p.get('country')||0,flow:p.get('flow')||'auto',view:p.get('view')||'business',party:p.get('party')||'all',province:p.get('province')||''})}
- function normalize(s){const sub=ind(s.sub)?String(s.sub):'all',legacy=s.view==='international',flow=legacy?'M':['M','X'].includes(s.flow)?s.flow:(ind(sub)?.flow||'X');return {province:s.province==='unassigned'||/^\d{6}$/.test(s.province||'')?s.province:'',region:dataset.regions.some(r=>r.id===s.region)?s.region:'all',sub,country:iso(s.country)?+s.country:0,flow,view:s.view==='pool'?'pool':'business',party:'all'}}
- function pageURL(s,hash=''){const p=new URLSearchParams({v:'20261103-direction3'});if(s.province)p.set('province',s.province);if(s.region&&s.region!=='all')p.set('region',s.region);if(s.sub&&s.sub!=='all')p.set('sub',s.sub);if(s.country)p.set('country',s.country);if(s.flow&&s.flow!=='auto')p.set('flow',s.flow);if(s.view==='pool')p.set('view','pool');if(s.party&&s.party!=='all')p.set('party',s.party);return 'enterprises.html'+(p.size?'?'+p:'')+(hash?'#'+hash:'')}
- function mapURL(s){const f=s.flow==='auto'?(ind(s.sub)?.flow||'X'):s.flow;return 'trade-heatmaps.html'+(s.region!=='all'?`#region/${s.region}/${s.sub}/${s.country||0}/${f}`:`?sub=${s.sub}&focus=${f}`)}
- function contextText(s){return [s.region==='all'?'全球':regionName(s.region),countryName(s.country),ind(s.sub)?.name,s.flow==='auto'?'各行业本轮方向':flowLabel(s.flow)].filter(Boolean).join(' · ')}
- function matches(c,s,locationFilter=true){if(s.sub!=='all'&&c.sub!==+s.sub)return false;if(s.flow!=='auto'&&c.flow!==s.flow)return false;if(s.party!=='all'&&!(c.participants||[]).some(p=>p.role===s.party))return false;if(s.province==='unassigned'&&c.domesticNodes?.length)return false;if(s.province&&s.province!=='unassigned'&&!c.domesticNodes?.some(n=>n.province===s.province))return false;if(!locationFilter)return true;if(s.region!=='all'&&!c.geography.some(g=>g.region===s.region))return false;if(s.country&&!c.geography.some(g=>(s.region==='all'||g.region===s.region)&&g.countries.includes(iso(s.country))))return false;return true}
- function ordered(s,boundaries=false){return dataset.cases.filter(c=>(c.decision==='exclude')===boundaries&&(boundaries||c.kind==='trade')&&matches(c,s)&&(!businessQuery||[c.name,c.title,c.fact,c.entry,...(c.participants||[]).flatMap(p=>[p.name,p.interface,p.service]),geoText(c,s)].join(' ').toLowerCase().includes(businessQuery.toLowerCase()))).sort((a,b)=>({advance:0,support:1,exclude:2}[a.decision]-{advance:0,support:1,exclude:2}[b.decision])||({trade:0,network:1,extension:2,boundary:3}[a.kind]-{trade:0,network:1,extension:2,boundary:3}[b.kind])||a.sub-b.sub)}
- function sourceList(c){return [...c.sourceIds.map(id=>dataset.sources[id]),...(c.extraSources||[])]}
- function geoText(c,s){const gs=c.geography.filter(g=>s.region==='all'||g.region===s.region);return gs.length?gs.map(g=>{const names=g.countries.map(code=>new Intl.DisplayNames(['zh-CN'],{type:'region'}).of(code));return `${regionName(g.region)}${names.length?'／'+names.join('、'):''} · ${g.role}`}).join('；'):'海外国家未拆分 · 行业层保留'}
- function chain(c){return `<div class="er-chain" aria-label="中国进出口业务链">${c.nodes.map((n,i)=>`${i?'<i aria-hidden="true">→</i>':''}<span>${E(n)}</span>`).join('')}</div>`}
- function card(c,s,preview=false,reference=null){const t=ind(c.sub),sources=sourceList(c);return `<article class="er-card" data-case-card="${E(c.id)}" ${reference?`data-reference-card="${E(reference.id)}"`:""}><div class="er-card-main"><div class="er-company"><span class="er-eyebrow">${E(t.major)}／${E(t.name)} · ${flowLabel(c.flow)}</span><h3>${E(s.party==='overseas'&&c.participants?.some(p=>p.role==='overseas')?c.participants.filter(p=>p.role==='overseas').map(p=>p.name).join('／'):c.name)}</h3>${c.chinaRole?`<small class="er-china-role">${E(s.party==='overseas'?'关联业务：'+c.name:c.chinaRole)}</small>`:''}<span class="er-badge ${c.decision}">${decisions[c.decision]}</span><p>${E(c.title)}</p></div><div>${chain(c)}${participantStrip(c)}<p class="er-fact">${E(c.fact)}</p>${reference?`<div class="er-inline-evidence"><span>相关操作案例 · ${reference.records.length}条记录</span><p>${E(reference.insight)}</p><a href="${E(InternationalResearch.pageURL(reference,s))}">查看关联业务与来源 →</a></div>`:""}<span class="er-case-time">${E(c.factState||kinds[c.kind])} · ${E(sources[0]?.published||'原研究资料')}</span></div><div class="er-entry"><small>建议承接环节</small><strong>${E(c.entry)}</strong>${preview?`<a href="${E(pageURL(s,'case/'+c.id))}">展开依据与业务判断 →</a>`:`<button data-case="${E(c.id)}">展开依据与业务判断 →</button>`}</div></div><div class="er-card-foot"><span>${E(geoText(c,s))}</span>${c.capability?`<a class="er-cap-shortcut" href="${E(capURL(c,s))}">对应能力：${E(capInfo(c.capability)?.title||"建设方案")} →</a>`:""}${sources[0]?`<a target="_blank" rel="noopener" href="${E(sources[0].url)}">业务来源 ↗</a>`:''}</div></article>`}
- function boundaries(s){const rows=ordered(s,true);return rows.length?`<details class="er-boundaries"><summary>建设取舍 · ${rows.length}项业务不牵引本轮专用投入</summary>${rows.map(c=>`<div class="er-boundary-row"><div><strong>${E(c.name)}</strong><p>${E(ind(c.sub).name)}</p></div><p>${E(c.reason)}</p><button data-case="${E(c.id)}">查看边界 →</button></div>`).join('')}</details>`:''}
- function empty(s){const global={...s,region:'all',country:0},regional={...s,country:0};return `<div class="er-empty"><h3>当前方向与筛选暂无匹配业务</h3><p>行业贸易额仍可在热力图查看。未披露海外国家的项目保留在行业层；全球布局名录提供企业背景。</p>${s.country?`<a href="${E(pageURL(regional))}">查看${E(regionName(s.region))}区域项目 →</a>`:''}<a href="${E(pageURL(global))}">查看本行业全球业务 →</a><a href="${E(pageURL({...global,view:'pool'}))}">查看原行业名录 →</a></div>`}
- function countryOptions(s){const current=new Set(dataset.cases.filter(c=>c.kind==='trade'&&matches(c,{...s,country:0},true)).flatMap(c=>c.geography.flatMap(g=>g.countries)));if(s.flow==='M'&&window.InternationalResearch?.get())for(const g of InternationalResearch.filter({...internationalState(s),countryISO:''}))for(const r of g.records)if(r.country)current.add(r.country);const byISO=new Map(),dn=new Intl.DisplayNames(['zh-CN'],{type:'region'});for(const [id,p] of Object.entries(dataset.partners)){if(!p.iso||p.iso==='CN'||/\.\.\.|USSR|Yugoslavia|Czechoslovakia/.test(p.name)||!current.has(p.iso))continue;const old=byISO.get(p.iso);if(!old||+id===+p.numeric)byISO.set(p.iso,[+id,dn.of(p.iso)])}if(s.country)byISO.set(iso(s.country),[s.country,dn.of(iso(s.country))]);return [...byISO.values()].sort((a,b)=>a[1].localeCompare(b[1],'zh-CN'))}
-
- function selectionPolicy(s){if(s.view==='pool')return '';return `<details class="er-direction-policy"><summary>客户与业务入选依据 <span>服务方向、业务事实、专业条件与能力关联</span></summary><p>所列案例为依据以下条件选取的研究样本，用于识别业务需求及能力建设方向，未作穷尽列示。未列示企业与项目仍可在后续研究中补充。</p><div class="er-sample-criteria">${[{title:'按服务方向选择',detail:'出口侧关注海外履约、供料、交付与售后；进口侧关注起运组织、国际运输及专业交接。'},{title:'业务与操作可识别',detail:'既有跨境业务和可借鉴的服务模式均可纳入，保留各自地域、年份及承接主体。'},{title:'承接边界有区分',detail:'既有承运商不构成自动排除；客户授权、货物属性及专业准入决定服务空间。'},{title:'能够对应建设方向',detail:'每组业务关联具体能力，不按企业国籍、全球营收或每行业固定配额排列。'}].map((c,i)=>`<article><strong><i>0${i+1}</i>${c.title}</strong><p>${c.detail}</p></article>`).join('')}</div><p>国别按原案例的业务角色展示，可能是供货、接收或运营节点，不直接等同中国进口来源或出口去向。补充项目记录不等于独立合同，也不代表已取得订单。</p><p>13个重点子行业保持现状。温控药企记录作为制药能力补充；历史、规划与原厂自营职责分别保留。省份地图仅展示可明确归属的业务，其他案例保留在列表。</p></details>`}
- function filters(s){const pool=s.view==='pool';return `<section class="er-filters"><div class="er-filter-row"><label>区域<select id="erRegion" ${pool?'disabled':''}><option value="all">全球</option>${dataset.regions.map(r=>`<option value="${r.id}" ${s.region===r.id?'selected':''}>${r.name}</option>`).join('')}</select></label><label>业务涉及国家／地区<select id="erCountry" ${pool?'disabled':''}><option value="0">全部／区域共用</option>${countryOptions(s).map(([id,name])=>`<option value="${id}" ${s.country===id?'selected':''}>${E(name)}</option>`).join('')}</select></label><a class="er-clear" href="${E(pageURL({flow:s.flow,view:'business'}))}">清除全部筛选</a></div><div class="er-industries"><button data-industry="all" aria-pressed="${s.sub==='all'}">全部13个子行业</button>${dataset.industries.map(t=>`<button data-industry="${t.id}" aria-pressed="${s.sub===String(t.id)}">${E(t.name)}<small>${directionItems({...s,sub:String(t.id),province:''}).length}组业务</small></button>`).join('')}</div></section>`}
- function capInfo(id){return dataset.capabilityIndex?.find(c=>c.id===id)}
- function capURL(c,s,id=c.capability){const p=new URLSearchParams({v:'20261103-direction3',sub:c.sub,flow:c.flow,case:c.id});if(s.region!=='all')p.set('region',s.region);return `capability-${c.flow==='M'?'import':'export'}.html?${p}#${id}`}
- function participantStrip(c){const ps=(c.participants||[]).filter(p=>p.role==='overseas');return ps.length?`<div class="er-party-strip"><span>境外供货方</span><strong>${ps.map(p=>E(p.name)).join(' · ')}</strong></div>`:''}
- function participantDetail(c){if(!c.participants?.length)return '';return `<section class="er-participant-section"><h3>链路主体与运输委托入口</h3><p class="er-note">业务关系有公开来源支持；以下对接组织与服务段为研究建议，按双方交货条款和采购权限落实。</p><div class="er-participant-grid">${c.participants.map(p=>`<article class="er-participant"><span>${p.role==='overseas'?'境外供货方':'中国采购／使用方'}</span><h4>${E(p.name)}</h4><p>${E(p.fact)}</p><dl><dt>建议对接</dt><dd>${E(p.interface)}</dd><dt>可讨论服务</dt><dd>${E(p.service)}</dd></dl></article>`).join('')}</div><small class="er-case-time">同一业务链的不同主体共享本案例，货流与机会不重复计数。</small></section>`}
- function synthesis(rows,s,references=[]){if(!rows.length&&!references.length)return '';const groups=(dataset.capabilityIndex||[]).filter(cap=>rows.some(c=>c.futureLinks?.some(l=>l.id===cap.id))||references.some(g=>g.capabilityIds.includes(cap.id)));return `<section class="er-synthesis"><div class="er-group-title"><h2>企业业务与能力建设的关联</h2><p>同一业务可关联多项能力，数量不相加</p></div><div class="er-synthesis-grid">${groups.map(cap=>{const actual=rows.filter(c=>c.futureLinks?.some(l=>l.id===cap.id)),modes=references.filter(g=>g.capabilityIds.includes(cap.id)),count=actual.length+modes.filter(g=>!actual.some(c=>g.relatedChinaCaseIds.includes(c.id)||c.profile&&g.originalClientId===c.profile)).length,names=[...new Set([...actual.map(c=>c.name),...modes.map(g=>g.name)])];const q=new URLSearchParams({v:'20261103-direction3',sub:s.sub});if(s.region!=='all')q.set('region',s.region);return `<a href="capability-${cap.flow==='M'?'import':'export'}.html?${q}#${cap.id}"><small>${cap.flow==='M'?'进口':'出口'} · ${count}组业务依据</small><strong>${E(cap.title)} →</strong><span>${names.slice(0,2).map(E).join('、')}${names.length>2?' 等':''}</span></a>`}).join('')}</div></section>`}
- function profileCard(p){const text=p.overview.split('\n\n')[0];return `<article class="er-profile"><span class="er-eyebrow">${E(ind(p.sub).major)}／${E(ind(p.sub).name)}</span><h3>${E(p.name)}</h3><p class="er-excerpt">${E(text)}</p><button class="er-more" data-profile="${p.id}">布局、项目与原始来源 →</button></article>`}
- function pool(s){const ts=dataset.industries.filter(t=>s.sub==='all'||t.id===+s.sub);return `<div class="er-pool-intro">这65家沿用原研究的全球行业领先梯队，用于补充产业布局与供应链模式。主列表按进出口服务方向选取业务，具体贸易事实和操作模式依据分别注明。</div><input id="erSearch" class="er-pool-search" aria-label="搜索行业企业" placeholder="搜索企业名称" value="${E(query)}"><div id="erPoolResults">${poolResults(s,ts)}</div>`}
- function poolResults(s,ts=dataset.industries.filter(t=>s.sub==='all'||t.id===+s.sub)){return ts.map(t=>{let ps=dataset.profiles.filter(p=>p.sub===t.id&&p.name.toLowerCase().includes(query.toLowerCase()));return ps.length?`<section class="er-group"><div class="er-group-title"><h2>${E(t.name)}</h2><p>${ps.length}个研究条目</p></div><div class="er-pool-grid">${ps.map(profileCard).join('')}</div></section>`:''}).join('')||'<p class="er-note">没有匹配的企业名称。</p>'}
- function directionItems(s){const real=ordered(s),refs=s.flow==='M'&&window.InternationalResearch?.get()?InternationalResearch.filter(internationalState(s)):[],used=new Set();const items=real.map(c=>{const ref=refs.find(g=>g.relatedChinaCaseIds.includes(c.id)||c.profile&&g.originalClientId===c.profile);if(ref)used.add(ref.id);return {sub:c.sub,business:c,reference:ref}});for(const g of refs)if(!used.has(g.id))items.push({sub:g.subIds[0],reference:g});return items.sort((a,b)=>dataset.industries.findIndex(t=>t.id===a.sub)-dataset.industries.findIndex(t=>t.id===b.sub))}
- function directionMetrics(s){const real=ordered(s),refs=s.flow==='M'&&window.InternationalResearch?.get()?InternationalResearch.filter(internationalState(s)):[];return {businesses:real.length,records:refs.reduce((n,g)=>n+g.records.length,0),groups:directionItems(s).length,industries:new Set(real.map(c=>c.sub)).size}}
- function refreshResults(){if(state.view==='pool')return;document.getElementById('erResults').innerHTML=business(state);const m=directionMetrics(state);document.getElementById('erCurrentCount').textContent=m.groups;document.getElementById('erFactCount').textContent=m.businesses;document.getElementById('erModeCount').textContent=state.flow==='M'?m.records:m.industries;root.querySelectorAll('[data-industry] small').forEach(n=>{n.textContent=directionItems({...state,sub:n.closest('[data-industry]').dataset.industry,province:''}).length+'组业务'})}
- function business(s){const items=directionItems(s),rows=ordered(s);let html=items.length?dataset.industries.filter(t=>items.some(x=>x.sub===t.id)).map(t=>{const group=items.filter(x=>x.sub===t.id);return `<section class="er-group"><div class="er-group-title"><h2>${E(t.name)} <span class="er-eyebrow">${flowLabel(s.flow)}导向</span></h2><p>${group.length}组业务</p></div>${group.map(item=>item.business?card(item.business,s,false,item.reference):InternationalResearch.card(item.reference,s)).join('')}</section>`}).join(''):empty(s);const refs=items.map(i=>i.reference).filter(Boolean);const support=dataset.cases.filter(c=>c.decision!=='exclude'&&c.kind!=='trade'&&matches(c,s)&&(!businessQuery||[c.name,c.title,c.fact,c.entry].join(' ').toLowerCase().includes(businessQuery.toLowerCase()))&&!refs.some(g=>g.relatedChinaCaseIds.includes(c.id)));if(support.length)html+=`<details class="er-supplement"><summary>相关业务与产品延伸 · ${support.length}项</summary>${support.map(c=>card(c,s)).join('')}</details>`;return html+synthesis(rows,s,refs)+boundaries(s)}
- function tradeContext(s){if(!tradeData||s.region==='all'||s.view!=='business')return '';const f=s.flow==='auto'?(ind(s.sub)?.flow||null):s.flow;const rs=tradeData.records.filter(r=>r.kind==='region'&&r.region===s.region&&(s.sub==='all'||r.sub===+s.sub)&&(!s.country||r.partner===s.country));const amounts=(f?[f]:['X','M']).map(flow=>{const v=rs.filter(r=>r.flow===flow).reduce((a,r)=>a+r.value,0);return `<div><strong>${money(v)}</strong><span> 亿美元 · ${flowLabel(flow)}</span></div>`}).join('');return `<div class="er-trade-context"><div>${amounts}<small>2025年 · ${E(countryName(s.country)||regionName(s.region))} · ${E(ind(s.sub)?.name||'13项商品篮子')} · 行业金额，不是企业金额</small></div><a href="${E(mapURL(s))}">返回对应贸易结构 →</a></div>`}
- function renderPage(){
-  const s=state,token=++renderToken,m=directionMetrics(s),importing=s.flow==='M';
-  root.className='er-page';root.dataset.view=s.view;root.dataset.direction=s.flow;
-  root.innerHTML=`<div class="er-crumb"><a href="${E(mapURL(s))}">← 区域热力图</a><span>／</span><span>${E(contextText(s))}</span></div><header class="er-hero"><div><span class="er-eyebrow">TRADE → ENTERPRISE → CAPABILITY</span><h1>${importing?'进口':'出口'}导向企业与业务</h1><p>${importing?'围绕海外货源、国际运输与专业交接，汇集企业业务与可借鉴的操作案例。':'围绕海外履约、制造供料、设备交付及售后响应，研究企业出海业务与能力需求。'}</p><p class="er-sample-note">案例按服务需求、公开业务信息及能力关联筛选，用于说明典型场景，并非完整客户或项目清单。</p></div><div class="er-numbers"><div><b id="erFactCount">${m.businesses}</b><small>业务样本</small></div><div><b id="erModeCount">${importing?m.records:m.industries}</b><small>${importing?'补充项目记录':'覆盖子行业'}</small></div><div><b id="erCurrentCount">${m.groups}</b><small>当前业务组</small></div></div></header>${modebar(s)}<aside class="er-companion" aria-label="补充研究资料"><p>按进出口服务需求组织客户与业务；具体事实、操作模式及承接条件分别保留。</p><div><a href="https://jamese5095.github.io/Global-supply-chain-atlas/" target="_blank" rel="noopener">六行业大客户供应链图谱 ↗</a><small>完整企业布局、物流项目及区域能力参考</small></div></aside>${selectionPolicy(s)}${mapGuide(s)}${filters(s)}${s.view==='business'?`<div class="er-business-tools"><input id="erBusinessSearch" type="search" aria-label="搜索企业业务" placeholder="搜索企业、产品或业务国家" value="${E(businessQuery)}"><small>业务按原始地区和年份呈现；无法归属省份的案例仍可浏览</small></div>`:''}<div id="erTradeContext">${tradeContext(s)}</div><div id="erResults">${s.view==='pool'?pool(s):business(s)}</div><p class="er-note">注：业务样本、补充项目记录及业务组为不同统计单位，不直接相加。补充项目可能是同一合作的多个地区节点；贸易金额为行业背景，不分摊到企业。</p><div class="er-bottom er-cap-navigation"><div><a href="capability-${importing?'import':'export'}.html?v=20261103-direction3&sub=${s.sub}${s.region!=='all'?'&region='+s.region:''}">查看${flowLabel(s.flow)}能力建设 →</a></div></div>`;
-  bind();mountChinaGuide();mountInternational(s,token);
-  if(!tradeData)ResearchData.load('regions','downloads/trade-regions-2025.json').then(d=>{tradeData=d;if(token===renderToken){document.getElementById('erTradeContext').innerHTML=tradeContext(state);updateCountryOptions()}}).catch(()=>{});
-  openHash();
- }
- function modebar(s){return `<nav class="ir-modebar" aria-label="业务导向"><a href="${E(pageURL({...s,view:'business',flow:'X',province:'',party:'all'}))}" ${s.flow==='X'?'aria-current="page"':''}>出口导向</a><a href="${E(pageURL({...s,view:'business',flow:'M',province:'',party:'all'}))}" ${s.flow==='M'?'aria-current="page"':''}>进口导向</a><a class="ir-mode-archive" href="${E(pageURL({...s,view:s.view==='pool'?'business':'pool'}))}">${s.view==='pool'?'返回业务列表 →':'补充企业档案 →'}</a></nav>`}
- function internationalState(s=state){return {...s,countryISO:s.country?iso(s.country):'',q:businessQuery}}
- function mountInternational(s,token){if(s.flow!=='M'||s.view==='pool'||!window.InternationalResearch)return;InternationalResearch.load().then(()=>{if(token!==renderToken||!root.isConnected)return;refreshResults();updateCountryOptions();if(location.hash.startsWith('#reference/'))openHash()}).catch(error=>{if(token===renderToken){const p=document.createElement('p');p.className='er-note';p.textContent='补充案例资料：'+error.message;document.getElementById('erResults').append(p)}})}
- function mapGuide(s){if(s.view!=='business')return '';const host='<section id="erChinaGuide" class="er-china-guide" aria-label="中国省份业务导览"></section>';return s.flow==='M'?'<details class="er-map-disclosure" data-import-map'+(s.province?' open':'')+'><summary>已归属的国内接收节点 <small>地图仅展示可定位业务，其他案例保留在列表</small></summary>'+host+'</details>':host}
- function mountChinaGuide(){const host=document.getElementById('erChinaGuide');if(!host||!window.ChinaBusinessMap||host.closest('[data-import-map]')&&!host.closest('[data-import-map]').open)return;ChinaBusinessMap.mount(host,{cases:ordered({...state,province:''}),province:state.province,onSelect:province=>update({province}),onOpen:id=>{location.hash='case/'+id}})}
- function update(change){state=normalize({...state,...change});history.pushState(null,'',pageURL(state));document.getElementById('enterpriseDrawer')?.close();renderPage()}
- function bind(){root.querySelector('#erRegion').onchange=e=>update({region:e.target.value,country:0});root.querySelector('#erCountry').onchange=e=>update({country:+e.target.value});root.querySelectorAll('[data-industry]').forEach(b=>b.onclick=()=>update({sub:b.dataset.industry,province:''}));root.querySelector('[data-import-map]')?.addEventListener('toggle',e=>{if(e.target.open)mountChinaGuide()});root.querySelector('#erBusinessSearch')?.addEventListener('input',e=>{businessQuery=e.target.value;refreshResults();mountChinaGuide()});root.querySelector('#erSearch')?.addEventListener('input',e=>{query=e.target.value;document.getElementById('erPoolResults').innerHTML=poolResults(state)})}
- function updateCountryOptions(){const select=document.getElementById('erCountry');if(select)select.innerHTML='<option value="0">全部／区域共用</option>'+countryOptions(state).map(([id,name])=>`<option value="${id}" ${state.country===id?'selected':''}>${E(name)}</option>`).join('')}
- function detailSources(ss){return `<ul class="er-source-list">${ss.map(s=>`<li><a href="${E(s.url)}" target="_blank" rel="noopener">${E(s.title)} ↗</a><small>${E(s.published||'原研究资料')} ${s.accessed?' · 读取／资料日期 '+E(s.accessed):''}</small></li>`).join('')}</ul>`}
- function openCase(id){const c=dataset.cases.find(c=>c.id===id);if(!c)return;showDrawer(`<div class="er-drawer-head"><div><span class="er-eyebrow">${E(ind(c.sub).name)} · ${flowLabel(c.flow)} · ${kinds[c.kind]}</span><h2>${E(c.name)}／${E(c.title)}</h2></div><button data-close aria-label="关闭详情">×</button></div><div class="er-drawer-body"><section>${chain(c)}<p>${E(geoText(c,state))}</p></section>${c.domesticNodes?.length?`<section><h3>中国业务节点</h3>${c.domesticNodes.map(n=>`<p><strong>${E(n.city)} · ${E(n.role)}</strong><br>${E(n.basis)}</p>`).join('')}</section>`:''}<section><h3>公开事实</h3><p>${E(c.fact)}</p>${detailSources(sourceList(c))}</section>${participantDetail(c)}<section><h3>本案例入选依据</h3><p>${E(c.chinaRole||'中国跨境业务接口')} · ${E(c.selectionReason||c.fact)}</p></section><section><h3>与中国进出口及商品范围的关系</h3><p>${E(c.scope)}</p></section><div class="er-detail-columns"><section><h3>承接判断 · ${decisions[c.decision]}</h3><p>${E(c.reason)}</p></section><section><h3>建议对接与采购接口</h3><p>${E(c.procurement)}</p></section></div><section><h3>建议业务与所需能力</h3><p>${E(c.entry)}</p><div class="er-needs">${c.needs.map(n=>`<span>${E(n)}</span>`).join('')}</div><p class="er-note">公开业务事实用于识别服务机会，不代表已取得运输采购权、客户合同或确定货量。</p></section><section><h3>服务与投入边界</h3><p>${E(c.boundary)}</p></section>${c.futureLinks?.length?`<section><h3>未来能力建设关联</h3><p class="er-note">以现有业务事实为起点，提出未来服务方向与建设条件。</p>${c.futureLinks.map(l=>`<article class="er-profile-record"><span class="er-case-time">${E(l.relation)}</span><p><a href="capability-${l.flow==='M'?'import':'export'}.html?v=20261103-direction3&sub=${c.sub}&case=${E(c.id)}${state.region!=='all'?'&region='+E(state.region):''}#${E(l.id)}">${E(l.title)} →</a></p><p>${E(l.insight)}</p></article>`).join('')}</section>`:''}<div class="er-bottom">${c.profile?`<button class="er-more" data-profile="${E(c.profile)}">展开原企业全部布局及项目 →</button>`:'<span>本企业为中国业务链补充样本</span>'}${c.capability?`<a href="${E(capURL(c,state))}">查看对应${flowLabel(c.flow)}建设方案 →</a>`:'<span>不牵引本轮专用能力投入</span>'}</div></div>`)}
- function openProfile(id){const p=dataset.profiles.find(p=>p.id===id);if(!p)return;showDrawer(`<div class="er-drawer-head"><div><span class="er-eyebrow">原行业研究资料 · ${E(ind(p.sub).name)}</span><h2>${E(p.name)}</h2></div><button data-close aria-label="关闭详情">×</button></div><div class="er-drawer-body"><section><h3>全球产业布局</h3><p style="white-space:pre-line">${E(p.overview)}</p><p class="er-note">以下为原项目资料。海外布局和承接关系分别取证，不据此自动推定中国国别贸易。</p></section><section><h3>已有承接主体与服务记录</h3><p style="white-space:pre-line">${E(p.carriers)}</p></section><section><h3>项目及配套记录 · ${p.records.length}项</h3>${p.records.map(r=>`<article class="er-profile-record"><span class="er-case-time">${E([r.country,r.region,r.scope,r.state].filter(Boolean).join(' · '))}</span><h4>${E(r.title)}</h4><p>${E(r.detail)}</p>${r.sources.map((url,i)=>`<a style="font-size:11px" href="${E(url)}" target="_blank" rel="noopener">项目来源 ${i+1} ↗</a>`).join('　')}</article>`).join('')}</section><section><h3>原研究来源</h3>${detailSources(p.sources)}</section></div>`)}
- function showDrawer(html){const d=document.getElementById('enterpriseDrawer');document.getElementById('enterpriseDetail').innerHTML=html;if(!d.open)d.showModal();d.scrollTop=0;d.querySelector('[data-close]').onclick=()=>d.close()}
- function openHash(){const [type,id]=location.hash.slice(1).split('/');if(type==='case')openCase(id);else if(type==='profile')openProfile(id);else if(type==='reference'&&window.InternationalResearch){const expected=location.hash;InternationalResearch.load().then(()=>{if(location.hash!==expected)return;const html=InternationalResearch.detail(id,internationalState());if(html)showDrawer(html)}).catch(()=>{})}else document.getElementById('enterpriseDrawer')?.close()}
- async function preview(host,context){host.className='er-preview';host.dataset.direction=context.flow||'X';host.innerHTML='';try{await load();if(!host.isConnected)return;businessQuery='';const s=normalize({...context,view:'business'}),rows=ordered(s),top=rows.slice(0,3),excluded=ordered(s,true);host.innerHTML=`<div class="er-preview-heading"><div><span class="er-eyebrow">下一步／从贸易结构到企业业务</span><h2>${flowLabel(s.flow)}相关企业与服务机会</h2><p>${E(contextText(s))} · 按公开业务节点匹配，贸易额不分摊到企业</p></div><a href="${E(pageURL(s))}">完整企业业务与依据 →</a></div>${top.length?top.map(c=>card(c,s,true)).join(''):empty(s)}${excluded.length?`<p class="er-note">${excluded.map(c=>E(c.name)).join('、')}的相关业务不牵引本轮专用投入。<a href="${E(pageURL(s))}">查看取舍依据 →</a></p>`:''}${rows.length>3?`<p class="er-note">另有${rows.length-3}项关联业务，可在完整企业页展开。</p>`:''}`;}catch{if(host.isConnected)host.innerHTML='<p>企业资料暂时无法读取，请刷新重试。</p>'}}
- window.EnterpriseResearch={preview,url:pageURL};
- if(root){load().then(()=>{state=readState();if(new URLSearchParams(location.search).get('view')==='international')history.replaceState(null,'',pageURL(state,location.hash.slice(1)));renderPage();root.addEventListener('click',e=>{const c=e.target.closest('[data-case]'),p=e.target.closest('[data-profile]');if(c)location.hash='case/'+c.dataset.case;else if(p)location.hash='profile/'+p.dataset.profile});document.getElementById('enterpriseDetail').addEventListener('click',e=>{const p=e.target.closest('[data-profile]');if(p)location.hash='profile/'+p.dataset.profile});document.getElementById('enterpriseDrawer').addEventListener('close',()=>{if(location.hash)history.replaceState(null,'',pageURL(state))});window.addEventListener('hashchange',openHash);window.addEventListener('popstate',()=>{const next=readState();if(JSON.stringify(next)!==JSON.stringify(state)){state=next;renderPage()}else openHash()});}).catch(error=>{root.innerHTML='<p role="alert">'+E(error.message)+'</p>'})}
+  'use strict';
+  const VERSION = '20261103-enterprise55-1';
+  const root = document.getElementById('enterpriseApp');
+  const E = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  const fmt = n => Number(n).toLocaleString('zh-CN', {maximumFractionDigits:1});
+  const direction = flow => flow === 'M' ? '进口' : '出口';
+  const colors = {'高科技':'#537ba8','汽车':'#7f69a8','工业设备':'#b18a4c','消费品':'#cc7a69','医药':'#5b9e91','餐饮':'#8e9c55'};
+  const geoLabels = {trade:'贸易地域',market:'披露市场',contract:'供货合同',network:'历史节点'};
+  const levelLabels = {A:'业务／出口统计',B:'贸易经营披露',C:'产品准入线索'};
+  const levelLabel = c => c.evidenceLevel === 'A' ? c.flow === 'M' ? '进口业务披露' : '出口业务／统计' : levelLabels[c.evidenceLevel];
+  let data, pending, state, legacyNotice = '', policyOpen = false;
+  const load = () => data ? Promise.resolve(data) : pending || (pending = ResearchData.load('enterprise-samples-55-v1', 'downloads/enterprise-samples-2025.json?v=' + VERSION).then(d => {
+    if (!Array.isArray(d.enterprises) || !Array.isArray(d.coverage)) throw Error('企业样本资料结构不完整');
+    return (data = d);
+  }).catch(error => {pending = null; throw error;}));
+  const industry = sub => data.coverage.find(i => i.sub === +sub);
+  const regionName = id => data.regions.find(r => r.id === id)?.name || '全部区域';
+  function countryISO(value) {
+    if (/^[A-Z]{2}$/.test(String(value))) return value;
+    if (+value === 490) return 'TW';
+    if (+value === 699) return 'IN';
+    return data.partners[String(value)]?.iso || '';
+  }
+  function countryName(value) {
+    const iso = countryISO(value);
+    if (!iso) return '';
+    const chineseRegions = {TW:'中国台湾',HK:'中国香港',MO:'中国澳门'};
+    if (chineseRegions[iso]) return chineseRegions[iso];
+    try { return new Intl.DisplayNames(['zh-CN'], {type:'region'}).of(iso); }
+    catch { return iso; }
+  }
+  function countryParameter(value) {
+    return data?.countryParameters?.[countryISO(value)] || value || 0;
+  }
+  function normalize(s) {
+    const sub = industry(s.sub) ? String(s.sub) : 'all';
+    const flow = s.view === 'international' ? 'M' : ['X','M'].includes(s.flow) ? s.flow : industry(sub)?.flow || 'X';
+    return {flow,sub,region:data.regions.some(r => r.id === s.region) ? s.region : 'all',country:countryISO(s.country) ? String(s.country) : '',q:String(s.q || '').slice(0,160)};
+  }
+  function readState() {
+    const p = new URLSearchParams(location.search);
+    return normalize({flow:p.get('flow'),sub:p.get('sub'),region:p.get('region'),country:p.get('country'),q:p.get('q'),view:p.get('view')});
+  }
+  function pageURL(s = {}, hash = '') {
+    const p = new URLSearchParams({v:VERSION});
+    if (s.flow) p.set('flow',s.flow);
+    if (s.sub && s.sub !== 'all') p.set('sub',s.sub);
+    if (s.region && s.region !== 'all') p.set('region',s.region);
+    if (s.country) p.set('country',countryParameter(s.country));
+    if (s.q) p.set('q',s.q);
+    return 'enterprises.html?' + p + (hash ? '#' + hash : '');
+  }
+  function mapURL(s) {
+    return s.region !== 'all' ? `trade-heatmaps.html#region/${s.region}/${s.sub}/${countryParameter(s.country)}/${s.flow}` : `trade-heatmaps.html?sub=${s.sub}&focus=${s.flow}`;
+  }
+  function geoMatch(g,s) {
+    return (s.region === 'all' || g.region === s.region) && (!s.country || g.countries.includes(countryISO(s.country)));
+  }
+  function matches(c,s,{location=true,search=true}={}) {
+    if (c.flow !== s.flow || s.sub !== 'all' && c.sub !== +s.sub) return false;
+    if (location && (s.region !== 'all' || s.country) && !c.geography.some(g => geoMatch(g,s))) return false;
+    if (search && s.q.trim()) {
+      const haystack = [c.name,c.product,c.fact,c.disclosedGeography,c.selectionReason,c.major,c.subindustry,
+        ...c.geography.flatMap(g => [regionName(g.region),g.label,...g.countries.map(countryName)])].join(' ').toLowerCase();
+      if (!haystack.includes(s.q.trim().toLowerCase())) return false;
+    }
+    return true;
+  }
+  function selected(s) { return data.enterprises.filter(c => matches(c,s)); }
+  function resolvedHash() {
+    const hash = location.hash.slice(1);
+    if (!hash) return null;
+    const id = hash.startsWith('enterprise/') ? hash.slice(11) : data.legacyAliases[hash];
+    return data.enterprises.find(c => c.id === id) || null;
+  }
+  function geoTags(c,s) {
+    const relevant = c.geography.filter(g => s.region === 'all' && !s.country || geoMatch(g,s));
+    const tags = relevant.length ? relevant : c.geography;
+    if (!tags.length) return '<span class="es-geo-unknown">来源／去向未细分</span>';
+    return tags.slice(0,3).map(g => `<span class="es-geo-tag" data-geo-kind="${E(g.kind)}" title="${E(g.label)}"><i>${geoLabels[g.kind]}</i>${E(g.countries.length ? g.countries.map(countryName).join('、') : regionName(g.region))}</span>`).join('') + (tags.length > 3 ? `<small class="es-more-regions">另${tags.length-3}个区域</small>` : '');
+  }
+  function sampleRow(c,s,preview=false) {
+    return `<article class="es-sample" data-sample="${E(c.id)}" style="--sector:${colors[c.major] || '#70869b'}"><div class="es-company"><span class="es-sector">${E(c.major)} · ${E(c.subindustry)}</span><h3>${preview?`<a href="${E(pageURL(s,'enterprise/'+c.id))}">${E(c.name)}</a>`:`<button type="button" data-open-sample="${E(c.id)}">${E(c.name)}</button>`}</h3><p>${E(c.product)}</p><span class="es-level ${c.evidenceLevel==='C'?'is-lead':''}">${levelLabel(c)}</span></div><div class="es-business"><p>${E(c.fact)}</p><div class="es-geography">${geoTags(c,s)}</div></div><div class="es-reason"><small>入选理由</small><p>${E(c.selectionReason)}</p>${preview ? `<a href="${E(pageURL(s,'enterprise/'+c.id))}">业务与来源 ↗</a>` : `<button type="button" data-open-sample="${E(c.id)}">业务与来源 <span aria-hidden="true">↗</span></button>`}</div></article>`;
+  }
+  function policy(s) {
+    const leads = data.enterprises.filter(c => c.flow === s.flow && c.evidenceLevel === 'C').length;
+    return `<details class="es-policy" ${policyOpen?'open':''}><summary><span>企业如何入选</span><p>重点子行业贸易规模 · 来源／去向关联 · 公开业务依据</p><i aria-hidden="true">＋</i></summary><div class="es-policy-body"><div class="es-policy-grid"><article><span>01</span><h3>规模确定研究范围</h3><p>沿用13个重点子行业及其主研究方向，${s.flow==='X'?'出口覆盖9个':'进口覆盖4个'}子行业；以核心HS篮子识别区域需求。</p></article><article><span>02</span><h3>业务确定代表企业</h3><p>结合中国出口、境外对华供货或中国进口采购事实，以及产品和区域代表性选样；每行业没有固定配额。</p></article><article><span>03</span><h3>披露范围分别保留</h3><p>具体跨境业务、贸易经营披露${leads?'与产品准入线索':''}分列。实际货流、市场覆盖、供货合同与历史节点各有标识。</p></article></div><p class="es-policy-note">规模指标用于选择子行业，企业公开事实用于选样；企业海外收入、全球产量、签约额与海关贸易额采用各自口径。贸易统计为2025年，业务资料保留原始年份${leads?`；本页含${leads}家产品准入线索。`:'。'}</p></div></details>`;
+  }
+  function countryOptions(s) {
+    const options = new Set(data.enterprises.filter(c => c.flow === s.flow && (s.sub === 'all' || c.sub === +s.sub)).flatMap(c => c.geography.filter(g => s.region === 'all' || g.region === s.region).flatMap(g => g.countries)));
+    if (s.country) options.add(countryISO(s.country));
+    return [...options].sort((a,b) => countryName(a).localeCompare(countryName(b),'zh-CN'));
+  }
+  function filters(s) {
+    const inds = data.coverage.filter(c => c.flow === s.flow || c.sub === +s.sub);
+    return `<section class="es-controls" aria-label="企业筛选"><div class="es-filter-row"><label class="es-search"><span>搜索</span><input type="search" id="esSearch" placeholder="企业、产品或业务关键词" value="${E(s.q)}"></label><label><span>重点子行业</span><select id="esIndustry"><option value="all">全部${s.flow==='X'?9:4}个子行业</option>${inds.map(i=>`<option value="${i.sub}" ${s.sub===String(i.sub)?'selected':''}>${E(i.name)} · ${data.enterprises.filter(c=>c.flow===s.flow&&c.sub===i.sub).length}家</option>`).join('')}</select></label><label><span>区域关联</span><select id="esRegion"><option value="all">全部区域</option>${data.regions.map(r => `<option value="${r.id}" ${s.region===r.id?'selected':''}>${E(r.name)}</option>`).join('')}</select></label><label><span>国家／地区</span><select id="esCountry"><option value="">全部／未细分到国家</option>${countryOptions(s).map(co => `<option value="${co}" ${countryISO(s.country)===co?'selected':''}>${E(countryName(co))}</option>`).join('')}</select></label><button class="es-reset" type="button" data-reset>清除筛选</button></div></section>`;
+  }
+  function contextualTrade(s) {
+    if (s.region === 'all') return '';
+    const subtitle = s.country ? `当前查看 ${countryName(s.country)} 的企业地域披露` : `当前查看 ${regionName(s.region)} 的企业地域披露`;
+    return `<aside class="es-context"><div><strong>${E(subtitle)}</strong><span>按来源中的地域信息筛选；披露市场与实际贸易地域分别标记。</span></div><a href="${E(mapURL(s))}">对应贸易结构 →</a></aside>`;
+  }
+  function empty(s) {
+    const i = industry(s.sub), alternate = i && i.flow !== s.flow;
+    return `<div class="es-empty"><h2>${alternate ? `${E(i.name)}本轮按${direction(i.flow)}导向选样` : '当前条件下暂无已归属的企业样本'}</h2><p>${alternate ? '企业样本沿用重点子行业的主研究方向，区域热力图仍保留双向贸易数据。' : '现有资料未单列这一地域或关键词对应的业务；可查看更大地域范围的名录。企业总部不作为贸易来源或去向。'}</p><div>${alternate ? `<a href="${E(pageURL({...s,flow:i.flow,region:'all',country:'',q:''}))}">查看${E(i.name)}${direction(i.flow)}企业 →</a>` : ''}${s.country?`<button type="button" data-clear-country>查看本区企业</button>`:''}${s.region!=='all'?'<button type="button" data-clear-region>查看同方向全部区域</button>':''}<button type="button" data-reset>查看完整${direction(s.flow)}名录</button></div></div>`;
+  }
+  function results(s) {
+    const rows = selected(s);
+    const uncovered = data.enterprises.filter(c => matches(c,s,{location:false}) && !c.geography.length).length;
+    const groups = data.coverage.filter(i => rows.some(c => c.sub === i.sub));
+    const heading = `<div class="es-results-bar" aria-live="polite"><p><strong>${rows.length}</strong>家企业 <span>／ ${groups.length}个子行业</span></p>${(s.region!=='all'||s.country)&&uncovered?`<a href="${E(pageURL({...s,region:'all',country:''}))}">另有${uncovered}家地域未细分，保留于完整名录 ↗</a>`:'<small>按子行业组织，企业顺序不代表规模或商机排名</small>'}</div>`;
+    if (!rows.length) return heading + empty(s);
+    return heading + groups.map(i => `<section class="es-industry-group" data-industry-group="${i.sub}" style="--sector:${colors[i.major]}"><header class="es-group-head"><div><span>${E(i.major)}</span><h2>${E(i.name)}<small>${rows.filter(c=>c.sub===i.sub).length}家</small></h2></div><a href="./#flows/${i.sub}" title="查看该子行业的主研究方向">2025年核心篮子${direction(i.flow)} <strong>${fmt(i.coreBasketAmount)}</strong> 亿美元 <span aria-hidden="true">↗</span></a></header><div class="es-column-head" aria-hidden="true"><span>代表企业与产品</span><span>进出口业务与地域</span><span>选取依据</span></div><div class="es-sample-list">${rows.filter(c=>c.sub===i.sub).map(c=>sampleRow(c,s)).join('')}</div></section>`).join('');
+  }
+  function renderPage() {
+    const s = state, all = data.enterprises.filter(c => c.flow === s.flow), n = new Set(all.map(c=>c.sub)).size;
+    root.className = 'es-page';
+    root.dataset.direction = s.flow;
+    root.innerHTML = `<div class="es-crumb"><a href="${E(mapURL(s))}">← 区域热力图</a><span>／</span><span>${E(s.region==='all'?'全球':regionName(s.region))}${s.country?' · '+E(countryName(s.country)):''} · ${direction(s.flow)}导向</span></div><header class="es-hero"><div><h1>${direction(s.flow)}代表企业与业务</h1><p>${s.flow==='X'?'沿中国出口去向，识别重点子行业中具有代表性的制造、品牌与供货企业。':'沿中国进口来源，识别境外供货、中国采购及生产用料中的代表企业。'}</p><small>依据贸易关联、产品与地域代表性及公开业务资料选取，用于说明典型场景，非穷尽名录。</small></div><div class="es-totals"><div><strong>${all.length}</strong><span>样本企业</span></div><div><strong>${n}</strong><span>重点子行业</span></div></div></header><div class="es-direction-row"><nav class="es-directions" aria-label="进出口方向">${['X','M'].map(f=>`<a href="${E(pageURL({...s,flow:f,sub:industry(s.sub)?.flow===f?s.sub:'all',country:'',q:''}))}" ${s.flow===f?'aria-current="page"':''}>${direction(f)}导向 <span>${f==='X'?30:25}</span></a>`).join('')}</nav><a class="es-companion" href="${E(data.sourceProject.url)}" target="_blank" rel="noopener">国际大客户供应链图谱 <span>全球企业布局与项目补充 ↗</span></a></div>${policy(s)}${legacyNotice?`<div class="es-legacy-note" role="status">${E(legacyNotice)} <a href="${E(data.sourceProject.url)}" target="_blank" rel="noopener">原图谱 →</a></div>`:''}${filters(s)}${contextualTrade(s)}<div id="esResults">${results(s)}</div><footer class="es-footnote">注：行业金额来自2025年核心HS商品篮子；企业资料保留原披露年份。市场覆盖、供货合同与历史节点不直接视为当期中国国别贸易。企业级海关金额未披露的条目保持空值。</footer>`;
+    document.title = direction(s.flow) + '代表企业与业务 · 国际供应链行业研究';
+    bind();
+    openHash();
+  }
+  function update(change) {
+    policyOpen = root.querySelector('.es-policy')?.open || false;
+    closeDrawer();
+    state = normalize({...state,...change});
+    legacyNotice = '';
+    history.pushState(null,'',pageURL(state));
+    renderPage();
+  }
+  function action(event) {
+    const target = event.target;
+    const sample = target.closest('[data-open-sample]');
+    if (sample) { location.hash = 'enterprise/' + sample.dataset.openSample; return; }
+    if (target.closest('[data-reset]')) update({sub:'all',region:'all',country:'',q:''});
+    else if (target.closest('[data-clear-country]')) update({country:''});
+    else if (target.closest('[data-clear-region]')) update({region:'all',country:''});
+  }
+  function bind() {
+    root.querySelector('#esIndustry').onchange = e => update({sub:e.target.value,country:''});
+    root.querySelector('#esRegion').onchange = e => update({region:e.target.value,country:''});
+    root.querySelector('#esCountry').onchange = e => update({country:e.target.value});
+    root.querySelector('#esSearch').oninput = e => {
+      state.q = e.target.value;
+      root.querySelector('#esResults').innerHTML = results(state);
+      history.replaceState(null,'',pageURL(state));
+    };
+  }
+  function safeURL(value) {
+    try { const url = new URL(value); return ['https:','http:'].includes(url.protocol) ? url.href : '#'; }
+    catch { return '#'; }
+  }
+  function sourceHTML(c) {
+    return c.sourceIds.map(id => {
+      const s = data.sources[id];
+      if (!s) return '';
+      let url = safeURL(s.url);
+      if (s.pdfPages?.length && /\.pdf(?:[?#]|$)/i.test(url) && !url.includes('#')) url += '#page=' + s.pdfPages[0];
+      return `<li><div><a href="${E(url)}" target="_blank" rel="noopener">${E(s.title)} ↗</a><small>${E(s.published || '来源未标日期')}${s.pdfPages?.length?' · PDF页码 '+E(s.pdfPages.join('、')):''}</small></div>${s.supports?`<p>${E(s.supports)}</p>`:''}</li>`;
+    }).join('');
+  }
+  function showSample(c) {
+    const d = document.getElementById('enterpriseDrawer'), i = industry(c.sub), m = c.companyMetric;
+    document.getElementById('enterpriseDetail').innerHTML = `<header class="es-detail-head"><div><span>${direction(c.flow)}导向 · ${E(c.major)}／${E(c.subindustry)}</span><h2 id="esDetailTitle">${E(c.name)}</h2><p>${E(c.product)}</p></div><button type="button" data-close aria-label="关闭企业详情">×</button></header><div class="es-detail-body"><section class="es-detail-fact"><span>${levelLabel(c)}</span><h3>${c.evidenceLevel==='C'?'本轮取得的产品资料':'公开业务依据'}</h3><p>${E(c.fact)}</p></section><div class="es-detail-grid"><section><h3>为什么入选</h3><p>${E(c.selectionReason)}</p></section><section><h3>地域依据</h3><p>${E(c.disclosedGeography)}</p><div class="es-geography">${geoTags(c,{region:'all',country:''})}</div></section></div>${m?`<section class="es-company-metric"><div><small>${E(m.period)} · 企业披露指标</small><strong>${fmt(m.value)} <span>${E(m.unit)}</span></strong></div><p><b>${E(m.name)}</b><span>采用企业原始统计名称，作为规模背景；不与行业海关金额或其他企业不同指标直接比较。</span></p></section>`:''}<details class="es-scope-detail"><summary>商品范围与数据口径 <span>展开说明</span></summary><p>${E(c.scopeNote)}</p><div><strong>区域研究范围</strong><p>HS ${E(i.codes.join('、'))}。${E(i.scope)}</p><p>2025年${direction(i.flow)}核心篮子 ${fmt(i.coreBasketAmount)} 亿美元，为行业货值。${c.evidenceLevel==='C'?'该企业条目仅为准入线索，未作为已发生运输案例。':''}</p><a href="./#flows/${i.sub}">对应子行业流向 →</a></div></details><section class="es-detail-sources"><header><h3>公开来源</h3><span>${c.sourceIds.length}项 · 保留原始年份</span></header><ul>${sourceHTML(c)}</ul></section></div>`;
+    if (!d.open) d.showModal();
+    d.scrollTop = 0;
+    d.querySelector('[data-close]').onclick = () => d.close();
+  }
+  function closeDrawer() {
+    const d = document.getElementById('enterpriseDrawer');
+    if (d?.open) d.close();
+  }
+  function openHash() {
+    const c = resolvedHash();
+    if (c) {showSample(c);return;}
+    closeDrawer();
+  }
+  async function preview(host,context) {
+    host.className = 'es-preview';
+    host.innerHTML = '';
+    try {
+      await load();
+      if (!host.isConnected) return;
+      const s = normalize(context), rows = selected(s), fallbackFlow = industry(s.sub)?.flow || s.flow;
+      host.dataset.direction = s.flow;
+      host.innerHTML = `<header class="es-preview-head"><div><span class="es-eyebrow">企业业务</span><h2>${direction(s.flow)}代表企业</h2><p>${rows.length?`${rows.length}家具有本区地域关联的样本；披露市场与实际货流分别保留。`:'当前国别或区域尚未单列对应企业，可查看完整研究名录。'}</p></div><a href="${E(pageURL(s))}">查看企业名录 →</a></header>${rows.slice(0,3).map(c=>sampleRow(c,s,true)).join('')}${!rows.length?`<a class="es-preview-fallback" href="${E(pageURL({...s,flow:fallbackFlow,region:'all',country:''}))}">查看${industry(s.sub)?E(industry(s.sub).name):'全部'}${direction(fallbackFlow)}样本 →</a>`:''}`;
+    } catch (error) {
+      if (host.isConnected) host.innerHTML = `<p class="es-footnote">${E(error.message)} <a href="enterprises.html">企业业务 →</a></p>`;
+    }
+  }
+  window.EnterpriseResearch = {preview,url:pageURL};
+  dispatchEvent(new Event('enterprise-research-ready'));
+  if (root) {
+    load().then(() => {
+      state = readState();
+      const c = resolvedHash();
+      if (c) state.flow = c.flow;
+      else if (/^#(?:case|profile|reference)\//.test(location.hash)) legacyNotice = '该历史条目未纳入本轮55家样本，当前展示本轮代表企业；完整国际项目仍保留在原图谱。';
+      const hash = c ? 'enterprise/' + c.id : location.hash.slice(1);
+      history.replaceState(null,'',pageURL(state,hash));
+      renderPage();
+      root.addEventListener('click',action);
+      const dialog = document.getElementById('enterpriseDrawer');
+      dialog.addEventListener('close',() => {
+        if (location.hash) history.replaceState(null,'',pageURL(state));
+      });
+      addEventListener('hashchange',openHash);
+      addEventListener('popstate',() => {
+        const next = readState();
+        if (JSON.stringify(next) !== JSON.stringify(state)) {state = next; renderPage();}
+        else openHash();
+      });
+    }).catch(error => {
+      root.innerHTML = `<div class="es-empty" role="alert"><h1>企业资料暂时未能读取</h1><p>${E(error.message)}</p><button type="button" onclick="location.reload()">重新读取</button><a href="trade-heatmaps.html">区域热力图 →</a></div>`;
+    });
+  }
 })();
