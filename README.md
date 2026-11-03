@@ -35,11 +35,18 @@
 
 ## 运行与发布
 
-`python3 -m http.server 8765 --directory docs`
+项目根目录即完整静态网站，`index.html` 为真正首页；无需跳转到其他目录。所有图表、地图和研究数据均随项目提供，启动无需访问外部数据接口。
 
-仓库根目录提供 `index.html` 入口，自动进入 `docs/index.html`，并保留查询参数与页面定位。
+本地预览：`python3 -m http.server 8765`，随后访问 `http://localhost:8765/`。
 
-GitHub Pages使用main分支的/docs目录。第三方许可保留在原工程与vendor目录；未授予顺丰标识或第三方资料额外许可。
+- 云服务通过 Git 仓库部署：项目类型选择静态网站，发布目录填 `.`（项目根目录），构建和安装命令留空。
+- 手动上传：使用完整静态部署 ZIP，将包内文件直接解压到网站根目录。`index.html`、`app.js`、`downloads/`、`vendor/` 应位于同一层级。
+- GitHub Pages：使用 `main` 分支的 `/ (root)` 目录，根目录保留 `.nojekyll`。
+- 打包命令：`python3 scripts/package-static.py /绝对路径/国际供应链研究看板_云部署.zip`。压缩包只含网站文件，不含 Git 记录或本地开发文件。
+
+不得将所有请求统一改写到 `index.html`：本项目包含多个独立页面，JSON 数据和脚本也需要按原路径返回。更多说明见 [部署说明](DEPLOY.md)。
+
+浏览器存储不可用时仍能正常显示；单份数据读取超过20秒会提示具体错误，缺失脚本也会显示启动提示。第三方许可保留在 `vendor` 目录；未授予顺丰标识或第三方资料额外许可。
 
 ## 图1计算方法与来源
 

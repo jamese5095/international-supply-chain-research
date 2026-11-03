@@ -1,20 +1,25 @@
-<!doctype html>
-<html lang="zh-CN">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>国际供应链行业研究</title>
-  <script>
-    const dashboard = new URL('docs/index.html', window.location.href);
-    dashboard.search = window.location.search;
-    dashboard.hash = window.location.hash || '#home';
-    window.location.replace(dashboard.href);
-  </script>
-</head>
-<body>
-  <main>
-    <h1>国际供应链行业研究</h1>
-    <p><a href="docs/index.html#home">进入看板 →</a></p>
-  </main>
-</body>
-</html>
+<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="从六行业进出口规模到产品、国家、客户线索和海外能力规划的研究看板"><title>国际供应链行业研究</title>
+<script>
+(function () {
+  function fail(message) {
+    var status = document.getElementById('bootStatus');
+    if (!status) return;
+    status.textContent = message;
+    status.setAttribute('role', 'alert');
+  }
+  window.addEventListener('error', function (event) {
+    if (event.target && event.target.tagName === 'SCRIPT') {
+      var file = new URL(event.target.src).pathname.split('/').pop();
+      var report = function () { fail('未能加载 ' + file + '，请检查发布目录及文件是否完整。'); };
+      if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', report);
+      else report();
+    }
+  }, true);
+  document.addEventListener('DOMContentLoaded', function () {
+    setTimeout(function () {
+      fail('网页启动未完成。请确认全部脚本与 downloads 数据目录已上传，且数据请求未被云服务改写为首页。');
+    }, 22000);
+  });
+})();
+</script>
+<link rel="stylesheet" href="style.css?v=20261103-scope1"><script src="research-data.js?v=20261103-cloudfix1" defer></script><script src="selection.js?v=20261103-selectionproof1" defer></script><script src="app.js?v=20261103-cloudfix1" defer></script><script src="flows-data.js?v=20261103-selectionproof1" defer></script><script src="directional.js?v=20261103-scope1" defer></script><script src="routes.js?v=20261103-selectionproof1" defer></script><script src="calculation-loader.js?v=20261103-scope1" defer></script></head><body><header class="mast"><a class="brand" href="#home"><img src="logo.png" alt="顺丰"><span>国际供应链行业研究<small>GLOBAL SUPPLY CHAIN · RESEARCH ATLAS</small></span></a><nav aria-label="主导航"><a href="#home" data-nav="home">行业规模</a><a href="#flows/1" data-nav="explore">区域流向</a><a href="trade-heatmaps.html?v=20261102-simple" data-nav="heatmaps">区域热力图</a><a href="enterprises.html?v=20261103-selectionproof1" data-nav="enterprises">企业业务</a><a href="capability-export.html?v=20261103-selectionproof1" data-nav="capabilities">能力建设</a></nav><button id="method">口径与来源 ↗</button></header><div class="context"><div id="crumbs"></div><span>中国 · 2025年贸易基准 <b>研究更新 2026.11.03</b></span></div><main id="app"><p id="bootStatus" role="status">正在读取研究资料…</p></main><footer>六行业国际供应链研究 · 贸易金额单位：亿美元 · 研究估算与案例资料均保留各自覆盖范围</footer><dialog id="drawer"><header><h2 id="drawerTitle"></h2><button id="closeDrawer" aria-label="关闭">✕</button></header><div id="drawerBody"></div></dialog><div id="tip" role="status"></div></body></html>
