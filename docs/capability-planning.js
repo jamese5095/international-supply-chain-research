@@ -2,7 +2,7 @@
  'use strict';
  const content=window.CAPABILITY_CONTENT,flow=document.body.dataset.flow,page=content.pages[flow],host=document.getElementById('capApp');
  const rows=content.capabilities.filter(c=>c.flow===flow).sort((a,b)=>a.rank-b.rank);
- const params=new URLSearchParams(location.search),version='20261103-future1';
+ const params=new URLSearchParams(location.search),version='20261103-order2';
  const regionNames={'north-america':'北美',europe:'欧洲','southeast-asia':'东南亚','east-asia':'东亚','south-asia':'南亚','middle-east':'中东',africa:'非洲','latin-america':'拉丁美洲',oceania:'大洋洲',eurasia:'欧亚其他'};
  const subNames={1:'半导体',2:'电子零部件',5:'消费电子及家电',6:'乘用车',8:'汽车零部件',11:'机械设备',12:'电力设备',14:'工业原材料',15:'家居建材',19:'鞋服',23:'诊疗器械',26:'制药',27:'食材供应商'};
  const region=Object.hasOwn(regionNames,params.get('region'))?params.get('region'):'',sub=Object.hasOwn(subNames,params.get('sub'))?params.get('sub'):'all';

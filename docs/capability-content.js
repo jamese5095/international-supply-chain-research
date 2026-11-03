@@ -1,6 +1,6 @@
 window.CAPABILITY_CONTENT={
   "schemaVersion": "2.0",
-  "contentVersion": "20261103-future1",
+  "contentVersion": "20261103-order2",
   "status": "future-capability-proposal",
   "tradeSnapshot": "2025核心商品篮子",
   "commonNote": "以上为面向未来的能力建设建议。国家及节点为建议组织方向；公开事实、未来判断与投入条件分别呈现。贸易金额仅为2025年需求背景，不加总为机会规模。",
@@ -40,144 +40,9 @@ window.CAPABILITY_CONTENT={
   },
   "capabilities": [
     {
-      "id": "x-spares",
-      "flow": "X",
-      "rank": 1,
-      "title": "海外停机响应网络",
-      "stage": "copy",
-      "summary": {
-        "location": "德国、荷兰先行 · 英国、阿联酋随客扩展",
-        "entry": "先合作补齐当地提派、前置点及授权现场服务。"
-      },
-      "headline": "把备件库存、紧急交付和授权服务连成一条恢复运行的责任链。",
-      "future": "随着中国设备在海外持续运行，客户可能更关注停机持续时间与备件可得性。建设方向由单次整机交付延伸到设备使用周期中的持续服务。",
-      "what": "以多客户区域备件池连接前置点、紧急提派及授权维修伙伴；库存按客户和设备型号分别管理。",
-      "control": "掌握工单、备件可用状态和调拨规则，形成跨节点响应组织；按具体城市与货型签订服务承诺。",
-      "serviceChain": [
-        "故障工单",
-        "备件定位",
-        "调拨与急送",
-        "授权服务交接",
-        "旧件回流"
-      ],
-      "nodes": [
-        {
-          "country": "德国",
-          "region": "europe",
-          "task": "工业客户周边备件池与紧急调拨",
-          "industries": [
-            8,
-            11,
-            12
-          ],
-          "reason": "以汽车、机械及电力设备贸易和原区域研究为需求底座。",
-          "priority": "先行组织"
-        },
-        {
-          "country": "荷兰",
-          "region": "europe",
-          "task": "到港备件、跨国补货与逆向归集",
-          "industries": [
-            8,
-            11,
-            12
-          ],
-          "reason": "连接欧洲进口门户与区域库存组织。",
-          "priority": "先行组织"
-        },
-        {
-          "country": "英国",
-          "region": "europe",
-          "task": "独立库存与本地响应",
-          "industries": [
-            6,
-            8,
-            11
-          ],
-          "reason": "跨境补货与当地响应分别组织。",
-          "priority": "随客扩展"
-        },
-        {
-          "country": "阿联酋",
-          "region": "middle-east",
-          "task": "区域备件中转与客户现场接驳",
-          "industries": [
-            6,
-            11,
-            12
-          ],
-          "reason": "结合设备和整车出口需求，以客户实际服务地址配置。",
-          "priority": "订单触发"
-        }
-      ],
-      "relatedSubIds": [
-        6,
-        8,
-        11,
-        12
-      ],
-      "regionIds": [
-        "europe",
-        "middle-east"
-      ],
-      "own": "自营工单平台、库存规则、项目经理和异常调度。",
-      "partner": "先合作补齐当地提派、前置点及授权现场服务。",
-      "acquire": "当响应覆盖成为持续瓶颈时，评估具备备件客户合同、调度团队和密集配送线路的区域企业。",
-      "how": [
-        "先复制国内备件库存与工单管理，接入客户现有海外库存。",
-        "以少量客户组织区域响应，按兼容货型共享仓位、系统和配送。",
-        "连续工单形成密度后扩前置点，再评估自营资源与并购。"
-      ],
-      "investmentTrigger": "客户提供设备分布、持续工单和库存责任规则；响应成本与库存投入可由合同及多客户密度支撑。",
-      "boundary": "共享设施与组织，不把不同品牌的零件当作可互换库存；安装维修由授权主体负责，既有专用体系不作为替换前提。",
-      "domesticReuse": "复用国内多级备件、调拨和急件组织经验；海外现场覆盖、服务承诺和技术授权单独建立。",
-      "measures": [
-        "工单至恢复供件时长",
-        "承诺窗口达成率",
-        "每次响应成本",
-        "前置库存周转"
-      ],
-      "tradeMetrics": [
-        {
-          "label": "欧洲汽车零部件、机械及电力设备出口背景",
-          "flow": "X",
-          "region": "europe",
-          "subs": [
-            8,
-            11,
-            12
-          ],
-          "kind": "region",
-          "unit": "亿美元",
-          "year": 2025,
-          "expectedValue": 204.9807083,
-          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
-          "href": "trade-heatmaps.html#region/europe/all/0/X"
-        }
-      ],
-      "enterpriseRefs": [
-        {
-          "id": "sungrow-europe",
-          "role": "供货事实",
-          "insight": "中国制造连接欧洲渠道，为售后周转与备件响应提供需求基础；不代表已披露故障工单。"
-        },
-        {
-          "id": "stellantis-leap",
-          "role": "需求延伸",
-          "insight": "中国整车出口可产生后续售后需求；具体备件量与服务网络另按客户订单建立。"
-        }
-      ],
-      "sourceIds": [
-        "dom-industrial",
-        "dom-auto",
-        "atlas"
-      ],
-      "extensionNotes": []
-    },
-    {
       "id": "x-recommerce",
       "flow": "X",
-      "rank": 2,
+      "rank": 1,
       "title": "品牌库存与再销售网络",
       "stage": "copy",
       "summary": {
@@ -304,7 +169,7 @@ window.CAPABILITY_CONTENT={
     {
       "id": "x-kitting",
       "flow": "X",
-      "rank": 3,
+      "rank": 2,
       "title": "海外制造供料接口",
       "stage": "prepare",
       "summary": {
@@ -436,7 +301,7 @@ window.CAPABILITY_CONTENT={
     {
       "id": "x-precision",
       "flow": "X",
-      "rank": 4,
+      "rank": 3,
       "title": "设备交付与投运协同",
       "stage": "prepare",
       "summary": {
@@ -548,6 +413,141 @@ window.CAPABILITY_CONTENT={
         "dom-tech",
         "dom-industrial",
         "dom-medical",
+        "atlas"
+      ],
+      "extensionNotes": []
+    },
+    {
+      "id": "x-spares",
+      "flow": "X",
+      "rank": 4,
+      "title": "海外停机响应网络",
+      "stage": "copy",
+      "summary": {
+        "location": "德国、荷兰先行 · 英国、阿联酋随客扩展",
+        "entry": "先合作补齐当地提派、前置点及授权现场服务。"
+      },
+      "headline": "把备件库存、紧急交付和授权服务连成一条恢复运行的责任链。",
+      "future": "随着中国设备在海外持续运行，客户可能更关注停机持续时间与备件可得性。建设方向由单次整机交付延伸到设备使用周期中的持续服务。",
+      "what": "以多客户区域备件池连接前置点、紧急提派及授权维修伙伴；库存按客户和设备型号分别管理。",
+      "control": "掌握工单、备件可用状态和调拨规则，形成跨节点响应组织；按具体城市与货型签订服务承诺。",
+      "serviceChain": [
+        "故障工单",
+        "备件定位",
+        "调拨与急送",
+        "授权服务交接",
+        "旧件回流"
+      ],
+      "nodes": [
+        {
+          "country": "德国",
+          "region": "europe",
+          "task": "工业客户周边备件池与紧急调拨",
+          "industries": [
+            8,
+            11,
+            12
+          ],
+          "reason": "以汽车、机械及电力设备贸易和原区域研究为需求底座。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "荷兰",
+          "region": "europe",
+          "task": "到港备件、跨国补货与逆向归集",
+          "industries": [
+            8,
+            11,
+            12
+          ],
+          "reason": "连接欧洲进口门户与区域库存组织。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "英国",
+          "region": "europe",
+          "task": "独立库存与本地响应",
+          "industries": [
+            6,
+            8,
+            11
+          ],
+          "reason": "跨境补货与当地响应分别组织。",
+          "priority": "随客扩展"
+        },
+        {
+          "country": "阿联酋",
+          "region": "middle-east",
+          "task": "区域备件中转与客户现场接驳",
+          "industries": [
+            6,
+            11,
+            12
+          ],
+          "reason": "结合设备和整车出口需求，以客户实际服务地址配置。",
+          "priority": "订单触发"
+        }
+      ],
+      "relatedSubIds": [
+        6,
+        8,
+        11,
+        12
+      ],
+      "regionIds": [
+        "europe",
+        "middle-east"
+      ],
+      "own": "自营工单平台、库存规则、项目经理和异常调度。",
+      "partner": "先合作补齐当地提派、前置点及授权现场服务。",
+      "acquire": "当响应覆盖成为持续瓶颈时，评估具备备件客户合同、调度团队和密集配送线路的区域企业。",
+      "how": [
+        "先复制国内备件库存与工单管理，接入客户现有海外库存。",
+        "以少量客户组织区域响应，按兼容货型共享仓位、系统和配送。",
+        "连续工单形成密度后扩前置点，再评估自营资源与并购。"
+      ],
+      "investmentTrigger": "客户提供设备分布、持续工单和库存责任规则；响应成本与库存投入可由合同及多客户密度支撑。",
+      "boundary": "共享设施与组织，不把不同品牌的零件当作可互换库存；安装维修由授权主体负责，既有专用体系不作为替换前提。",
+      "domesticReuse": "复用国内多级备件、调拨和急件组织经验；海外现场覆盖、服务承诺和技术授权单独建立。",
+      "measures": [
+        "工单至恢复供件时长",
+        "承诺窗口达成率",
+        "每次响应成本",
+        "前置库存周转"
+      ],
+      "tradeMetrics": [
+        {
+          "label": "欧洲汽车零部件、机械及电力设备出口背景",
+          "flow": "X",
+          "region": "europe",
+          "subs": [
+            8,
+            11,
+            12
+          ],
+          "kind": "region",
+          "unit": "亿美元",
+          "year": 2025,
+          "expectedValue": 204.9807083,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/europe/all/0/X"
+        }
+      ],
+      "enterpriseRefs": [
+        {
+          "id": "sungrow-europe",
+          "role": "供货事实",
+          "insight": "中国制造连接欧洲渠道，为售后周转与备件响应提供需求基础；不代表已披露故障工单。"
+        },
+        {
+          "id": "stellantis-leap",
+          "role": "需求延伸",
+          "insight": "中国整车出口可产生后续售后需求；具体备件量与服务网络另按客户订单建立。"
+        }
+      ],
+      "sourceIds": [
+        "dom-industrial",
+        "dom-auto",
         "atlas"
       ],
       "extensionNotes": []
