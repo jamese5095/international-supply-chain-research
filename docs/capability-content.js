@@ -1,6 +1,6 @@
 window.CAPABILITY_CONTENT={
   "schemaVersion": "2.0",
-  "contentVersion": "20261103-editorial1",
+  "contentVersion": "20261103-provinces1",
   "status": "future-capability-proposal",
   "tradeSnapshot": "2025核心商品篮子",
   "commonNote": "以上为面向未来的能力建设建议。国家及节点为建议组织方向；公开事实、未来判断与投入条件分别呈现。贸易金额仅为2025年需求背景，不加总为机会规模。",
