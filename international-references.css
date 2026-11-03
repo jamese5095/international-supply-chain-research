@@ -51,3 +51,5 @@
 .er-page[data-direction=M]>.er-hero .er-eyebrow{color:#a54747}
 .ir-modebar>a[aria-current=page]{box-shadow:none}
 .er-page .ir-modebar{margin:20px 0 14px}
+
+.er-hero p.er-sample-note{font-size:11px;line-height:1.8;color:#788b9c;margin:8px 0 0;max-width:760px}
