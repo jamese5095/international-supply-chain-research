@@ -37,6 +37,8 @@
 
 `python3 -m http.server 8765 --directory docs`
 
+仓库根目录提供 `index.html` 入口，自动进入 `docs/index.html`，并保留查询参数与页面定位。
+
 GitHub Pages使用main分支的/docs目录。第三方许可保留在原工程与vendor目录；未授予顺丰标识或第三方资料额外许可。
 
 ## 图1计算方法与来源
