@@ -1,6 +1,6 @@
 (() => {
   'use strict';
-  const VERSION = '20261103-enterprise55-2';
+  const VERSION = '20261103-enterprise-entry1';
   const root = document.getElementById('enterpriseApp');
   const E = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
   const fmt = n => Number(n).toLocaleString('zh-CN', {maximumFractionDigits:1});
@@ -82,7 +82,7 @@
     return tags.slice(0,3).map(g => `<span class="es-geo-tag" data-geo-kind="${E(g.kind)}" title="${E(g.label)}"><i>${geoLabels[g.kind]}</i>${E(g.countries.length ? g.countries.map(countryName).join('、') : regionName(g.region))}</span>`).join('') + (tags.length > 3 ? `<small class="es-more-regions">另${tags.length-3}个区域</small>` : '');
   }
   function sampleRow(c,s,preview=false) {
-    return `<article class="es-sample" data-sample="${E(c.id)}" style="--sector:${colors[c.major] || '#70869b'}"><div class="es-company"><span class="es-sector">${E(c.major)} · ${E(c.subindustry)}</span><h3>${preview?`<a href="${E(pageURL(s,'enterprise/'+c.id))}">${E(c.name)}</a>`:`<button type="button" data-open-sample="${E(c.id)}">${E(c.name)}</button>`}</h3><p>${E(c.product)}</p><span class="es-level ${c.evidenceLevel==='C'?'is-lead':''}">${levelLabel(c)}</span></div><div class="es-business">${c.factPeriod?`<small class="es-fact-period">${E(c.factPeriod)}</small>`:""}<p>${E(c.fact)}</p><div class="es-geography">${geoTags(c,s)}</div></div><div class="es-reason"><small>入选理由</small><p>${E(c.selectionReason)}</p>${preview ? `<a href="${E(pageURL(s,'enterprise/'+c.id))}">业务与来源 ↗</a>` : `<button type="button" data-open-sample="${E(c.id)}">业务与来源 <span aria-hidden="true">↗</span></button>`}</div></article>`;
+    return `<article class="es-sample" data-sample="${E(c.id)}" style="--sector:${colors[c.major] || '#70869b'}"><div class="es-company"><span class="es-sector">${E(c.major)} · ${E(c.subindustry)}</span><h3>${preview?`<a href="${E(pageURL(s,'enterprise/'+c.id))}">${E(c.name)}<span class="es-name-arrow" aria-hidden="true">↗</span></a>`:`<button type="button" data-open-sample="${E(c.id)}" aria-label="查看${E(c.name)}企业信息">${E(c.name)}<span class="es-name-arrow" aria-hidden="true">↗</span></button>`}</h3><p>${E(c.product)}</p><span class="es-level ${c.evidenceLevel==='C'?'is-lead':''}">${levelLabel(c)}</span></div><div class="es-business">${c.factPeriod?`<small class="es-fact-period">${E(c.factPeriod)}</small>`:""}<p>${E(c.fact)}</p><div class="es-geography">${geoTags(c,s)}</div></div><div class="es-reason"><small>入选理由</small><p>${E(c.selectionReason)}</p>${preview ? `<a class="es-detail-entry" href="${E(pageURL(s,'enterprise/'+c.id))}" aria-label="查看${E(c.name)}企业信息">查看企业信息 <span aria-hidden="true">→</span></a>` : `<button class="es-detail-entry" type="button" data-open-sample="${E(c.id)}" aria-label="查看${E(c.name)}企业信息">查看企业信息 <span aria-hidden="true">→</span></button>`}</div></article>`;
   }
   function policy(s) {
     const leads = data.enterprises.filter(c => c.flow === s.flow && c.evidenceLevel === 'C').length;
@@ -112,7 +112,7 @@
     const groups = data.coverage.filter(i => rows.some(c => c.sub === i.sub));
     const heading = `<div class="es-results-bar" aria-live="polite"><p><strong>${rows.length}</strong>家企业 <span>／ ${groups.length}个子行业</span></p>${(s.region!=='all'||s.country)&&uncovered?`<a href="${E(pageURL({...s,region:'all',country:''}))}">另有${uncovered}家地域未细分，保留于完整名录 ↗</a>`:'<small>按子行业组织，企业顺序不代表规模或商机排名</small>'}</div>`;
     if (!rows.length) return heading + empty(s);
-    return heading + groups.map(i => `<section class="es-industry-group" data-industry-group="${i.sub}" style="--sector:${colors[i.major]}"><header class="es-group-head"><div><span>${E(i.major)}</span><h2>${E(i.name)}<small>${rows.filter(c=>c.sub===i.sub).length}家</small></h2></div><a href="./#flows/${i.sub}" title="查看该子行业的主研究方向">2025年核心篮子${direction(i.flow)} <strong>${fmt(i.coreBasketAmount)}</strong> 亿美元 <span aria-hidden="true">↗</span></a></header><div class="es-column-head" aria-hidden="true"><span>代表企业与产品</span><span>进出口业务与地域</span><span>选取依据</span></div><div class="es-sample-list">${rows.filter(c=>c.sub===i.sub).map(c=>sampleRow(c,s)).join('')}</div></section>`).join('');
+    return heading + groups.map(i => `<section class="es-industry-group" data-industry-group="${i.sub}" style="--sector:${colors[i.major]}"><header class="es-group-head"><div><span>${E(i.major)}</span><h2>${E(i.name)}<small>${rows.filter(c=>c.sub===i.sub).length}家</small></h2></div><a href="./#flows/${i.sub}" title="查看该子行业的主研究方向">2025年核心篮子${direction(i.flow)} <strong>${fmt(i.coreBasketAmount)}</strong> 亿美元 <span aria-hidden="true">↗</span></a></header><div class="es-column-head" aria-hidden="true"><span>代表企业与产品</span><span>进出口业务与地域</span><span>选取依据与企业详情</span></div><div class="es-sample-list">${rows.filter(c=>c.sub===i.sub).map(c=>sampleRow(c,s)).join('')}</div></section>`).join('');
   }
   function renderPage() {
     const s = state, all = data.enterprises.filter(c => c.flow === s.flow), n = new Set(all.map(c=>c.sub)).size;
@@ -202,7 +202,7 @@
       if (!host.isConnected) return;
       const s = normalize(context), rows = selected(s), fallbackFlow = industry(s.sub)?.flow || s.flow;
       host.dataset.direction = s.flow;
-      host.innerHTML = `<header class="es-preview-head"><div><span class="es-eyebrow">企业业务</span><h2>${direction(s.flow)}代表企业</h2><p>${rows.length?`${rows.length}家具有本区地域关联的样本；披露市场与实际货流分别保留。`:'当前国别或区域尚未单列对应企业，可查看完整研究名录。'}</p></div><a href="${E(pageURL(s))}">查看企业名录 →</a></header>${rows.slice(0,3).map(c=>sampleRow(c,s,true)).join('')}${!rows.length?`<a class="es-preview-fallback" href="${E(pageURL({...s,flow:fallbackFlow,region:'all',country:''}))}">查看${industry(s.sub)?E(industry(s.sub).name):'全部'}${direction(fallbackFlow)}样本 →</a>`:''}`;
+      host.innerHTML = `<header class="es-preview-head"><div><span class="es-eyebrow">企业业务</span><h2>${direction(s.flow)}代表企业</h2><p>${rows.length?`${rows.length}家具有本区地域关联的样本；披露市场与实际货流分别保留。`:'当前国别或区域尚未单列对应企业，可查看完整研究名录。'}</p></div><a class="es-directory-entry" href="${E(pageURL(s))}">进入企业名录 <span aria-hidden="true">→</span></a></header>${rows.slice(0,3).map(c=>sampleRow(c,s,true)).join('')}${!rows.length?`<a class="es-preview-fallback" href="${E(pageURL({...s,flow:fallbackFlow,region:'all',country:''}))}">查看${industry(s.sub)?E(industry(s.sub).name):'全部'}${direction(fallbackFlow)}样本 →</a>`:''}`;
     } catch (error) {
       if (host.isConnected) host.innerHTML = `<p class="es-footnote">${E(error.message)} <a href="enterprises.html">企业业务 →</a></p>`;
     }
