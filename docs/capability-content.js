@@ -1,6 +1,6 @@
 window.CAPABILITY_CONTENT={
   "schemaVersion": "2.0",
-  "contentVersion": "20261103-suppliers1",
+  "contentVersion": "20261103-companion1",
   "status": "future-capability-proposal",
   "tradeSnapshot": "2025核心商品篮子",
   "commonNote": "以上为面向未来的能力建设建议。国家及节点为建议组织方向；公开事实、未来判断与投入条件分别呈现。贸易金额仅为2025年需求背景，不加总为机会规模。",
@@ -1560,9 +1560,9 @@ window.CAPABILITY_CONTENT={
   "sources": {
     "atlas": {
       "type": "public-project",
-      "title": "原国际供应链研究：BG区域总结与行业能力研究",
+      "title": "国际大客户与区域能力参考",
       "url": "https://jamese5095.github.io/Global-supply-chain-atlas/",
-      "note": "用于区域与能力方向，不将案例数量视为市场规模。"
+      "note": "补充查看六行业国际大型企业的全球布局、物流项目、服务模式与区域能力。当前看板以中国企业及中国进出口机会为主，两者提供不同研究视角；案例数量不代表市场规模。"
     },
     "dhl-asml": {
       "type": "public",
