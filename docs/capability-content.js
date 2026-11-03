@@ -1,45 +1,41 @@
-window.CAPABILITY_CONTENT = {
-  "schemaVersion": 1,
-  "contentVersion": "20261102-capabilities-v1",
-  "status": "建设建议",
-  "baseCommit": "a244bb6d89ffc13dc2ccc21277efed4e17654daf",
-  "tradeSnapshot": {
-    "path": "downloads/trade-regions-2025.json",
-    "sha256": "665ce2138fa6a2827f8dce6f4a7aa5c570e77302505071db5d9c91e7ef7c35d8",
-    "year": 2025,
-    "unit": "亿美元"
+window.CAPABILITY_CONTENT={
+  "schemaVersion": "2.0",
+  "contentVersion": "20261103-future1",
+  "status": "future-capability-proposal",
+  "tradeSnapshot": "2025核心商品篮子",
+  "commonNote": "以上为面向未来的能力建设建议。国家及节点为建议组织方向；公开事实、未来判断与投入条件分别呈现。贸易金额仅为2025年需求背景，不加总为机会规模。",
+  "stages": {
+    "copy": {
+      "label": "先复制",
+      "description": "输出国内方法与客户接口，先用既有和合作资源交付。"
+    },
+    "prepare": {
+      "label": "提前准备",
+      "description": "先建立专业标准、伙伴和责任接口，再随项目配置资源。"
+    },
+    "trigger": {
+      "label": "订单触发",
+      "description": "客户、线路与密度形成后，扩大设施或评估并购。"
+    }
   },
-  "commonNote": "金额为2025年既有商品篮子的贸易背景；能力建设为研究建议，区域与客户项目须按具体服务范围衔接。",
+  "aliases": {
+    "x-foodservice": "x-market-entry",
+    "m-medtech": "m-pharma"
+  },
   "pages": {
     "X": {
       "file": "capability-export.html",
-      "title": "出口：把海外交付做深，形成可共用的运营节点",
-      "subtitle": "先复制国内已具备的作业基础，再补齐当地运营。",
-      "theme": "blue",
+      "title": "让中国出口延伸为海外持续经营",
+      "subtitle": "五项出口能力：从交付一批货，走向管理客户的库存、供料、设备服务与新市场履约。",
       "color": "#2171b5",
-      "overview": [
-        "多级备件",
-        "退货恢复销售",
-        "齐套供料",
-        "精密交付",
-        "多温店配"
-      ],
-      "decision": "优先复用和合作；持续订单形成节点密度后，再扩大自营或评估并购。"
+      "decision": "先输出库存、订单和项目组织能力，再按客户密度扩当地资源。"
     },
     "M": {
       "file": "capability-import.html",
-      "title": "进口：用国内履约网络，向海外货源端延伸",
-      "subtitle": "先拿到起运组织和交接能力，再按订单配置专用资源。",
-      "theme": "red",
+      "title": "把海外货源接成稳定的中国供给",
+      "subtitle": "五项进口能力：围绕起运组织、专业运输与质量交接，连接中国客户的到货计划。",
       "color": "#c43c38",
-      "overview": [
-        "芯片供料",
-        "设备交付",
-        "药品温控",
-        "器械交接",
-        "食品履约"
-      ],
-      "decision": "由国内客户订单反推产地提货、专业操作和国际运输，不按进口总额直接配置资产。"
+      "decision": "先组织产地接口与国际运输，国内仓配作为接收衔接；专用设施由持续线路触发。"
     }
   },
   "capabilities": [
@@ -47,38 +43,103 @@ window.CAPABILITY_CONTENT = {
       "id": "x-spares",
       "flow": "X",
       "rank": 1,
-      "title": "多级备件库存与紧急响应",
-      "headline": "先连通库存和工单，再扩前置备件点。",
-      "where": "欧洲先围绕德荷比客户节点；英国单独组织关务与交付。东南亚、中东随设备保有量和工单扩展。",
-      "regionIds": [
-        "europe",
-        "southeast-asia",
-        "middle-east"
+      "title": "海外停机响应网络",
+      "stage": "copy",
+      "summary": {
+        "location": "德国、荷兰先行 · 英国、阿联酋随客扩展",
+        "entry": "先合作补齐当地提派、前置点及授权现场服务。"
+      },
+      "headline": "把备件库存、紧急交付和授权服务连成一条恢复运行的责任链。",
+      "future": "随着中国设备在海外持续运行，客户可能更关注停机持续时间与备件可得性。建设方向由单次整机交付延伸到设备使用周期中的持续服务。",
+      "what": "以多客户区域备件池连接前置点、紧急提派及授权维修伙伴；库存按客户和设备型号分别管理。",
+      "control": "掌握工单、备件可用状态和调拨规则，形成跨节点响应组织；按具体城市与货型签订服务承诺。",
+      "serviceChain": [
+        "故障工单",
+        "备件定位",
+        "调拨与急送",
+        "授权服务交接",
+        "旧件回流"
+      ],
+      "nodes": [
+        {
+          "country": "德国",
+          "region": "europe",
+          "task": "工业客户周边备件池与紧急调拨",
+          "industries": [
+            8,
+            11,
+            12
+          ],
+          "reason": "以汽车、机械及电力设备贸易和原区域研究为需求底座。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "荷兰",
+          "region": "europe",
+          "task": "到港备件、跨国补货与逆向归集",
+          "industries": [
+            8,
+            11,
+            12
+          ],
+          "reason": "连接欧洲进口门户与区域库存组织。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "英国",
+          "region": "europe",
+          "task": "独立库存与本地响应",
+          "industries": [
+            6,
+            8,
+            11
+          ],
+          "reason": "跨境补货与当地响应分别组织。",
+          "priority": "随客扩展"
+        },
+        {
+          "country": "阿联酋",
+          "region": "middle-east",
+          "task": "区域备件中转与客户现场接驳",
+          "industries": [
+            6,
+            11,
+            12
+          ],
+          "reason": "结合设备和整车出口需求，以客户实际服务地址配置。",
+          "priority": "订单触发"
+        }
       ],
       "relatedSubIds": [
+        6,
         8,
         11,
         12
       ],
-      "what": "区域备件中心＋按服务半径设置前置点，统一库存、调拨和紧急交付。",
-      "why": "设备和零部件出口形成海外在用设备基础；真正牵引投入的是装机分布、故障工单与客户响应要求。",
-      "domesticReuse": "复用国内多级备件仓规划、库存协同、补货调拨和紧急响应作业。",
-      "overseasBuild": "补齐当地提派、关务、前置点运营和客户工单接口；响应承诺按城市与货型签约。",
-      "how": [
-        "自营库存规则、工单接口和运营质量。",
-        "合作接入当地仓位、清关与紧急配送，先跑通客户节点。",
-        "相邻客户的备件需求形成密度后，再增设前置点或评估并购属地服务商。"
+      "regionIds": [
+        "europe",
+        "middle-east"
       ],
-      "boundary": "整机吊装、超重作业与普通备件分开；既有独家或深度绑定的服务范围不作为通用网络建设前提。",
-      "investmentTrigger": "有可签约客户、可共享节点和持续工单；库存周转、服务成本与响应要求可同时成立。",
+      "own": "自营工单平台、库存规则、项目经理和异常调度。",
+      "partner": "先合作补齐当地提派、前置点及授权现场服务。",
+      "acquire": "当响应覆盖成为持续瓶颈时，评估具备备件客户合同、调度团队和密集配送线路的区域企业。",
+      "how": [
+        "先复制国内备件库存与工单管理，接入客户现有海外库存。",
+        "以少量客户组织区域响应，按兼容货型共享仓位、系统和配送。",
+        "连续工单形成密度后扩前置点，再评估自营资源与并购。"
+      ],
+      "investmentTrigger": "客户提供设备分布、持续工单和库存责任规则；响应成本与库存投入可由合同及多客户密度支撑。",
+      "boundary": "共享设施与组织，不把不同品牌的零件当作可互换库存；安装维修由授权主体负责，既有专用体系不作为替换前提。",
+      "domesticReuse": "复用国内多级备件、调拨和急件组织经验；海外现场覆盖、服务承诺和技术授权单独建立。",
       "measures": [
-        "承诺时限达成率",
-        "缺件等待时间",
-        "跨客户节点利用率"
+        "工单至恢复供件时长",
+        "承诺窗口达成率",
+        "每次响应成本",
+        "前置库存周转"
       ],
       "tradeMetrics": [
         {
-          "label": "欧洲汽车零部件、机械及电力设备出口",
+          "label": "欧洲汽车零部件、机械及电力设备出口背景",
           "flow": "X",
           "region": "europe",
           "subs": [
@@ -90,200 +151,240 @@ window.CAPABILITY_CONTENT = {
           "unit": "亿美元",
           "year": 2025,
           "expectedValue": 204.9807083,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/europe/all"
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/europe/all/0/X"
         }
       ],
-      "customers": [
+      "enterpriseRefs": [
         {
-          "id": "sany",
-          "label": "三一重工",
-          "reason": "从欧洲备件网络衔接、急送和退换件切入。",
-          "status": "建议拓展",
-          "href": "./#target/sany",
-          "sources": [
-            {
-              "label": "2025欧洲峰会",
-              "url": "https://www.sanyeurope.com/euro-summit25/"
-            },
-            {
-              "label": "欧洲备件服务",
-              "url": "https://www.sanyeurope.com/en/ersatzteile/"
-            }
-          ]
+          "id": "sungrow-europe",
+          "role": "供货事实",
+          "insight": "中国制造连接欧洲渠道，为售后周转与备件响应提供需求基础；不代表已披露故障工单。"
         },
         {
-          "id": "byd",
-          "label": "比亚迪",
-          "reason": "对接新增节点或专项服务包，避开已明确承包的备件范围。",
-          "status": "建议拓展",
-          "href": "./#target/byd",
-          "sources": [
-            {
-              "label": "BYD西班牙2025业务公告",
-              "url": "https://media.byd.com/byd-firma-un-ano-historico-en-espana-y-termina-2025-como-lider-del-mercado-de-vehiculos-enchufables/?lang=spa"
-            }
-          ]
+          "id": "stellantis-leap",
+          "role": "需求延伸",
+          "insight": "中国整车出口可产生后续售后需求；具体备件量与服务网络另按客户订单建立。"
         }
       ],
-      "extensionNotes": [],
       "sourceIds": [
         "dom-industrial",
         "dom-auto",
         "atlas"
       ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "欧洲优先 · 东南亚/中东随客扩展",
-        "entry": "自营库存规则＋当地仓配合作"
-      }
+      "extensionNotes": []
     },
     {
       "id": "x-recommerce",
       "flow": "X",
       "rank": 2,
-      "title": "品牌共享库存与退货恢复销售",
-      "headline": "让退货重新成为可售库存。",
-      "where": "欧洲优先围绕品牌现有履约区域；日本按渠道与售后订单建立节点。",
+      "title": "品牌库存与再销售网络",
+      "stage": "copy",
+      "summary": {
+        "location": "德国、荷兰组织欧洲试点 · 日本按渠道进入",
+        "entry": "合作获得当地检测、轻加工及授权维修、再销售渠道。"
+      },
+      "headline": "让渠道库存可调度，让退货按授权重新进入销售。",
+      "future": "中国品牌在海外渠道增加后，可能同时面对库存割裂、退件积压与折价损失。未来服务价值在于连接正向库存与逆向处置，而非只增加仓位。",
+      "what": "统一可售、待检、返修、再上架等库存状态，连接门店、电商、经销商及适用再销售渠道。",
+      "control": "掌握订单分配、库存状态和品牌处置规则；以当地检测、轻加工和授权维修资源形成闭环。",
+      "serviceChain": [
+        "跨渠道库存",
+        "订单履约",
+        "退货分级",
+        "授权处置",
+        "再入库／再销售"
+      ],
+      "nodes": [
+        {
+          "country": "德国",
+          "region": "europe",
+          "task": "渠道库存、退件归集与大件交付协同",
+          "industries": [
+            5,
+            15,
+            19
+          ],
+          "reason": "结合欧洲家电和消费品出口及区域履约研究。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "荷兰",
+          "region": "europe",
+          "task": "到港库存与多国渠道补货",
+          "industries": [
+            5,
+            15,
+            19
+          ],
+          "reason": "按客户现有进口门户和库存地址组织共用资源。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "日本",
+          "region": "east-asia",
+          "task": "品牌渠道交付、退货检品及再入库",
+          "industries": [
+            5,
+            19
+          ],
+          "reason": "家电、鞋服出口需求提供基础，操作标准按渠道建立。",
+          "priority": "订单触发"
+        }
+      ],
+      "relatedSubIds": [
+        5,
+        15,
+        19
+      ],
       "regionIds": [
         "europe",
         "east-asia"
       ],
-      "relatedSubIds": [
-        5,
-        19
-      ],
-      "what": "在同一履约节点连接渠道库存、消费者订单、退货分级、适用轻加工与再次销售。",
-      "why": "消费品持续出口带来境外库存和售后需求；价值在于减少退货报废与库存割裂，并缩短恢复销售周期。",
-      "domesticReuse": "复用国内退货验收、分级、包装修复、轻加工、批次追踪及再次上架流程。",
-      "overseasBuild": "建立当地分级标准、授权维修协作、包装材料和再销售渠道接口。",
+      "own": "自营库存状态、订单分配、退货分级规则与品牌服务接口。",
+      "partner": "合作获得当地检测、轻加工及授权维修、再销售渠道。",
+      "acquire": "有持续退货量和品牌授权后，评估带客户合同、检品团队和再销售接口的区域运营商。",
       "how": [
-        "先在现有正向仓内设置逆向作业区，统一B2B与B2C库存账。",
-        "服装与消费品按授权开展轻处理；电子产品检测维修交由合格技术伙伴。",
-        "稳定返修量形成后，再评估收购本地检测、维修或再销售服务能力。"
+        "先连接已有海外仓的订单与库存信息，建立退件分类。",
+        "在客户授权下开展检品、包装修复和适用再次上架。",
+        "按恢复价值与处理密度扩作业区，深修和再销售专业资源选择性获取。"
       ],
-      "boundary": "国内轻加工经验不等于电子深修资质；整机维修、数据清除和跨境返修各按适用要求组织。",
-      "investmentTrigger": "品牌提供分级与处置授权、持续退货量和再销售出口；单件恢复价值覆盖处理成本。",
+      "investmentTrigger": "品牌给予处置授权和适用再销售出口；持续退件量、恢复价值与处理成本成立。",
+      "boundary": "美的等出口事实说明供货需求，不直接证明存在退货复售订单；电子深修、数据处理和跨境返修分别取得授权。",
+      "domesticReuse": "复用国内验收分级、包装修复、批次追踪和轻加工经验；海外维修及再销售权限单独取得。",
       "measures": [
+        "退货至可售时长",
         "恢复可售比例",
-        "退货至再次上架时间",
-        "单件处理成本"
+        "跨渠道缺货率",
+        "单件净恢复价值"
       ],
       "tradeMetrics": [
         {
-          "label": "欧洲家电音视频核心与鞋服出口",
+          "label": "欧洲家电、家居及鞋服出口背景",
           "flow": "X",
           "region": "europe",
           "subs": [
             5,
+            15,
             19
           ],
           "kind": "region",
           "unit": "亿美元",
           "year": 2025,
-          "expectedValue": 696.74613373,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/europe/all"
+          "expectedValue": 795.77727765,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/europe/all/0/X"
         }
       ],
-      "customers": [
+      "enterpriseRefs": [
         {
-          "id": "bambu",
-          "label": "拓竹",
-          "reason": "整机、耗材与配件履约可与退换货衔接。",
-          "status": "建议拓展",
-          "href": "./#target/bambu",
-          "sources": [
-            {
-              "label": "欧洲配送政策与承运商",
-              "url": "https://bambulab-eu.myshopify.com/policies/shipping-policy"
-            }
-          ]
+          "id": "midea-europe",
+          "role": "供货事实",
+          "insight": "南沙—欧洲空调供货支持季节性库存与补货组织；逆向服务为未来延伸。"
         },
         {
-          "id": "insta",
-          "label": "影石",
-          "reason": "围绕欧洲订单、配件和售后交付进入。",
-          "status": "建议拓展",
-          "href": "./#target/insta",
-          "sources": [
-            {
-              "label": "2026-05-12投资者关系记录",
-              "url": "https://dataclouds.cninfo.com.cn/shgonggao/investor/2026/20260512/167dda036bc744aaa3e896cfd20db1e2.PDF"
-            }
-          ]
+          "id": "ikea-china",
+          "role": "业务事实",
+          "insight": "中国供应商对接海外仓及退换货，说明正逆向衔接场景；国家未披露。"
         },
         {
-          "id": "popmart",
-          "label": "泡泡玛特",
-          "reason": "日本渠道补货与适用退换货服务。",
-          "status": "建议拓展",
-          "href": "./#target/popmart",
-          "sources": [
-            {
-              "label": "2025半年业绩（第21、24页）",
-              "url": "https://prod-out-res.popmart.com/cms/INTERIM_RESULTS_ANNOUNCEMENT_FOR_THE_SIX_MONTHS_ENDED_30_JUNE_2025_c6a7290528.pdf"
-            },
-            {
-              "label": "日本销售与配送说明",
-              "url": "https://www.popmart.com/JP/help/corporate-overview"
-            }
-          ]
+          "id": "nike-sourcing",
+          "role": "采购网络",
+          "insight": "中国合同制造参与全球供给，支持研究品牌采购接口，不据此分摊国别订单。"
         }
-      ],
-      "extensionNotes": [
-        "拓竹、影石、泡泡玛特属于现有项目补充；不能将其产品金额等同于本卡展示的家电、鞋服篮子。"
       ],
       "sourceIds": [
         "dom-consumer",
         "dom-tech",
-        "atlas"
+        "atlas",
+        "circular"
       ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "欧洲优先 · 日本按渠道进入",
-        "entry": "正向仓加逆向区＋授权维修协作"
-      }
+      "extensionNotes": []
     },
     {
       "id": "x-kitting",
       "flow": "X",
       "rank": 3,
-      "title": "原材料集结与KD齐套供料",
-      "headline": "从跨境运输延伸到工厂前的齐套交付。",
-      "where": "越南电子制造园区；马来西亚汽车项目；泰国按客户工厂需求进入。",
-      "regionIds": [
-        "southeast-asia"
+      "title": "海外制造供料接口",
+      "stage": "prepare",
+      "summary": {
+        "location": "越南制造带先组织 · 马来西亚、墨西哥随工厂订单进入",
+        "entry": "当地伙伴提供近厂仓位、短驳和预约交接。"
+      },
+      "headline": "把分散供应商的跨境发货，接成客户工厂可预约、可追踪的到货。",
+      "future": "海外制造扩张可能让物料来自更多国家和供应商，工厂端缺件与到货波动会增加。提前建设标准接口，可随客户产线和采购网络复制。",
+      "what": "供应商集货、缺件预警、跨境运输、适用近厂暂存与预约供料；齐套或KD只在具体物料清单和合同要求下提供。",
+      "control": "掌握订单、物料清单、到货窗口与异常补料，不预先承担未经约定的产线或停线责任。",
+      "serviceChain": [
+        "供应商发货计划",
+        "集货与缺件预警",
+        "跨境运输",
+        "近厂暂存",
+        "预约送厂"
+      ],
+      "nodes": [
+        {
+          "country": "越南",
+          "region": "southeast-asia",
+          "task": "中国来源电子物料集货与工厂预约到货",
+          "industries": [
+            2,
+            8
+          ],
+          "reason": "电子零部件对越出口与原区域制造研究共同支持方向。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "马来西亚",
+          "region": "southeast-asia",
+          "task": "客户工厂物料及备件组织",
+          "industries": [
+            2,
+            8
+          ],
+          "reason": "沿原区域制造配套方向，以明确工厂与物料订单建立接口。",
+          "priority": "随客扩展"
+        },
+        {
+          "country": "墨西哥",
+          "region": "north-america",
+          "task": "中国来源部件的本地工厂交付",
+          "industries": [
+            2,
+            8
+          ],
+          "reason": "电子及汽车零部件出口提供背景，不据此推定后续转口市场。",
+          "priority": "订单触发"
+        }
       ],
       "relatedSubIds": [
         2,
         8
       ],
-      "what": "供应商集货、齐套检查、跨境运输、近厂暂存与预约供料，统一缺件和交接信息。",
-      "why": "电子与汽车生产布局带来跨境物料组织需求；同一区域工厂可共用干线和系统，但提派按园区半径配置。",
-      "domesticReuse": "复用国内原材料集结、入厂运输和汽车零部件仓配；复杂线边与排序能力单独配置。",
-      "overseasBuild": "建设当地接驳、近厂仓位、齐套核对、预约交接和异常补料组织。",
-      "how": [
-        "先以客户供应商清单、物料清单和工厂收货规则定义服务包。",
-        "国内团队输出流程与系统，海外合作仓车承接集结、暂存和预约供料。",
-        "稳定订单形成后扩大近厂运营；生产线边排序作为后续独立项目。"
+      "regionIds": [
+        "southeast-asia",
+        "north-america"
       ],
-      "boundary": "KD指散件供货模式；本卡贸易金额不是KD专属金额。产线作业与生产节拍责任不能直接套用普通仓运经验。",
-      "investmentTrigger": "取得工厂交付规则和物料订单；缺件责任、库存责任及停线责任有清晰约定。",
+      "own": "自营订单与物料接口、供应商协同、缺件预警和到货调度。",
+      "partner": "当地伙伴提供近厂仓位、短驳和预约交接。",
+      "acquire": "稳定工厂订单形成后，评估带当地调度团队、工厂准入和客户合同的制造物流服务商。",
+      "how": [
+        "先输出供应商集货和预约交付标准，选择客户一组物料试行。",
+        "再接入订单与缺件信息，按工厂半径组织短驳和暂存。",
+        "物料规模与责任清晰后，延伸齐套、线边或排序作业。"
+      ],
+      "investmentTrigger": "有明确工厂、物料清单、交货窗口与责任约定；持续订单支撑近厂资源。",
+      "boundary": "京东方出口市场不等于已取得工厂供料合同；动力电池在首页口径与HS8708国别篮子间的差异保留，危险品及线边操作分开配置。",
+      "domesticReuse": "复用国内集货、入厂运输及部件仓配；复杂排序、VMI和产线责任不列为普遍成熟能力。",
       "measures": [
-        "齐套交付率",
         "预约到货达成率",
-        "异常补料时长"
+        "缺件预警提前量",
+        "异常补料时长",
+        "单位物料交付成本"
       ],
       "tradeMetrics": [
         {
-          "label": "东南亚电子及汽车零部件出口",
+          "label": "东南亚电子及汽车零部件出口背景",
           "flow": "X",
           "region": "southeast-asia",
           "subs": [
@@ -294,234 +395,395 @@ window.CAPABILITY_CONTENT = {
           "unit": "亿美元",
           "year": 2025,
           "expectedValue": 306.2600597,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/southeast-asia/all"
-        }
-      ],
-      "customers": [
-        {
-          "id": "luxshare",
-          "label": "立讯精密",
-          "reason": "越南生产基地的物料集货与工厂补货。",
-          "status": "建议拓展",
-          "href": "./#target/luxshare",
-          "sources": [
-            {
-              "label": "企业设厂历史",
-              "url": "https://www.luxshare-ict.com/en/about/company-profile.html"
-            }
-          ]
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/southeast-asia/all/0/X"
         },
         {
-          "id": "goertek",
-          "label": "歌尔股份",
-          "reason": "越南多园区交接与接驳，按园区分别组织提派。",
-          "status": "建议拓展",
-          "href": "./#target/goertek",
-          "sources": [
-            {
-              "label": "歌尔越南布局",
-              "url": "https://www.goertekvn.com/"
-            }
-          ]
+          "label": "北美电子及汽车零部件出口背景（含墨西哥）",
+          "flow": "X",
+          "region": "north-america",
+          "subs": [
+            2,
+            8
+          ],
+          "kind": "region",
+          "unit": "亿美元",
+          "year": 2025,
+          "expectedValue": 233.37552039,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/north-america/all/0/X"
         }
       ],
-      "extensionNotes": [
-        "KD为散件供货模式；国内汽车物流方法可用于设计服务，具体生产物流范围按工厂要求配置。"
+      "enterpriseRefs": [
+        {
+          "id": "boe-export",
+          "role": "需求基础",
+          "insight": "中国显示产品出口支持跨境交接研究；工厂预约供料属于下一层服务设计。"
+        },
+        {
+          "id": "catl-network",
+          "role": "范围延伸",
+          "insight": "中国及欧洲制造并存，提示要区分跨境供给与当地供给，不能用一套货量推导全部节点。"
+        }
       ],
       "sourceIds": [
         "dom-tech",
         "dom-auto",
         "atlas"
       ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "越南电子 · 马来西亚汽车",
-        "entry": "国内输出流程＋海外近厂仓运"
-      }
+      "extensionNotes": []
     },
     {
       "id": "x-precision",
       "flow": "X",
       "rank": 4,
-      "title": "精密设备运包交付与现场服务",
-      "headline": "把包装、运输和现场交接做成一个责任链。",
-      "where": "亚洲与欧洲已有客户项目节点，选址跟随设备交付地址和专业人员覆盖。",
-      "regionIds": [
-        "southeast-asia",
-        "east-asia",
-        "europe"
+      "title": "设备交付与投运协同",
+      "stage": "prepare",
+      "summary": {
+        "location": "荷兰、德国形成专业接口 · 越南随设备项目配置",
+        "entry": "合作获取专业车辆、搬运人员及客户授权安装团队。"
+      },
+      "headline": "从货物到场延伸到交付窗口协同，把物流与授权安装团队接起来。",
+      "future": "设备出口后，海外客户可能更重视验收进度、现场准备和故障责任。价值可以从运输完好交付，延伸到多方按计划完成交接。",
+      "what": "装运勘查、包装、适用专业运输、到场搬运与授权安装团队预约；由统一项目经理组织多段接口。",
+      "control": "掌握交付计划、货物状态、现场条件和责任记录，技术调试与维修由客户授权团队承担。",
+      "serviceChain": [
+        "装运勘查",
+        "包装与运输",
+        "到场条件准备",
+        "授权安装交接",
+        "验收记录"
+      ],
+      "nodes": [
+        {
+          "country": "荷兰",
+          "region": "europe",
+          "task": "医疗设备欧洲配送与专业现场伙伴接口",
+          "industries": [
+            23
+          ],
+          "reason": "迈瑞欧洲运营节点提供服务组织参考，不推定全部库存为中国来源。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "德国",
+          "region": "europe",
+          "task": "机械与电力设备项目交接",
+          "industries": [
+            11,
+            12
+          ],
+          "reason": "出口背景和区域专业交付经验支持项目组织方向。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "越南",
+          "region": "southeast-asia",
+          "task": "客户工厂设备到场和作业伙伴组织",
+          "industries": [
+            11,
+            12
+          ],
+          "reason": "以工厂扩建及实际设备订单为启动条件。",
+          "priority": "订单触发"
+        }
       ],
       "relatedSubIds": [
         11,
-        12
+        12,
+        23
       ],
-      "what": "装运前勘查、定制包装、适用减振运输、状态记录、现场搬运与签收交接。",
-      "why": "高价值设备对损伤、交接和项目进度敏感；建设重点是工程作业和责任管理，而非单纯增加仓储面积。",
-      "domesticReuse": "复用国内精密设备包装运输、服务器运输和项目交付组织经验。",
-      "overseasBuild": "补齐当地专业车辆、搬运团队、机场交接及工程项目经理。",
+      "regionIds": [
+        "europe",
+        "southeast-asia"
+      ],
+      "own": "自营项目经理、交付计划、包装标准和责任记录。",
+      "partner": "合作获取专业车辆、搬运人员及客户授权安装团队。",
+      "acquire": "连续设备项目形成后，评估具有专业工程团队、现场许可和设备客户接口的作业企业。",
       "how": [
-        "自营包装标准、项目管理、监测记录与客户验收界面。",
-        "按项目采购属地专业车辆与技术作业，明确各段责任。",
-        "同类设备交付形成连续订单后，固定专业团队和作业节点。"
+        "先形成设备规格、场地和交接条件模板，建立当地伙伴清单。",
+        "用单项目贯通出厂、运输和现场窗口，记录损伤及异常责任。",
+        "以项目频次复制跨国接口，专业作业资源按密度获取。"
       ],
-      "boundary": "设备安装、调试和技术维修由客户授权主体负责；服务器改配与拆解回收不列为当前通用成熟能力。",
-      "investmentTrigger": "设备规格、作业场地、许可与验收条件明确，项目毛利能够覆盖专业资源。",
+      "investmentTrigger": "交付地址、设备规格、场地条件及授权分工明确；项目收入覆盖专业资源与责任成本。",
+      "boundary": "不将安装、调试和技术维修自动并入物流合同；整机超重作业与一般精密设备分开配置。",
+      "domesticReuse": "复用国内包装运输与项目管理经验；海外现场团队、许可和技术授权依项目建立。",
       "measures": [
         "完好交付率",
+        "交付窗口达成率",
         "一次验收通过率",
-        "关键交接记录完整率"
+        "异常责任关闭时长"
       ],
       "tradeMetrics": [
         {
-          "label": "欧洲机械及电力设备核心出口",
+          "label": "欧洲机械、电力及诊疗器械核心出口背景",
           "flow": "X",
           "region": "europe",
           "subs": [
+            11,
+            12,
+            23
+          ],
+          "kind": "region",
+          "unit": "亿美元",
+          "year": 2025,
+          "expectedValue": 119.70691108,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/europe/all/0/X"
+        }
+      ],
+      "enterpriseRefs": [
+        {
+          "id": "mindray-nl",
+          "role": "运营节点",
+          "insight": "荷兰配送与末端装配说明当地存在交付接口，未来协同服务仍按产品和授权设计。"
+        },
+        {
+          "id": "cat-xuzhou",
+          "role": "出口事实",
+          "insight": "中国路面机械出口提供设备交付需求基础，资料未拆目的国家。"
+        }
+      ],
+      "sourceIds": [
+        "dom-tech",
+        "dom-industrial",
+        "dom-medical",
+        "atlas"
+      ],
+      "extensionNotes": []
+    },
+    {
+      "id": "x-market-entry",
+      "flow": "X",
+      "rank": 5,
+      "title": "新市场履约启动能力",
+      "stage": "trigger",
+      "summary": {
+        "location": "阿联酋、墨西哥、英国按品牌进入顺序组织",
+        "entry": "先采购当地关务、贸易合规、仓配及售后协作资源。"
+      },
+      "headline": "用一套可复制的履约服务包，帮助客户从首批出口走向当地持续经营。",
+      "future": "客户进入新国家时，通常需要同时组织进口主体、库存、渠道交付与售后接口。先把这些资源接起来，有机会随客户增长形成多客户节点。",
+      "what": "组合当地进口合作、合规服务、合作仓、渠道配送和退件入口，形成可按国家复制的市场启动服务包。",
+      "control": "掌握项目设计、伙伴标准、订单及库存接口，明确贸易、货权和产品责任的承担主体。",
+      "serviceChain": [
+        "首批订单",
+        "进口责任与伙伴",
+        "合作库存",
+        "渠道交付",
+        "密度形成后扩容"
+      ],
+      "nodes": [
+        {
+          "country": "阿联酋",
+          "region": "middle-east",
+          "task": "中国品牌区域库存与分销试点",
+          "industries": [
+            5,
+            6,
+            11,
+            12
+          ],
+          "reason": "整车、设备和品牌出海需求支持研究，按目的国分别组织交付。",
+          "priority": "订单触发"
+        },
+        {
+          "country": "墨西哥",
+          "region": "north-america",
+          "task": "中国来源商品的当地渠道履约",
+          "industries": [
+            5,
+            8,
+            15
+          ],
+          "reason": "结合中国出口与本地需求，业务不默认延伸为美国转口。",
+          "priority": "订单触发"
+        },
+        {
+          "country": "英国",
+          "region": "europe",
+          "task": "独立进口、库存及渠道服务包",
+          "industries": [
+            5,
+            6,
+            19
+          ],
+          "reason": "按客户英国市场订单设定库存和售后接口。",
+          "priority": "订单触发"
+        }
+      ],
+      "relatedSubIds": [
+        5,
+        6,
+        8,
+        11,
+        12,
+        15,
+        19
+      ],
+      "regionIds": [
+        "middle-east",
+        "north-america",
+        "europe"
+      ],
+      "own": "自营客户方案、伙伴准入、系统接口和国家项目管理。",
+      "partner": "先采购当地关务、贸易合规、仓配及售后协作资源。",
+      "acquire": "多个品牌形成稳定业务后，评估带客户合同、本地渠道和运营团队的平台；不为首批货直接收购网络。",
+      "how": [
+        "先取得具体品牌与国家订单，明确进口和产品责任主体。",
+        "以合作资源跑通到货、库存、渠道及退件闭环。",
+        "多个客户形成城市群密度后，再转为共用节点或评估区域平台。"
+      ],
+      "investmentTrigger": "首批订单可执行、贸易及产品责任明确；持续客户和可共用需求形成后扩大投入。",
+      "boundary": "不承诺所有国家均可由顺丰承担进口商或产品责任；不以重新包装或转运改变原产地、规避适用要求。",
+      "domesticReuse": "复用国内多客户仓配、订单管理与伙伴协作方法；当地贸易责任与专业资源按国家配置。",
+      "measures": [
+        "首批订单至常态履约周期",
+        "复购客户数",
+        "每国项目贡献",
+        "共用节点利用率"
+      ],
+      "tradeMetrics": [
+        {
+          "label": "中东乘用车、家电及设备出口背景",
+          "flow": "X",
+          "region": "middle-east",
+          "subs": [
+            5,
+            6,
             11,
             12
           ],
           "kind": "region",
           "unit": "亿美元",
           "year": 2025,
-          "expectedValue": 87.96089684,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/europe/all"
-        }
-      ],
-      "customers": [],
-      "extensionNotes": [
-        "服务器、数据中心与部分机器人不在当前核心篮子内；本卡金额仅提供设备贸易背景，不作为这些项目的规模。"
-      ],
-      "sourceIds": [
-        "dom-tech",
-        "dom-industrial",
-        "atlas"
-      ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "亚洲/欧洲 · 跟随设备项目",
-        "entry": "自营项目管理＋属地专业作业"
-      }
-    },
-    {
-      "id": "x-foodservice",
-      "flow": "X",
-      "rank": 5,
-      "title": "连锁餐饮供需协同与多温店配",
-      "headline": "把中国供应与当地采购接到同一门店补货链。",
-      "where": "复用新加坡、马来西亚运营基础；泰国、越南按品牌开店网络补齐仓车资源。",
-      "regionIds": [
-        "southeast-asia"
-      ],
-      "relatedSubIds": [
-        27
-      ],
-      "what": "进口食材、当地采购与门店物资协同，连接订货、库存、效期管理和多温配送。",
-      "why": "食材出口提供跨境供应背景；门店密度、当地采购比例和配送频次决定当地网络的实际价值。",
-      "domesticReuse": "复用餐饮仓配、批次效期、温区作业和已有海外店配经验。",
-      "overseasBuild": "补齐当地供应商接入、多温仓车、门店预约交接和当地食品业务资质。",
-      "how": [
-        "先从既有客户及门店订单复制标准作业。",
-        "合作补齐当地仓车，按温区与配送时窗整合适用客户。",
-        "多品牌线路持续形成密度后，再评估并购具备资质、线路和运营团队的本地企业。"
-      ],
-      "boundary": "不因食材出口额大就预建全国冷链；温区、品类、食品安全责任与门店频次需匹配。",
-      "investmentTrigger": "有连续门店订单，配送线路具备密度，温区与作业条件可兼容。",
-      "measures": [
-        "门店准时足量交付率",
-        "损耗与临期比例",
-        "配送线路利用率"
-      ],
-      "tradeMetrics": [
+          "expectedValue": 369.63747383,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/middle-east/all/0/X"
+        },
         {
-          "label": "东南亚食材核心出口",
+          "label": "北美家电、汽车零部件及家居出口背景",
           "flow": "X",
-          "region": "southeast-asia",
+          "region": "north-america",
           "subs": [
-            27
+            5,
+            8,
+            15
           ],
           "kind": "region",
           "unit": "亿美元",
           "year": 2025,
-          "expectedValue": 85.20295138,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/southeast-asia/27"
+          "expectedValue": 501.90486724,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/north-america/all/0/X"
         }
       ],
-      "customers": [],
-      "extensionNotes": [
-        "海外当地采购与店配不是中国出口统计；不将本卡贸易金额折算门店规模。"
+      "enterpriseRefs": [
+        {
+          "id": "stellantis-leap",
+          "role": "进入方式参考",
+          "insight": "中国出口与当地渠道合作说明市场进入需要连接多方；不将该集团渠道视为顺丰可取得资源。"
+        },
+        {
+          "id": "ikea-china",
+          "role": "履约链参考",
+          "insight": "中国供应商与海外仓连接，说明当地履约是出口链的延伸；不据此确定新建国家。"
+        }
       ],
       "sourceIds": [
-        "dom-food",
+        "dom-consumer",
         "atlas"
       ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "新马复用 · 泰越补齐",
-        "entry": "合作仓车起步＋密度形成后扩展"
-      }
+      "extensionNotes": []
     },
     {
-      "id": "m-semiconductor",
+      "id": "m-origination",
       "flow": "M",
       "rank": 1,
-      "title": "芯片及电子部件保税分拨与供料",
-      "headline": "把境外集货接到国内保税库存和工厂供料。",
-      "where": "东亚与东南亚实际供应商节点；香港作为集散节点，按实际提货组织使用。",
-      "regionIds": [
-        "east-asia",
-        "southeast-asia"
+      "title": "多产地集货与运力统筹",
+      "stage": "copy",
+      "summary": {
+        "location": "新加坡组织接口 · 德国、泰国按货源形成线路",
+        "entry": "合作获得当地提货、机场地面操作及分货型集货资源。"
+      },
+      "headline": "将多个供应商的出货节奏，接成面向中国客户的统一发运计划。",
+      "future": "海外采购分散可能增加小批量、不同交期和多方订舱。未来价值在于组织可执行的发运选择和异常恢复，帮助中国客户稳定到货。",
+      "what": "供应商预约、分货型集货、订舱协同、合规线路备选和国内接货计划；国内仓配只作为交付接口。",
+      "control": "掌握供应商状态、货物就绪时间和国际运力调度；客户保留采购与供应商选择权。",
+      "serviceChain": [
+        "供应商就绪信息",
+        "分货型集货",
+        "运力与线路安排",
+        "异常恢复",
+        "中国接货窗口"
+      ],
+      "nodes": [
+        {
+          "country": "新加坡",
+          "region": "southeast-asia",
+          "task": "多供应商发运与机场交接组织",
+          "industries": [
+            1,
+            2
+          ],
+          "reason": "依托区域组织方向，并参考集团与机场服务伙伴的合作计划；具体服务站点单独落实。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "德国",
+          "region": "europe",
+          "task": "工业与医药货源的分线集运",
+          "industries": [
+            11,
+            12,
+            26
+          ],
+          "reason": "欧洲进口需求提供基础，不同货型和温区执行独立作业。",
+          "priority": "随客扩展"
+        },
+        {
+          "country": "泰国",
+          "region": "southeast-asia",
+          "task": "食材供应商出货及运力协同",
+          "industries": [
+            27
+          ],
+          "reason": "按中国订单与原料出货节奏建立货源接口。",
+          "priority": "订单触发"
+        }
       ],
       "relatedSubIds": [
         1,
-        2
+        2,
+        11,
+        12,
+        26,
+        27
       ],
-      "what": "供应商提货、专业集货、国际运输、适用保税分拨及国内工厂交付。",
-      "why": "进口芯片来源集中，国内工厂连续供料需要稳定起运组织；先连接供应商与库存节点，再增加专用仓位。",
-      "domesticReuse": "复用静电防护、温湿度管理、多货主库存及国内制造供料作业基础。",
-      "overseasBuild": "补齐产地提货、集货、国际运输交接和订单信息连接。",
+      "regionIds": [
+        "southeast-asia",
+        "europe"
+      ],
+      "own": "自营供应商接口、就绪信息、订舱决策和异常调度。",
+      "partner": "合作获得当地提货、机场地面操作及分货型集货资源。",
+      "acquire": "当持续货源和站点覆盖形成优势时，评估具有产地客户、调度团队及稳定操作接口的当地货代。",
       "how": [
-        "围绕国内客户采购清单识别真实供应商、提货地与运输责任。",
-        "通过当地合格货代与作业伙伴组织集货，连接顺丰适用运输及国内保税节点。",
-        "稳定批次与库存需求形成后，再增加专用作业区和系统自动补货。"
+        "先连接国内客户采购计划与境外供应商就绪信息。",
+        "用既有与合作运力组织发运，建立可执行的备选线路。",
+        "稳定货源形成后增加产地操作团队，再选择性获取当地货代能力。"
       ],
-      "boundary": "统计原产地不等于机场或提货地；适用出口管制与交易许可是业务进入条件，不能以转运规避。",
-      "investmentTrigger": "采购方或供应商具有物流选择权，货物许可与作业要求满足，运输和库存需求可持续。",
+      "investmentTrigger": "客户授予物流组织权限，供应商配合信息和提货；持续货量支撑线路与站点组织。",
+      "boundary": "多产地物流调度不等于代客户决定采购来源；受限货物仍按许可和交易条件组织，不以转运绕开要求。",
+      "domesticReuse": "复用国内运输调度、订单协同及国际运输组织经验；产地客户接口和地面作业逐站建立。",
       "measures": [
-        "提货至入库时长",
-        "温湿度与静电作业合规率",
-        "工厂交付达成率"
+        "供应商就绪至发运时长",
+        "合并发运比例",
+        "异常恢复时长",
+        "单位运输组织成本"
       ],
       "tradeMetrics": [
         {
-          "label": "东亚芯片核心进口",
-          "flow": "M",
-          "region": "east-asia",
-          "subs": [
-            1
-          ],
-          "kind": "region",
-          "unit": "亿美元",
-          "year": 2025,
-          "expectedValue": 2747.72347333,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/east-asia/1"
-        },
-        {
-          "label": "东南亚芯片及电子部件进口",
+          "label": "东南亚芯片与电子部件进口背景",
           "flow": "M",
           "region": "southeast-asia",
           "subs": [
@@ -532,123 +794,11 @@ window.CAPABILITY_CONTENT = {
           "unit": "亿美元",
           "year": 2025,
           "expectedValue": 587.33885528,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/southeast-asia/all"
-        }
-      ],
-      "customers": [],
-      "extensionNotes": [
-        "目标对象为具备采购或物流决策权的分销商、制造企业；不把所有芯片贸易视为顺丰可获得订单。"
-      ],
-      "sourceIds": [
-        "dom-tech",
-        "atlas"
-      ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "东亚/东南亚 · 实际供应商节点",
-        "entry": "产地合作集货＋国内保税供料"
-      }
-    },
-    {
-      "id": "m-equipment",
-      "flow": "M",
-      "rank": 2,
-      "title": "半导体及工业精密设备门到工位交付",
-      "headline": "海外提货与国内专业交付由同一项目组织。",
-      "where": "日本、新加坡及欧洲的实际设备供应商节点，连接国内工厂交付地址。",
-      "regionIds": [
-        "east-asia",
-        "southeast-asia",
-        "europe"
-      ],
-      "relatedSubIds": [
-        11
-      ],
-      "what": "产地勘查、包装、专业提货、适用空海运、国内特种运输及到场交接。",
-      "why": "设备采购需要对多段交接与安装窗口负责；国内专业交付基础可向上延伸至原厂提货。",
-      "domesticReuse": "复用国内设备包装运输、现场项目管理和适用专业交付经验。",
-      "overseasBuild": "补齐海外专业车辆、机场作业、包装技术伙伴和项目经理。",
-      "how": [
-        "由国内交付团队倒推产地包装、装卸与运输方案。",
-        "在实际供应商所在地配置技术伙伴，按设备选择空运或海运。",
-        "重复交付形成固定流程后，再建设常驻项目团队；不先建专属整机设施。"
-      ],
-      "boundary": "ASML等原厂深度嵌入的专业服务不作为通用设施建设锚点；不是对整个客户做绝对排除。设备许可、客户授权和承包边界按具体项目确定。",
-      "investmentTrigger": "明确可获得的服务段与采购决策权，技术标准和损伤责任可执行。",
-      "measures": [
-        "完好交付率",
-        "安装窗口交接达成率",
-        "异常关闭时长"
-      ],
-      "tradeMetrics": [],
-      "customers": [
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/southeast-asia/all/0/M"
+        },
         {
-          "id": "xcmg",
-          "label": "徐工机械",
-          "reason": "以欧洲采购集货与对华运输作为工业采购服务入口，具体货型适配后再扩展精密服务。",
-          "status": "建议拓展",
-          "href": "./#target/xcmg",
-          "sources": [
-            {
-              "label": "徐工欧洲采购中心",
-              "url": "https://xcmg-europe.de/xcmg-europe/xcmg-europe-purchasing-centre/"
-            }
-          ]
-        }
-      ],
-      "extensionNotes": [
-        "半导体设备HS8486不在13项核心篮子；本卡展示“客户项目延伸”，金额位置显示“现有篮子不覆盖半导体设备”，不显示0或借用芯片金额。"
-      ],
-      "sourceIds": [
-        "dom-tech",
-        "dom-industrial",
-        "atlas",
-        "dhl-asml"
-      ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "日本/新加坡/欧洲 · 设备供应商",
-        "entry": "国内交付倒推产地专业操作"
-      }
-    },
-    {
-      "id": "m-pharma",
-      "flow": "M",
-      "rank": 3,
-      "title": "药品温控进口与国内分拨",
-      "headline": "先接通欧洲药源与国内温控网络。",
-      "where": "欧洲药源优先；北美按实际药品线路进入，连接国内适用进口与分拨节点。",
-      "regionIds": [
-        "europe",
-        "north-america"
-      ],
-      "relatedSubIds": [
-        26
-      ],
-      "what": "起运地合规收货、温控包装与国际运输，衔接国内分拨和全程质量记录。",
-      "why": "欧洲是当前制药核心篮子的重要进口来源；投资重点是起运地质量管理和交接能力。",
-      "domesticReuse": "复用国内医药温控运输、仓配组织及质量记录基础。",
-      "overseasBuild": "补齐起运地专业货代、温控交接、包装资源与质量责任接口。",
-      "how": [
-        "先由国内客户和实际产品清单确定温区、时限及进口节点。",
-        "合作接入海外专业医药货代，统一质量协议和交接记录。",
-        "稳定线路形成后，增加专用作业资源；达到持续规模再评估收购专业团队。"
-      ],
-      "boundary": "常规药品、临床样本、细胞治疗采用不同能力要求；不把深低温或CAR-T写成通用成熟业务。",
-      "investmentTrigger": "真实线路与温区明确，质量责任与适用资质齐备，持续运输需求支持专用配置。",
-      "measures": [
-        "温度偏差发生率",
-        "交接记录完整率",
-        "批次交付达成率"
-      ],
-      "tradeMetrics": [
-        {
-          "label": "欧洲制药核心进口",
+          "label": "欧洲制药核心进口背景",
           "flow": "M",
           "region": "europe",
           "subs": [
@@ -658,76 +808,346 @@ window.CAPABILITY_CONTENT = {
           "unit": "亿美元",
           "year": 2025,
           "expectedValue": 289.8928136,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/europe/26"
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/europe/26/0/M"
         }
       ],
-      "customers": [],
-      "extensionNotes": [
-        "覆盖HS3001—3004；不是全部医药进口，也不是医药冷链市场规模。"
+      "enterpriseRefs": [
+        {
+          "id": "mowi-china",
+          "role": "多货源业务",
+          "insight": "多地养殖原料接入中国加工，说明跨产地组织需求；各产地货物分别管理。"
+        },
+        {
+          "id": "roche-import",
+          "role": "进口接口",
+          "insight": "天津进口案例说明境外运输需要与国内接货责任连接，不支持推定海外具体发货国家。"
+        }
       ],
       "sourceIds": [
-        "dom-medical",
-        "atlas"
+        "dom-tech",
+        "dom-food",
+        "atlas",
+        "kln-sats"
       ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "欧洲优先 · 北美按线路进入",
-        "entry": "专业货代合作＋国内温控衔接"
-      }
+      "extensionNotes": []
     },
     {
-      "id": "m-medtech",
+      "id": "m-semiconductor",
       "flow": "M",
-      "rank": 4,
-      "title": "医疗器械进口与医院、售后交接",
-      "headline": "把进口运输延伸到医院交接和服务备件。",
-      "where": "欧洲、北美器械来源节点，连接国内进口主体、医院与授权售后网络。",
-      "regionIds": [
-        "europe",
-        "north-america"
+      "rank": 2,
+      "title": "高价值电子货物供料接力",
+      "stage": "copy",
+      "summary": {
+        "location": "韩国、日本及中国台湾供货节点 · 新加坡衔接分拨",
+        "entry": "合作获得专业提货、客户指定包装及机场交接资源。"
+      },
+      "headline": "围绕国内工厂到货窗口，把境外提货、专业运输和质量交接接成连续服务。",
+      "future": "高价值电子货物可能同时面临交期紧、货值高和交接敏感。未来服务应向工厂供料连续性延伸，而非仅按单票国际运输收费。",
+      "what": "供应商提货、适用防静电与防震交接、国际运输及国内工厂预约接货；专用包装按客户标准执行。",
+      "control": "掌握时间窗口、货物状态和跨段责任，连接客户库存计划；不以海外芯片仓面积作为主要建设指标。",
+      "serviceChain": [
+        "供应商提货",
+        "专业包装交接",
+        "国际运输",
+        "国内预约接货",
+        "到货与异常反馈"
+      ],
+      "nodes": [
+        {
+          "country": "韩国",
+          "region": "east-asia",
+          "task": "存储与电子货物提货、专业交接",
+          "industries": [
+            1,
+            2
+          ],
+          "reason": "芯片进口来源与厂际运输技术案例共同支持方向。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "日本",
+          "region": "east-asia",
+          "task": "电子部件及适用芯片供货组织",
+          "industries": [
+            1,
+            2
+          ],
+          "reason": "按实际供应商、包装要求和发运机场配置。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "中国台湾",
+          "region": "east-asia",
+          "task": "芯片供应商交接及国际运输衔接",
+          "industries": [
+            1
+          ],
+          "reason": "采用当前统计伙伴范围识别需求，不以统计额代替订单。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "新加坡",
+          "region": "southeast-asia",
+          "task": "客户指定分拨后的出货交接",
+          "industries": [
+            1,
+            2
+          ],
+          "reason": "分拨地与原产地分别管理，按实际起运组织使用。",
+          "priority": "随客扩展"
+        }
       ],
       "relatedSubIds": [
-        23
+        1,
+        2
       ],
-      "what": "序列号追踪、适用精密包装、国际运输、国内库存与医院预约交付，连接售后备件。",
-      "why": "器械进口的价值在最终交接与售后连续性；优先找到具有物流决策权的进口商和品牌服务主体。",
-      "domesticReuse": "复用国内器械仓配、医院交接与售后物流经验。",
-      "overseasBuild": "补齐起运地包装提货、跨境序列追踪及进口到医院的预约接口。",
+      "regionIds": [
+        "east-asia",
+        "southeast-asia"
+      ],
+      "own": "自营客户供料接口、货物状态记录与跨段异常调度。",
+      "partner": "合作获得专业提货、客户指定包装及机场交接资源。",
+      "acquire": "形成稳定供应商和工厂订单后，评估拥有电子客户接口与专业操作团队的产地服务商。",
       "how": [
-        "先从国内进口商、授权服务商的设备与备件订单反推境外提货。",
-        "合作连接当地专业包装与货代资源，统一序列号和交接记录。",
-        "器械逆向质量检验按产品逐项扩展，安装校准由授权技术方执行。"
+        "先从客户已批准的运输和交接环节进入。",
+        "以工厂到货窗口连接供应商提货与运力安排。",
+        "再按持续订单配置专用作业区与供料接口，避免先铺海外库存。"
       ],
-      "boundary": "海外已有深度承包的专用服务不直接替代；不把国内医院覆盖等同于所有器械安装和维修资格。",
-      "investmentTrigger": "明确进口、交付和售后各段责任；有采购决策权和可重复服务订单。",
+      "investmentTrigger": "客户有物流选择权、货物及交易获准、包装和责任要求明确，供料节奏能够持续。",
+      "boundary": "SK海力士晶圆技术案例不等于HS8542成品芯片订单；材料、晶圆、器件和设备按各自范围组织。",
+      "domesticReuse": "复用静电防护、温湿度记录和制造交付基础；具体晶圆包装、客户认证与产地能力分别配置。",
       "measures": [
-        "序列号追踪完整率",
-        "预约交接达成率",
-        "售后备件交付时长"
+        "工厂到货窗口达成率",
+        "关键交接记录完整率",
+        "异常恢复时长",
+        "运输损伤及偏差率"
       ],
       "tradeMetrics": [
         {
-          "label": "欧洲诊疗器械核心进口",
+          "label": "东亚HS8542芯片核心进口背景",
           "flow": "M",
-          "region": "europe",
+          "region": "east-asia",
           "subs": [
-            23
+            1
           ],
           "kind": "region",
           "unit": "亿美元",
           "year": 2025,
-          "expectedValue": 29.38947573,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/europe/23"
+          "expectedValue": 2747.72347333,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/east-asia/1/0/M"
+        }
+      ],
+      "enterpriseRefs": [
+        {
+          "id": "sk-wafer",
+          "role": "技术参考",
+          "insight": "厂际晶圆运输说明专业包装和温度交接的重要性；不视为成品芯片市场规模或当前开放合同。"
+        }
+      ],
+      "sourceIds": [
+        "dom-tech",
+        "atlas",
+        "kln-sats"
+      ],
+      "extensionNotes": []
+    },
+    {
+      "id": "m-equipment",
+      "flow": "M",
+      "rank": 3,
+      "title": "进口设备交付工程",
+      "stage": "prepare",
+      "summary": {
+        "location": "日本、德国供应商节点 · 新加坡按具体服务链衔接",
+        "entry": "优先合作原厂认可的包装、吊装、专业运输与现场作业团队。"
+      },
+      "headline": "从原厂提货到国内现场，由同一项目组织交接窗口与责任。",
+      "future": "设备采购中多段运输、现场条件和安装排期可能相互制约。未来能力应把境外操作与国内专业交付连成项目责任链。",
+      "what": "海外勘查、包装、专业提货、适用空海运、国内到场和授权安装团队交接。",
+      "control": "掌握设备规格、场地条件、包装与交付记录；按服务段取得客户授权，技术安装与物流责任分别约定。",
+      "serviceChain": [
+        "原厂条件确认",
+        "包装与专业提货",
+        "国际运输",
+        "国内到场准备",
+        "授权安装交接"
+      ],
+      "nodes": [
+        {
+          "country": "日本",
+          "region": "east-asia",
+          "task": "设备原厂提货与包装作业接口",
+          "industries": [
+            11,
+            12
+          ],
+          "reason": "以实际设备供应商和国内项目订单为起点。",
+          "priority": "先行组织"
         },
         {
-          "label": "北美诊疗器械核心进口",
+          "country": "德国",
+          "region": "europe",
+          "task": "工业设备及专业操作伙伴组织",
+          "industries": [
+            11,
+            12
+          ],
+          "reason": "欧洲设备供给与国内交付经验提供方向，逐项目选择操作地点。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "新加坡",
+          "region": "southeast-asia",
+          "task": "客户指定设备服务链的提货及转运交接",
+          "industries": [
+            11
+          ],
+          "reason": "仅在原厂、区域服务商或实际交接位于当地时启用。",
+          "priority": "订单触发"
+        }
+      ],
+      "relatedSubIds": [
+        11,
+        12
+      ],
+      "regionIds": [
+        "east-asia",
+        "europe",
+        "southeast-asia"
+      ],
+      "own": "自营项目经理、包装方案管理、运输协调及责任记录。",
+      "partner": "优先合作原厂认可的包装、吊装、专业运输与现场作业团队。",
+      "acquire": "连续项目形成后，评估有设备客户、认证团队和专用操作技术的工程物流企业。",
+      "how": [
+        "先按可获得的服务段梳理原厂至国内工厂接口。",
+        "以专业伙伴完成项目交付，建立规格、保险和异常责任档案。",
+        "项目频次达到资源共用条件后，再获取当地工程团队与专用能力。"
+      ],
+      "investmentTrigger": "有具体设备、供货主体、国内场地和交付排期；可承接服务段、损伤责任及收益明确。",
+      "boundary": "ASML等已深度嵌入专业体系的专用设施不作为本轮建设锚点；不由芯片进口额推算设备运输规模。",
+      "domesticReuse": "复用国内设备包装、专业运输及现场项目管理；海外原厂作业准入与人员能力另行建立。",
+      "measures": [
+        "完好交付率",
+        "安装窗口交接达成率",
+        "项目异常关闭时长",
+        "专业资源利用率"
+      ],
+      "tradeMetrics": [],
+      "enterpriseRefs": [
+        {
+          "id": "asml-boundary",
+          "role": "投入边界",
+          "insight": "说明特定专业设施及既有服务关系构成进入条件；不推定整家企业所有业务均不可承接。"
+        }
+      ],
+      "sourceIds": [
+        "dom-tech",
+        "dom-industrial",
+        "atlas",
+        "dhl-asml"
+      ],
+      "extensionNotes": [
+        "半导体制造设备HS8486不在当前13项热力图篮子内，设备方向不显示芯片金额，也不以0代替未覆盖规模。"
+      ]
+    },
+    {
+      "id": "m-pharma",
+      "flow": "M",
+      "rank": 4,
+      "title": "药械质量交接运输",
+      "stage": "prepare",
+      "summary": {
+        "location": "德国、爱尔兰药源先组织 · 美国按客户线路进入",
+        "entry": "合作专业药械货代、包装资源与机场操作团队，按线路约定质量责任。"
+      },
+      "headline": "把起运地质量交接、国际运输与国内接收责任贯通。",
+      "future": "药械供应链可能更强调货物状态可解释、异常责任可追溯。未来差异化来自每一段可交付的质量管理，而非先建设大规模海外药仓。",
+      "what": "按药品及器械分别设计包装、温区或防震、状态记录、运输和进口交接服务；共用项目管理，专业操作分线。",
+      "control": "掌握质量协议、交接记录与异常处置接口；国内温控和医院服务作为运输链终点衔接。",
+      "serviceChain": [
+        "发运与质量协议",
+        "专业包装交接",
+        "国际运输与状态记录",
+        "口岸交接",
+        "国内授权接收"
+      ],
+      "nodes": [
+        {
+          "country": "德国",
+          "region": "europe",
+          "task": "药源提货、包装和质量交接",
+          "industries": [
+            26
+          ],
+          "reason": "制药核心进口来源支持优先组织专业运输。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "爱尔兰",
+          "region": "europe",
+          "task": "药厂出货与合格运输伙伴接口",
+          "industries": [
+            26
+          ],
+          "reason": "按实际发货工厂与温区建立线路。",
+          "priority": "先行组织"
+        },
+        {
+          "country": "美国",
+          "region": "north-america",
+          "task": "药品及适用器械专业运输",
+          "industries": [
+            26,
+            23
+          ],
+          "reason": "按客户线路和产品授权组织，不预设全国覆盖。",
+          "priority": "订单触发"
+        }
+      ],
+      "relatedSubIds": [
+        26,
+        23
+      ],
+      "regionIds": [
+        "europe",
+        "north-america"
+      ],
+      "own": "自营质量责任接口、状态记录、异常调查和国内接收计划。",
+      "partner": "合作专业药械货代、包装资源与机场操作团队，按线路约定质量责任。",
+      "acquire": "稳定产品线路形成后，评估具客户质量协议、资质团队和可审计操作体系的专业货代。",
+      "how": [
+        "先选择具体药品或器械线路，明确每段质量责任。",
+        "与专业伙伴完成运输及记录闭环，再扩同条件客户。",
+        "持续线路需要固定资源时，获取专业团队或适用设施。"
+      ],
+      "investmentTrigger": "产品、实际发货地、温区及责任明确；客户质量要求、持续线路和运营收益共同支持投入。",
+      "boundary": "药品温控、器械防震及安装各有标准，不共用一套操作承诺；临床样本、细胞治疗和深冷业务另行设计。",
+      "domesticReuse": "复用国内温控运输、质量记录与医院交接基础；境外质量协议、操作与包装能力按线路建设。",
+      "measures": [
+        "质量交接完整率",
+        "温度或运输偏差率",
+        "异常调查关闭时长",
+        "到货窗口达成率"
+      ],
+      "tradeMetrics": [
+        {
+          "label": "欧洲制药核心进口背景",
+          "flow": "M",
+          "region": "europe",
+          "subs": [
+            26
+          ],
+          "kind": "region",
+          "unit": "亿美元",
+          "year": 2025,
+          "expectedValue": 289.8928136,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/europe/26/0/M"
+        },
+        {
+          "label": "北美诊疗器械进口补充背景",
           "flow": "M",
           "region": "north-america",
           "subs": [
@@ -737,92 +1157,154 @@ window.CAPABILITY_CONTENT = {
           "unit": "亿美元",
           "year": 2025,
           "expectedValue": 51.41790349,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/north-america/23"
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/north-america/23/0/M"
         }
       ],
-      "customers": [],
-      "extensionNotes": [
-        "篮子为HS9018，不等于全部医疗器械。目标对象为有物流决策权的进口商、品牌和授权服务商。"
+      "enterpriseRefs": [
+        {
+          "id": "roche-import",
+          "role": "进口业务",
+          "insight": "天津进口试点说明质量与口岸交接场景；不以瑞士总部代替本案例实际起运地。"
+        }
       ],
       "sourceIds": [
         "dom-medical",
         "atlas",
+        "kln-sats",
         "siemens-gxo"
       ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "欧洲/北美 → 国内医院与售后",
-        "entry": "进口商订单牵引＋授权技术协作"
-      }
+      "extensionNotes": [
+        "医疗器械在13个重点子行业中的主研究方向为出口，本卡器械进口为补充视角；不改变既有筛选方向。"
+      ]
     },
     {
       "id": "m-food",
       "flow": "M",
       "rank": 5,
-      "title": "食品产地集货、保税加工与全渠道履约",
-      "headline": "用国内销售订单组织海外产地供应。",
-      "where": "东南亚水果等已研究食材来源；欧洲巧克力、荷兰及新西兰乳品作为客户项目延伸。",
-      "regionIds": [
-        "southeast-asia",
-        "europe",
-        "oceania"
+      "title": "鲜冷货物时效与品质管理",
+      "stage": "trigger",
+      "summary": {
+        "location": "挪威、智利海产 · 泰国鲜食按订单组织",
+        "entry": "合作源头分级、预冷、专业包装和机场冷链操作。"
+      },
+      "headline": "把航班前后的等待、交接和温度状态纳入同一到货计划。",
+      "future": "鲜冷货物的价值可能在等待与异常中流失。未来竞争点在于让产地出货、机场处理和国内接收协同，兼顾到货品质、时间与损耗。",
+      "what": "源头分级提货、预冷或适用包装、运力安排、机场交接、进口与国内接收计划，按批次保留状态信息。",
+      "control": "掌握批次、就绪时间、温区记录和异常恢复；结合适用航空与其他运输资源，不把全部食材都按空运组织。",
+      "serviceChain": [
+        "产地出货计划",
+        "预冷与适用包装",
+        "运力与机场交接",
+        "进口接收",
+        "品质反馈与批次追溯"
+      ],
+      "nodes": [
+        {
+          "country": "挪威",
+          "region": "europe",
+          "task": "海产源头提货与专业空运衔接",
+          "industries": [
+            27
+          ],
+          "reason": "Mowi披露养殖来源与中国加工业务，按批次选择发运节点。",
+          "priority": "订单触发"
+        },
+        {
+          "country": "智利",
+          "region": "latin-america",
+          "task": "海产货源与长距离运输协同",
+          "industries": [
+            27
+          ],
+          "reason": "实际养殖来源及中国进口背景支持研究，运输方式由货物状态决定。",
+          "priority": "订单触发"
+        },
+        {
+          "country": "泰国",
+          "region": "southeast-asia",
+          "task": "适用鲜食产地集货与时效组织",
+          "industries": [
+            27
+          ],
+          "reason": "食材进口背景支持方向，按具体鲜食品类与客户订单启动。",
+          "priority": "订单触发"
+        }
       ],
       "relatedSubIds": [
         27
       ],
-      "what": "产地集货、适用冷链运输、通关及适用保税加工、批次效期管理和国内渠道履约。",
-      "why": "国内消费与门店订单能够反向组织产地采购；避免只因原材料进口规模大就建设冷链设施。",
-      "domesticReuse": "复用食品进口履约、标签与包装作业、批次效期和国内渠道服务经验。",
-      "overseasBuild": "补齐产地分级集货、当地提货、温区运输和货源计划协同。",
-      "how": [
-        "从国内已有客户订单和适用产品出发确定产地服务。",
-        "合作组织产地集货和海空运资源，国内节点承担适用加工与全渠道履约。",
-        "稳定货源与持续订单支持后，再投资产地作业点或评估并购专业冷链团队。"
+      "regionIds": [
+        "europe",
+        "latin-america",
+        "southeast-asia"
       ],
-      "boundary": "食品篮子不能全部视为冷链；不同货物按温区、检验、加工条件和时效选择服务。",
-      "investmentTrigger": "销售订单、产地货源和进口要求匹配，损耗与库存周转支持单项目经济性。",
+      "own": "自营批次计划、温区记录、运输异常和国内收货协调。",
+      "partner": "合作源头分级、预冷、专业包装和机场冷链操作。",
+      "acquire": "稳定鲜冷货源形成后，评估拥有产地客户、专业操作团队和机场接口的当地货代或集货商。",
+      "how": [
+        "先选择具体鲜冷品类、批次和中国销售订单。",
+        "跑通产地就绪、运力、机场处理和国内收货时序。",
+        "持续订单与品质收益成立后，再配置固定作业团队与适用设施。"
+      ],
+      "investmentTrigger": "销售订单、货源、运输方式和品质标准匹配；损耗改善与单位贡献支持持续操作资源。",
+      "boundary": "食材篮子含非冷链商品，贸易额不等于鲜冷或空运市场；矿石及粮油散货不据此牵引专用航空、冷链设施。",
+      "domesticReuse": "复用国内批次效期、温区管理和运输交接；源头预冷、机场操作和境外货源接口逐线建立。",
       "measures": [
-        "批次效期追踪完整率",
+        "到货品质达标率",
+        "机场等待时长",
         "到货损耗率",
-        "订单履约与库存周转"
+        "每批次贡献"
       ],
       "tradeMetrics": [
         {
-          "label": "东南亚食材核心进口",
+          "label": "欧洲食材核心进口背景（非冷链专属）",
           "flow": "M",
-          "region": "southeast-asia",
+          "region": "europe",
           "subs": [
             27
           ],
           "kind": "region",
           "unit": "亿美元",
           "year": 2025,
-          "expectedValue": 184.84330588,
-          "relation": "background",
-          "formula": "SUM(records.value WHERE kind=region AND flow=flow AND region=region AND sub IN subs)",
-          "scope": "中国报告方，既有核心商品篮子；区域贸易背景，不代表该项服务的可承接金额",
-          "href": "trade-heatmaps.html#region/southeast-asia/27"
+          "expectedValue": 50.97454502,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/europe/27/0/M"
+        },
+        {
+          "label": "拉丁美洲食材核心进口背景（非冷链专属）",
+          "flow": "M",
+          "region": "latin-america",
+          "subs": [
+            27
+          ],
+          "kind": "region",
+          "unit": "亿美元",
+          "year": 2025,
+          "expectedValue": 234.02243701,
+          "scope": "2025年中国报告方、当前核心商品篮子。仅作需求背景，不代表服务收入、可承接货量或未来预测。",
+          "href": "trade-heatmaps.html#region/latin-america/27/0/M"
         }
       ],
-      "customers": [],
-      "extensionNotes": [
-        "当前食材HS02、03、07、08、090111、1507，不含乳品04与巧克力18；后两类属于客户项目延伸。"
+      "enterpriseRefs": [
+        {
+          "id": "mowi-china",
+          "role": "货源事实",
+          "insight": "多地养殖接入中国加工与渠道，支持源头运输组织；各批次原产地和发货节点分别确认。"
+        },
+        {
+          "id": "rio-baowu",
+          "role": "投入边界",
+          "insight": "铁矿石主货流属于另一套专业体系，不以其大额进口支撑本项鲜冷运输。"
+        }
       ],
       "sourceIds": [
-        "dom-consumer",
         "dom-food",
-        "atlas"
+        "dom-consumer",
+        "atlas",
+        "kln-sats"
       ],
-      "recommendationStatus": "建设建议",
-      "priorityNote": "展示顺序体现本轮关注重点，不是收益率或投资回报排名",
-      "summary": {
-        "location": "东南亚食材 · 欧洲/大洋洲项目延伸",
-        "entry": "国内订单牵引＋产地合作集货"
-      }
+      "extensionNotes": []
     }
   ],
   "sources": {
@@ -873,20 +1355,18 @@ window.CAPABILITY_CONTENT = {
       "type": "internal-summary",
       "title": "生命科学与医药经营联席会材料",
       "note": "用于判断国内作业基础及能力建设方向。"
-    }
-  },
-  "buildModes": [
-    {
-      "label": "自主建设",
-      "content": "掌握客户接口、库存与订单规则、项目管理、作业标准和质量记录。"
     },
-    {
-      "label": "合作补齐",
-      "content": "先获得当地仓车、专业操作、资质与提派能力，按实际订单组合服务。"
+    "kln-sats": {
+      "type": "public",
+      "title": "KLN与SATS温控及紧急货物合作备忘录",
+      "url": "https://www.kln.com/en/press/press-release/2026/kln-and-sats-sign-strategic-mou-to-br-advance-temperature-controlled-and-time-critical-logistics/",
+      "note": "2026-09-14签署，拟从新加坡探索合作。属于合作方向，不代表全部站点或线路已经可交付。"
     },
-    {
-      "label": "并购条件",
-      "content": "连续订单形成密度，标的具备可承接的团队、客户、资质和线路，且整合价值优于合作。"
+    "circular": {
+      "type": "public",
+      "title": "DHL Circular Solutions：退货检测、分级与再流通案例",
+      "url": "https://www.dhl.com/content/dam/dhl/global/csi/documents/pdf/csi-dhl-supply-chain-technology-circular-solutions.pdf",
+      "note": "行业服务模式参考，不表示顺丰已有相同授权、技术操作与海外设施。"
     }
-  ]
+  }
 };
