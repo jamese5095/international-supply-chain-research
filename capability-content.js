@@ -1,6 +1,6 @@
 window.CAPABILITY_CONTENT={
   "schemaVersion": "2.0",
-  "contentVersion": "20261103-selectionproof1",
+  "contentVersion": "20261103-import-atlas2",
   "status": "future-capability-proposal",
   "tradeSnapshot": "2025核心商品篮子",
   "commonNote": "以上为面向未来的能力建设建议。国家及节点为建议组织方向；公开事实、未来判断与投入条件分别呈现。贸易金额仅为2025年需求背景，不加总为机会规模。",
@@ -983,7 +983,20 @@ window.CAPABILITY_CONTENT={
         "decision": "境外供货方与中国买方构成双向业务接口，统一发运计划支持多产地供给。",
         "rationale": "供应商就绪信息与运力调度构成运营基础，稳定货源支撑产地资源配置。",
         "why": "境外采购、材料进口与多产地食材供给共同说明：运输委托既可能来自中国买方，也可能来自境外供货方。供应商就绪、运输责任和国内接收窗口之间的协同，决定订舱效率与异常恢复能力；稳定货源是当地资源扩展的基础。"
-      }
+      },
+      "internationalReferenceIds": [
+        "atlas-client-17myi20",
+        "atlas-client-xgcgyw",
+        "atlas-client-1olgn7z",
+        "atlas-client-1nfv7de",
+        "atlas-client-ap0z7h",
+        "atlas-client-1vizhji",
+        "atlas-client-1dq6jde",
+        "atlas-client-iq7dgi",
+        "atlas-client-ops5a5",
+        "atlas-client-1hdvap5",
+        "atlas-client-1wfwgzc"
+      ]
     },
     {
       "id": "m-semiconductor",
@@ -1140,7 +1153,13 @@ window.CAPABILITY_CONTENT={
         "decision": "原厂与分销渠道的实际供货关系，是专业运输及中国工厂供料服务的业务基础。",
         "rationale": "包装交接、国际运输与国内接货的协同，支撑高值电子货物的连续供料。",
         "why": "英迪芯微向X-FAB、格芯采购境外晶圆，宏景电子经原厂及分销商采购境外原产芯片，提供真实中国供料依据。运输选择权可能位于境外供货组织或中国采购方，工厂接收窗口、保护包装与跨段责任构成服务设计的关键条件。"
-      }
+      },
+      "internationalReferenceIds": [
+        "atlas-client-17myi20",
+        "atlas-client-127wl6y",
+        "atlas-client-1lbyrla",
+        "atlas-client-xgcgyw"
+      ]
     },
     {
       "id": "m-equipment",
@@ -1244,7 +1263,12 @@ window.CAPABILITY_CONTENT={
         "decision": "日本、德国设备供货节点与国内专业交付经验，构成跨境项目组织基础。",
         "rationale": "设备规格、包装及现场窗口的协同，决定专业交付的可靠性。",
         "why": "进口设备通常要跨越原厂提货、包装、国际运输与现场接收，任一环节脱节都可能影响交付和安装排期。国内设备交付经验具备向境外项目组织延伸的基础，资源投入取决于实际可承接服务段及项目频次；芯片货值和ASML专用设施不构成投入依据。"
-      }
+      },
+      "internationalReferenceIds": [
+        "atlas-client-1vizhji",
+        "atlas-client-1dq6jde",
+        "atlas-client-1f6urk6"
+      ]
     },
     {
       "id": "m-pharma",
@@ -1395,7 +1419,21 @@ window.CAPABILITY_CONTENT={
         "decision": "德国、爱尔兰药源具备专业线路研究基础，质量责任与运输网络共同决定服务范围。",
         "rationale": "可追溯的货物状态和交接记录，支撑境外发运与国内授权接收。",
         "why": "罗氏相关进口通道进展、唯森法国与意大利参比制剂、卫材与上药进口创新药，分别呈现口岸、研发和质量交接场景。境外发运组织与中国授权主体的运输委托是业务入口，包装、状态记录、药检及收货排期的协同构成专业线路价值。"
-      }
+      },
+      "internationalReferenceIds": [
+        "atlas-client-6k6gri",
+        "atlas-client-1htgb7u",
+        "atlas-client-l3gj5b",
+        "atlas-client-mkczvw",
+        "atlas-client-ops5a5",
+        "atlas-client-1u195pk",
+        "atlas-client-1f6urk6",
+        "atlas-client-kqcmm1",
+        "atlas-client-1hdvap5",
+        "atlas-client-1wfwgzc",
+        "atlas-client-1iua85c",
+        "atlas-client-1qam344"
+      ]
     },
     {
       "id": "m-food",
@@ -1554,7 +1592,10 @@ window.CAPABILITY_CONTENT={
         "decision": "供货合同、产季与中国接收计划，共同决定鲜冷货物的运输模式与资源配置。",
         "rationale": "批次品质、到货时间与损耗表现，是产地组织及海空运力配置的共同依据。",
         "why": "Mowi多产地原料、Nordlaks与美沿长期供货合同，以及佳沛对华冷藏包船，说明货源组织与运输模式必须共同设计。境外供货方与中国进口方均可能形成运输委托，产季、货物就绪、海空运力及国内接收的匹配，决定批次品质与经营贡献。"
-      }
+      },
+      "internationalReferenceIds": [
+        "atlas-client-4q4c0x"
+      ]
     }
   ],
   "sources": {

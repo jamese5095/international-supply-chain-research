@@ -1,7 +1,7 @@
 'use strict';
 // A versioned snapshot is reused across the main dashboard and regional pages.
 window.ResearchData = (() => {
-  const version = '20261103-selectionproof1';
+  const version = '20261103-import-atlas2';
   const prefix = 'sf-research:' + version + ':';
   const memory = new Map(), pending = new Map();
   function peek(key) {
