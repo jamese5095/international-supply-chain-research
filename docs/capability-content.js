@@ -1,6 +1,6 @@
 window.CAPABILITY_CONTENT={
   "schemaVersion": "2.0",
-  "contentVersion": "20261103-order2",
+  "contentVersion": "20261103-card1",
   "status": "future-capability-proposal",
   "tradeSnapshot": "2025核心商品篮子",
   "commonNote": "以上为面向未来的能力建设建议。国家及节点为建议组织方向；公开事实、未来判断与投入条件分别呈现。贸易金额仅为2025年需求背景，不加总为机会规模。",
@@ -114,7 +114,7 @@ window.CAPABILITY_CONTENT={
         "在客户授权下开展检品、包装修复和适用再次上架。",
         "按恢复价值与处理密度扩作业区，深修和再销售专业资源选择性获取。"
       ],
-      "investmentTrigger": "品牌给予处置授权和适用再销售出口；持续退件量、恢复价值与处理成本成立。",
+      "investmentTrigger": "品牌给予处置授权并接通再销售渠道；持续退件量与单件恢复价值能够覆盖处理成本。",
       "boundary": "美的等出口事实说明供货需求，不直接证明存在退货复售订单；电子深修、数据处理和跨境返修分别取得授权。",
       "domesticReuse": "复用国内验收分级、包装修复、批次追踪和轻加工经验；海外维修及再销售权限单独取得。",
       "measures": [
@@ -164,7 +164,11 @@ window.CAPABILITY_CONTENT={
         "atlas",
         "circular"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "德荷先接通共享库存与退货处置，日本随品牌订单复制。",
+        "rationale": "多渠道库存与退件处置需要统一规则，形成从履约到再销售的闭环。"
+      }
     },
     {
       "id": "x-kitting",
@@ -296,7 +300,11 @@ window.CAPABILITY_CONTENT={
         "dom-auto",
         "atlas"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "先连越南工厂供料接口，再随订单延伸马来西亚与墨西哥。",
+        "rationale": "将分散供应商的发货节奏，转化为客户工厂可预约、可追踪的到货。"
+      }
     },
     {
       "id": "x-precision",
@@ -415,7 +423,11 @@ window.CAPABILITY_CONTENT={
         "dom-medical",
         "atlas"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "先组织德荷专业交付伙伴，随设备项目复制到客户现场。",
+        "rationale": "设备价值在完好交付之外，还取决于现场准备和授权安装窗口的衔接。"
+      }
     },
     {
       "id": "x-spares",
@@ -550,7 +562,11 @@ window.CAPABILITY_CONTENT={
         "dom-auto",
         "atlas"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "先在德荷组织备件响应，再随工单扩展英国与阿联酋。",
+        "rationale": "以备件可得性和紧急交付支撑海外设备运行，按具体服务半径组织资源。"
+      }
     },
     {
       "id": "x-market-entry",
@@ -694,7 +710,11 @@ window.CAPABILITY_CONTENT={
         "dom-consumer",
         "atlas"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "先用合作资源跑通新市场，客户密度形成后再投入节点。",
+        "rationale": "把进口、库存、渠道与售后接口组合为可复制的市场启动服务包。"
+      }
     },
     {
       "id": "m-origination",
@@ -830,7 +850,11 @@ window.CAPABILITY_CONTENT={
         "atlas",
         "kln-sats"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "以新加坡为组织接口，把多供应商出货接入中国到货计划。",
+        "rationale": "先掌握供应商就绪信息和运输调度，再按稳定货源配置产地资源。"
+      }
     },
     {
       "id": "m-semiconductor",
@@ -951,7 +975,11 @@ window.CAPABILITY_CONTENT={
         "atlas",
         "kln-sats"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "先连日韩及中国台湾提货，按国内工厂窗口组织专业运输。",
+        "rationale": "把包装交接、国际运输和国内接货贯通，服务高价值电子货物的连续供料。"
+      }
     },
     {
       "id": "m-equipment",
@@ -1050,7 +1078,11 @@ window.CAPABILITY_CONTENT={
       ],
       "extensionNotes": [
         "半导体制造设备HS8486不在当前13项热力图篮子内，设备方向不显示芯片金额，也不以0代替未覆盖规模。"
-      ]
+      ],
+      "presentation": {
+        "decision": "从日本、德国原厂提货切入，以项目管理贯通国内现场交付。",
+        "rationale": "统一设备规格、包装及现场窗口，按可获得的服务段组织专业伙伴。"
+      }
     },
     {
       "id": "m-pharma",
@@ -1176,7 +1208,11 @@ window.CAPABILITY_CONTENT={
       ],
       "extensionNotes": [
         "医疗器械在13个重点子行业中的主研究方向为出口，本卡器械进口为补充视角；不改变既有筛选方向。"
-      ]
+      ],
+      "presentation": {
+        "decision": "先接德国、爱尔兰药源，质量责任与运输线路同步建设。",
+        "rationale": "以可追溯的货物状态和交接记录，连接境外发运与国内授权接收。"
+      }
     },
     {
       "id": "m-food",
@@ -1304,7 +1340,11 @@ window.CAPABILITY_CONTENT={
         "atlas",
         "kln-sats"
       ],
-      "extensionNotes": []
+      "extensionNotes": [],
+      "presentation": {
+        "decision": "按鲜冷订单组织挪威、智利与泰国货源，先控交接再扩资源。",
+        "rationale": "围绕批次品质、到货时间与损耗，统筹产地就绪、运力及国内接收。"
+      }
     }
   ],
   "sources": {
