@@ -1,1 +1,41 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>进口能力建设 · 国际供应链行业研究</title><meta name="description" content="面向未来的五项能力建设建议，明确国家节点、建设顺序及贸易企业依据"><link rel="icon" href="logo.png"><link rel="stylesheet" href="trade-heatmaps.css?v=20261103-selectionproof1"><link rel="stylesheet" href="capability-planning.css?v=20261103-selectionproof1"><script src="research-data.js?v=20261103-direction3" defer></script><script src="capability-content.js?v=20261104-capabilities1" defer></script><script src="international-references.js?v=20261104-capabilities1" defer></script><script src="capability-planning.js?v=20261104-capabilities1" defer></script><link rel="stylesheet" href="international-references.css?v=20261103-direction3"></head><body class="cap-page" data-flow="M"><header class="heat-mast"><a class="heat-brand" href="./"><img src="logo.png" alt="顺丰"><strong>国际供应链行业研究</strong></a><nav aria-label="主导航"><a href="./#home">行业规模</a><a href="./#flows/1">区域流向</a><a href="trade-heatmaps.html">区域热力图</a><a href="enterprises.html?v=20261103-enterprise-entry1">企业业务</a><a class="active" aria-current="page" href="capability-export.html?v=20261104-capabilities1">能力建设</a></nav></header><main id="capApp"><noscript>请启用JavaScript查看能力建设建议。</noscript></main></body></html>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>国际供应链行业研究</title><body><a href="./index.html#capability-import">进入研究看板</a><script>
+/* Shared by the published entry point, compatibility entries and route tests. */
+(function (root) {
+  'use strict';
+  const origin = 'https://atlas.internal';
+  const files = {
+    home: 'index.html', heatmaps: 'trade-heatmaps.html', enterprises: 'enterprises.html',
+    'capability-export': 'capability-export.html', 'capability-import': 'capability-import.html'
+  };
+  const byFile = Object.fromEntries(Object.entries(files).map(([k, v]) => [v, k]));
+  function url(value, base = origin + '/index.html') { return new URL(value, base); }
+  function page(value) { return byFile[url(value).pathname.split('/').pop() || 'index.html']; }
+  function decode(hash, search = '') {
+    const text = (hash || '#home').replace(/^#/, '');
+    const split = text.indexOf('?');
+    const path = split < 0 ? text : text.slice(0, split);
+    const query = split < 0 ? search : text.slice(split);
+    const [first, ...rest] = path.split('/');
+    const key = Object.hasOwn(files, first) ? first : 'home';
+    const inner = key === 'home' ? (first === 'home' ? rest.join('/') || 'home' : path) : rest.join('/');
+    const result = url('/' + files[key]);
+    result.search = query;
+    result.searchParams.delete('v');
+    result.hash = inner;
+    return result;
+  }
+  function encode(value) {
+    const target = url(value), key = page(target);
+    if (!key) throw Error('Unknown dashboard page: ' + target.pathname);
+    target.searchParams.delete('v');
+    const inner = target.hash.slice(1);
+    const path = key === 'home' ? inner || 'home' : key + (inner ? '/' + inner : '');
+    return '#' + path + target.search;
+  }
+  function resolve(value, current) { return url(value, current); }
+  root.AtlasRoutes = {origin, files, url, page, decode, encode, resolve};
+})(typeof window === 'undefined' ? globalThis : window);
+
+</script><script>
+const u=new URL('/capability-import.html'+location.search+location.hash,AtlasRoutes.origin);location.replace('./index.html'+AtlasRoutes.encode(u));
+</script></body></html>

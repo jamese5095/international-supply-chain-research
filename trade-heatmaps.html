@@ -1,1 +1,41 @@
-<!doctype html><html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>13个重点子行业 · 区域贸易热力图</title><meta name="description" content="2025年13个重点子行业区域出口去向与进口来源，按原BG十个区域汇总"><link rel="icon" href="logo.png"><link rel="stylesheet" href="trade-heatmaps.css?v=20261103-selectionproof1"><script src="research-data.js?v=20261103-direction3" defer></script><script src="vendor/d3.min.js" defer></script><script src="vendor/topojson-client.min.js" defer></script><script src="trade-heatmaps.js?v=20261103-enterprise-entry1" defer></script><script src="trade-region-detail.js?v=20261103-enterprise-entry1" defer></script><style>.cap-map-entry{text-align:right;margin:12px 0;font-size:13px}.cap-map-entry a{display:inline-block;border-bottom:1px solid currentColor;padding:8px 0;color:var(--map-ink)}.cap-region-links{display:flex;gap:22px;flex-wrap:wrap}</style><link rel="stylesheet" href="enterprises.css?v=20261103-enterprise-entry1"><script src="enterprises.js?v=20261103-enterprise-entry1" defer></script></head><body><header class="heat-mast"><a class="heat-brand" href="./"><img src="logo.png" alt="顺丰"><strong>国际供应链行业研究</strong></a><nav aria-label="主导航"><a href="./#home">行业规模</a><a href="./#flows/1">区域流向</a><a class="active" href="trade-heatmaps.html?v=20261102-simple">区域热力图</a><a href="enterprises.html?v=20261103-enterprise-entry1">企业业务</a><a href="capability-export.html?v=20261104-capabilities1">能力建设</a></nav></header><main><div class="page-heading"><div><span class="eyeline">中国报告方 · 2025全年 · 金额单位：亿美元</span><h1>出口市场在哪里，进口货源从哪里来</h1><p>核心HS商品篮子按10个区域汇总；区域及国别结构适用于本研究范围。出口蓝色、进口红色，两图采用相同金额分档。</p></div></div><div class="filter-bar"><label for="industryFilter">重点子行业</label><select id="industryFilter"><option value="all">全部13个重点子行业</option></select><span id="selectionCaption"></span></div><div class="scope-note">统计范围为13项已研究商品篮子。香港输港额作为中转节点单列，后续去向尚未分配；Comtrade 490归东亚，东南亚按对应伙伴实际金额汇总。点击区域或排名进入品类细则；悬停查看行业构成。</div><div id="loading" role="status" hidden></div><div id="mapGrid" class="map-grid"></div><details class="scope-details"><summary>区域边界、香港转口口径、商品范围与来源</summary><div id="scopeBody"></div></details><footer>底图：Natural Earth / world-atlas；绘制：D3与TopoJSON。区域划分沿用原国际供应链研究BG总览，保持全球视角。</footer></main></body></html>
+<!doctype html><html lang="zh-CN"><meta charset="utf-8"><title>国际供应链行业研究</title><body><a href="./index.html#heatmaps">进入研究看板</a><script>
+/* Shared by the published entry point, compatibility entries and route tests. */
+(function (root) {
+  'use strict';
+  const origin = 'https://atlas.internal';
+  const files = {
+    home: 'index.html', heatmaps: 'trade-heatmaps.html', enterprises: 'enterprises.html',
+    'capability-export': 'capability-export.html', 'capability-import': 'capability-import.html'
+  };
+  const byFile = Object.fromEntries(Object.entries(files).map(([k, v]) => [v, k]));
+  function url(value, base = origin + '/index.html') { return new URL(value, base); }
+  function page(value) { return byFile[url(value).pathname.split('/').pop() || 'index.html']; }
+  function decode(hash, search = '') {
+    const text = (hash || '#home').replace(/^#/, '');
+    const split = text.indexOf('?');
+    const path = split < 0 ? text : text.slice(0, split);
+    const query = split < 0 ? search : text.slice(split);
+    const [first, ...rest] = path.split('/');
+    const key = Object.hasOwn(files, first) ? first : 'home';
+    const inner = key === 'home' ? (first === 'home' ? rest.join('/') || 'home' : path) : rest.join('/');
+    const result = url('/' + files[key]);
+    result.search = query;
+    result.searchParams.delete('v');
+    result.hash = inner;
+    return result;
+  }
+  function encode(value) {
+    const target = url(value), key = page(target);
+    if (!key) throw Error('Unknown dashboard page: ' + target.pathname);
+    target.searchParams.delete('v');
+    const inner = target.hash.slice(1);
+    const path = key === 'home' ? inner || 'home' : key + (inner ? '/' + inner : '');
+    return '#' + path + target.search;
+  }
+  function resolve(value, current) { return url(value, current); }
+  root.AtlasRoutes = {origin, files, url, page, decode, encode, resolve};
+})(typeof window === 'undefined' ? globalThis : window);
+
+</script><script>
+const u=new URL('/trade-heatmaps.html'+location.search+location.hash,AtlasRoutes.origin);location.replace('./index.html'+AtlasRoutes.encode(u));
+</script></body></html>

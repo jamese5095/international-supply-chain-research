@@ -1,58 +1,38 @@
-# 静态部署说明
+# 单文件部署说明
 
-本文件夹即完整网站：根目录的 `index.html` 是实际首页，直接加载同目录的脚本与数据，不再跳转到 `docs/`。
+## 直接上传
 
-## 云平台从 GitHub 部署
+部署包内只有一个 `index.html`。将它放在网站发布目录根层即可；不用额外上传脚本、样式、地图、图片或 `downloads` 目录。
 
-| 设置 | 值 |
+| 平台设置 | 值 |
 | --- | --- |
 | 项目类型 | 静态网站 / Other |
-| 项目根目录 | 仓库根目录 |
-| 发布 / 输出目录 | `.` |
-| 安装命令 | 留空 |
-| 构建命令 | 留空 |
 | 默认首页 | `index.html` |
+| 发布目录 | `index.html` 所在目录 |
+| 安装命令 | 留空 |
+| 构建命令 | 留空（仓库已提交构建结果） |
 
-GitHub Pages 使用 `main` 分支的 `/ (root)`。云平台应允许公开访问网站文件，并按真实路径提供 HTML、JS、CSS、JSON 和图片。无需服务器程序、数据库或运行时环境变量。
+该文件可放在域名根路径，也可放在任意子路径。所有板块共用此入口，通过 `#` 后的地址定位；无需服务器配置页面路由或JSON接口。
 
-## 手动上传
+## 从GitHub部署
 
-使用 `python3 scripts/package-static.py /输出路径/国际供应链研究看板_云部署.zip` 生成完整网页包。
+仓库根目录包含已生成的 `index.html`。GitHub Pages 继续选择 `main` 分支 `/ (root)`；其他静态托管平台的发布目录选择 `.`。如希望每次发布自动重建，可将构建命令设为 `python3 build.py`，前提是平台提供Python3。
 
-将压缩包内容直接解压到网站根目录。解压后应为：
+四个旧入口 `trade-heatmaps.html`、`enterprises.html`、`capability-export.html`、`capability-import.html` 仅作兼容跳转。整仓库部署会保留旧链接；仅上传首页也能使用全部看板功能。
 
-```text
-index.html
-app.js
-research-data.js
-style.css
-trade-heatmaps.html
-enterprises.html
-capability-export.html
-capability-import.html
-downloads/
-vendor/
-…其他配套文件
+## 打包
+
+在仓库根目录执行：
+
+```sh
+python3 build.py
+python3 scripts/package-static.py /输出路径/国际供应链研究看板_云部署.zip
 ```
 
-保持文件名及子目录结构。不能仅上传 `index.html`，也不能将整个网站额外包在未被指定为发布目录的子文件夹中。
+将ZIP解压后的 `index.html` 直接上传。不要误上传 `src/pages/index.html`，它是供构建程序使用的模板。
 
-## 访问检查
+## 验证
 
-部署完成后，以下地址均应直接可访问：
+打开网站后，检查首页两张图表、热力图区域下钻、企业进出口切换与详情、进出口能力卡片。刷新具体区域或企业详情地址，应保持相同内容。浏览器返回、前进应能恢复导航及筛选。
 
-- `/`：首页两张图表。
-- `/downloads/scale-2025.json`：JSON 数据，不能是 HTML 首页或登录页。
-- `/trade-heatmaps.html`：区域热力图。
-- `/enterprises.html`：企业业务。
-- `/capability-export.html`、`/capability-import.html`：出口、进口能力建设。
-
-若部署在 `/项目名/` 子路径，以上地址相应增加该前缀；页面全部使用相对资源路径。
-
-不要启用“所有路径回退到首页”的单页应用规则。首页内部使用 `#home`、`#flows/1` 定位，这些片段不需要服务器重写。
-
-## 本地预览
-
-在项目根目录运行 `python3 -m http.server 8765`，打开 `http://localhost:8765/`。直接双击 HTML 使用 `file://` 打开会被浏览器限制读取 JSON，应通过 HTTP 访问。
-
-启动不依赖外部 API。研究引用链接会在用户点击时访问原网站。
+运行所需数据已全部内置，不受独立JSON资源路径和服务器首页回退规则影响。原始引用仍保留在页面中，点击后访问对应公开网站。

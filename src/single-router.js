@@ -1,0 +1,36 @@
+/* Shared by the published entry point, compatibility entries and route tests. */
+(function (root) {
+  'use strict';
+  const origin = 'https://atlas.internal';
+  const files = {
+    home: 'index.html', heatmaps: 'trade-heatmaps.html', enterprises: 'enterprises.html',
+    'capability-export': 'capability-export.html', 'capability-import': 'capability-import.html'
+  };
+  const byFile = Object.fromEntries(Object.entries(files).map(([k, v]) => [v, k]));
+  function url(value, base = origin + '/index.html') { return new URL(value, base); }
+  function page(value) { return byFile[url(value).pathname.split('/').pop() || 'index.html']; }
+  function decode(hash, search = '') {
+    const text = (hash || '#home').replace(/^#/, '');
+    const split = text.indexOf('?');
+    const path = split < 0 ? text : text.slice(0, split);
+    const query = split < 0 ? search : text.slice(split);
+    const [first, ...rest] = path.split('/');
+    const key = Object.hasOwn(files, first) ? first : 'home';
+    const inner = key === 'home' ? (first === 'home' ? rest.join('/') || 'home' : path) : rest.join('/');
+    const result = url('/' + files[key]);
+    result.search = query;
+    result.searchParams.delete('v');
+    result.hash = inner;
+    return result;
+  }
+  function encode(value) {
+    const target = url(value), key = page(target);
+    if (!key) throw Error('Unknown dashboard page: ' + target.pathname);
+    target.searchParams.delete('v');
+    const inner = target.hash.slice(1);
+    const path = key === 'home' ? inner || 'home' : key + (inner ? '/' + inner : '');
+    return '#' + path + target.search;
+  }
+  function resolve(value, current) { return url(value, current); }
+  root.AtlasRoutes = {origin, files, url, page, decode, encode, resolve};
+})(typeof window === 'undefined' ? globalThis : window);
