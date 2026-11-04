@@ -1522,7 +1522,7 @@ window.CAPABILITY_CONTENT={
     "atlas": {
       "type": "public-project",
       "title": "国际大客户与区域能力参考",
-      "url": "https://jamese5095.github.io/Global-supply-chain-atlas/",
+      "url": "https://ai.sf-express.com/light-app-mfe/preview.html?appId=681889ac-9bac-4d7a-a03b-1abf64824aa8",
       "note": "补充查看六行业国际大型企业的全球布局、物流项目、服务模式与区域能力。当前看板以中国企业及中国进出口机会为主，两者提供不同研究视角；案例数量不代表市场规模。"
     },
     "dhl-asml": {
