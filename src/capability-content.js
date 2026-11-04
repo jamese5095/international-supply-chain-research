@@ -1053,7 +1053,7 @@ window.CAPABILITY_CONTENT={
       "id": "m-pharma",
       "flow": "M",
       "rank": 3,
-      "title": "药品及生产原料质量交接",
+      "title": "药品及生产原料端到端供应链能力",
       "stage": "prepare",
       "summary": {
         "location": "丹麦：生产原料来源 · 美国、法国、意大利：业务及线路关联",

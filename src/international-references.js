@@ -7,7 +7,7 @@
  const names=new Intl.DisplayNames(['zh-CN'],{type:'region'});
  const regions={'north-america':'北美',europe:'欧洲','southeast-asia':'东南亚','east-asia':'东亚','south-asia':'南亚','middle-east':'中东',africa:'非洲','latin-america':'拉丁美洲',oceania:'大洋洲',eurasia:'欧亚其他'};
  const subNames={1:'半导体',2:'电子零部件',5:'消费电子及家电',8:'汽车零部件',11:'机械设备',12:'电力设备',14:'工业原材料',23:'医疗器械',26:'制药',27:'食材供应商'};
- const capNames={'m-origination':'多产地集货与运力统筹','m-semiconductor':'高价值电子货物供料接力','m-equipment':'进口设备交付工程','m-pharma':'药品及生产原料质量交接','m-food':'鲜冷货物时效与品质管理'};
+ const capNames={'m-origination':'多产地集货与运力统筹','m-semiconductor':'高价值电子货物供料接力','m-equipment':'进口设备交付工程','m-pharma':'药品及生产原料端到端供应链能力','m-food':'鲜冷货物时效与品质管理'};
  const load=()=>data?Promise.resolve(data):ResearchData.load('international-import-atlas-v1','downloads/international-import-references.json?v='+version).then(d=>(data=d));
  function location(r){return r.country?names.of(r.country):r.regionLabel||regions[r.region]||'跨区域／全球'}
  function matches(r,s){return (!s.region||s.region==='all'||r.region===s.region||(!r.region&&(r.contextAreas||[]).includes(s.region)))&&(!s.countryISO||r.country===s.countryISO)}
